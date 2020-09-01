@@ -1,0 +1,21 @@
+@mixin flexbox($d, $w, $jc, $ai) {
+    display: flex;
+    flex-flow: $d $w;
+    justify-content: $jc;
+    align-items: $ai;
+}
+@mixin font-param($s,$w) {
+    font-size: $s;
+    font-weight: $w;
+}
+@mixin dimentions($w,$h) {
+    width: $w;
+    height: $h;  
+}
+// @include flexbox(column, nowrap, center, center);
+@mixin fonts($font_family, $font_size) {
+    font-family: $font_family;
+    // font-weight: $font_weight;
+    font-size: $font_size;
+    // line-height: $line_height;
+}

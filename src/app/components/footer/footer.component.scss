@@ -1,0 +1,66 @@
+@import '../../common_scss/mixins';
+@import '../../common_scss/variables';
+
+.foot{
+    height: 250px;
+    padding: 5px;
+    background-color: white;
+    @include flexbox(row, wrap, space-between, center);
+    .foot_left{
+        margin-left: 20px;
+        .logo{
+            width: 127px;
+            @include flexbox(row, wrap, space-between, center);
+            img{
+               @include dimentions(45px,45px);
+               opacity: 0.7;
+               padding-right: 5px;
+               }
+            .logo_text{
+               @include fonts($mainFont, 26px);
+               color: $mainColor;
+               // text-transform: uppercase;
+              }
+             p{
+               @include fonts($mainFont, 9px);
+               color: $secondColor;
+               margin-top: -7px;
+               letter-spacing: 1px;
+             }   
+         }
+         p{
+            @include fonts($secondFont, 15px);
+            font-weight: 500;
+            color: $secondColor;   
+         }
+    }
+    .foot_right{
+        width: 60%;
+        @include flexbox(row, wrap, space-around, center);
+        margin-right: 20px;
+        color: $secondColor;   
+        @include fonts($mainFont, 15px);
+        li:hover{
+            color: $mainColor;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

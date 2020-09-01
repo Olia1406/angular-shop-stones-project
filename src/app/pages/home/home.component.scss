@@ -1,0 +1,105 @@
+@import '../../common_scss/mixins';
+@import '../../common_scss/variables';
+
+.bg-im{
+    height: 400px;
+    background-image: url('../../../assets/images/main.jpg');
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: cover;
+    opacity: 0.3;
+    }
+
+.main-text{
+    position: relative;
+    top: -230px;
+    left: 0px;
+    padding-left: 100px;
+    h1{
+        color: $mainColor;
+        @include fonts($mainFont, 50px);
+      }
+    p{
+        color: $secondColor;
+        @include fonts($mainFont, 20px);
+    }
+}
+.title{
+    margin: 15px;
+    @include flexbox(row, nowrap, center, center);
+    @include fonts('Roboto,600', 30px);
+    h3{
+        margin-right: 10px;
+    }    
+}
+.orange{
+    color: $mainColor;
+}
+.gray{
+    color: $secondColor;
+}
+.new-products{
+    @include flexbox(row, wrap, center, center);
+    background-color: white;
+    margin-bottom: 15px;
+    .product{
+       margin: 20px;
+       @include dimentions(220px,300px);
+       @include flexbox(column, wrap, flex-start, center);
+       @include fonts($mainFontF,15px);
+       background-color: white;
+       border-radius: 5px;
+       box-shadow: 0 0 5px 0 gray;
+       .p-image{
+        @include dimentions(220px,200px);
+        margin-bottom: 20px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        }
+        p{
+          color:$secondColor;
+          text-align: center;
+        }
+        h6{
+          color: $mainColor;
+        }
+    }
+}
+.best-salers{ 
+    @include flexbox(row, wrap, center, center);
+    background-color: white;
+    margin-bottom: 15px;
+    .product{
+       margin: 20px;
+       @include dimentions(200px,280px);
+       @include flexbox(column, wrap, flex-start, center);
+       @include fonts($mainFontF,15px);
+       background-color: white;
+       border-radius: 5px;
+       box-shadow: 0 0 5px 0 gray;
+       .p-image{
+        @include dimentions(200px,180px);
+        margin-bottom: 20px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        }
+        p{
+          color:$secondColor;
+          text-align: center;
+        }
+        h6{
+          color: $mainColor;
+        }
+    }
+ }
+.switch{
+    height: 60px;
+    @include flexbox(row, nowrap, center, center);
+    background-color: white;
+    a{
+        @include dimentions(8px, 8px);
+        border-radius: 50%;
+        margin: 5px;
+        background-color: $mainColor;
+    }
+}

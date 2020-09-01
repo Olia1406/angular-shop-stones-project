@@ -1,0 +1,102 @@
+@import '../../common_scss/mixins';
+@import '../../common_scss/variables';
+
+.inform{
+ height: 50px;
+ border: 1px solid transparent;
+ border-bottom-color: rgb(231, 229, 229);
+ background-color: white;
+ @include flexbox(row, nowrap, space-between, center);
+ padding: 5px;
+ img{
+    margin: 4px;
+    @include dimentions(16px,16px)
+    }
+   &_left{
+    margin-left: 20px;   
+    width: 330px;
+    color: $secondColor;
+    @include fonts($mainFont, 12px);
+    @include flexbox(row, nowrap, space-between, center);
+   }
+   &_right{
+    @include flexbox(row, nowrap, space-around, center);
+    width: 120px;
+    margin-right: 20px;
+    img:hover{
+      @include dimentions(19px,19px);
+    }
+   }
+}
+.hdr{
+    // border: 1px solid #000;
+    height: 120px;
+    padding: 5px;
+    background-color: white;
+    @include flexbox(row, wrap, space-between, center);
+    &_left{
+      margin-left: 20px;   
+      @include flexbox(row, wrap, space-between, center);
+      .logo{
+         @include flexbox(row, wrap, space-between, center);
+         padding: 5px;
+         img{
+            @include dimentions(45px,45px);
+            opacity: 0.7;
+            padding-right: 5px;
+            }
+         .logo_text{
+            @include fonts($mainFont, 26px);
+            color: $mainColor;
+            // text-transform: uppercase;
+           }
+          p{
+            @include fonts($mainFont, 9px);
+            color: $secondColor;
+            margin-top: -7px;
+            letter-spacing: 1px;
+          }
+          &:hover{
+            box-shadow: 0 0 6px 0px $secondColorLt;
+            border-radius: 7px;
+          }
+      }
+      .pages{
+          margin-left: 50px;
+          width: 400px;
+          color: $secondColorLt;
+          @include fonts($mainFont, $fontSizeXS);
+          @include flexbox(row, wrap, space-around, center);
+          }  
+          p:hover{
+            color: $mainColor;
+          }         
+    }
+    &_right{
+        width: 110px;
+        color: $secondColorLt;
+        margin-right: 20px;
+        margin-top: -15px;
+        @include flexbox(row, wrap, space-between, center);
+        @include fonts($mainFont, $fontSizeXS);
+        img{
+            // margin: 4px;
+            @include dimentions(24px,24px);
+        }
+        .sum{
+          @include dimentions(30px,23px);
+          background-color: $secondColor;
+          color: white;
+          @include fonts($mainFont, 11px);
+          border-radius: 50%;
+          @include flexbox(row, wrap, space-around, center);
+          position: relative;
+          top: -15px;
+          left: -15px;
+        }
+        .sign:hover{
+          color: $mainColor;
+        }         
+    }
+    
+}
