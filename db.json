@@ -1,0 +1,59 @@
+{
+  "categories": [
+    {
+      "nameEN": "necklace",
+      "nameUA": "намиста",
+      "id": 1
+    },
+    {
+      "nameEN": "bracelet",
+      "nameUA": "браслети",
+      "id": 2
+    },
+    {
+      "nameEN": "earring",
+      "nameUA": "сережки",
+      "id": 3
+    }
+  ],
+  "products": [
+    {
+      "category": {
+        "id": 1,
+        "nameEN": "necklace",
+        "nameUA": "намиста"
+      },
+      "nameEN": "dfg",
+      "nameUA": "dfg",
+      "description": "dfgdgdgdfg",
+      "length": "23",
+      "width": "23",
+      "price": 333,
+      "image": "https://firebasestorage.googleapis.com/v0/b/my-project-d612f.appspot.com/o/images%2F8.jpeg?alt=media&token=c88e2823-9a2f-43c6-a24a-8a2f0357abe4",
+      "color": "red",
+      "zodiac": "fggfh",
+      "stone": "weqeeqe",
+      "count": 1,
+      "id": 1
+    },
+    {
+      "category": {
+        "nameEN": "earring",
+        "nameUA": "сережки",
+        "id": 3
+      },
+      "nameEN": "dfg",
+      "nameUA": "dfg",
+      "description": "dfggggggggggggggggggggggg",
+      "length": "5555",
+      "width": "55",
+      "price": 555,
+      "image": "https://firebasestorage.googleapis.com/v0/b/my-project-d612f.appspot.com/o/images%2Fmid_302207_494268.jpeg?alt=media&token=0657f3d9-f7d3-4809-8707-ac3de199a911",
+      "color": "dfsf",
+      "zodiac": "gggg",
+      "stone": "gggg",
+      "count": 1,
+      "id": 2
+    }
+  ]
+}

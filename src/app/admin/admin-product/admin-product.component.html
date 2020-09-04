@@ -1,0 +1,122 @@
+<form>
+    <div class="form-group">
+        <label for="categoryChoose">Choose category</label>
+        <select [(ngModel)]="categoryName" name="categoryName" (change)="setCategory()" class="custom-select"
+            id="categoryChoose">
+            <option *ngFor="let category of categories">
+                {{ category.nameEN }}
+            </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="nameEN">Name EN</label>
+        <input [(ngModel)]="productNameEN" name="productNameEN" type="text" id="nameEN" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="nameUA">Name UA</label>
+        <input [(ngModel)]="productNameUA" name="productNameUA" type="text" id="nameUA" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea [(ngModel)]="productDescription" name="productDescription" class="form-control" id="description"
+            rows="3"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="length">Length</label>
+        <input [(ngModel)]="productLength" name="productLength" type="text" id="length" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="width">Width</label>
+        <input [(ngModel)]="productWidth" name="productWidth" type="text" id="width" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="price">Price</label>
+        <input [(ngModel)]="productPrice" name="productPrice" type="number" id="price" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="color">Color</label>
+        <input [(ngModel)]="productColor" name="productColor" type="text" id="color" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="zodiac">Zodiac</label>
+        <input [(ngModel)]="productZodiac" name="productZodiac" type="text" id="zodiac" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="stone">Stone</label>
+        <input [(ngModel)]="productStone" name="productStone" type="text" id="stone" class="form-control">
+    </div>
+    <div class="custom-file">
+        <input type="file" (change)="uploadFile($event)" class="custom-file-input" id="image" required>
+        <label class="custom-file-label" for="image">Choose file...</label>
+    </div>
+    <div class="progress mb-3 mt-3" *ngIf="!imageStatus">
+        <div [style.width]="(uploadProgress | async) + '%'" class="progress-bar progress-bar-striped bg-warning"
+            role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+    <div class="productImage mb-3 mt-3" *ngIf="imageStatus">
+        <img [src]="productImage" alt="">
+        <span (click)="deleteImage(deleteImageConfirm)">
+            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                <path fill-rule="evenodd"
+                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+            </svg>
+        </span>
+    </div>
+    <button class="btn btn-success" (click)="addProduct()">Add</button>
+</form>
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Category</th>
+            <th scope="col">Name EN</th>
+            <th scope="col">Name UA</th>
+            <th scope="col">Description</th>
+            <th scope="col">Length</th>
+            <th scope="col">Width</th>
+            <th scope="col">Price</th>
+            <th scope="col">Color</th>
+            <th scope="col">Zodiac</th>
+            <th scope="col">Stone</th>
+            <th scope="col">Image</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let prod of adminProducts">
+            <td>{{ prod.id }}</td>
+            <td>{{ prod.category.nameUA }}</td>
+            <td>{{ prod.nameEN }}</td>
+            <td>{{ prod.nameUA }}</td>
+            <td>{{ prod.description | slice:0:50 }}</td>
+            <td>{{ prod.length }}</td>
+            <td>{{ prod.width }}</td>
+            <td>{{ prod.price }}</td>
+            <td>{{ prod.color }}</td>
+            <td>{{ prod.zodiac }}</td>
+            <td>{{ prod.stone }}</td>
+            <td>
+                <img [src]="prod.image" style="width: 100px; height: 100px;" alt="">
+            </td>
+            <td>
+                <input type="button" value="edit" class="btn btn-warning">
+            </td>
+            <td>
+                <input type="button" value="delete" class="btn btn-danger">
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<ng-template #deleteImageConfirm>
+    <div class="modal-body text-center">
+        <p>Do you want to confirm?</p>
+        <button type="button" class="btn btn-default" (click)="confirmImage()" >Yes</button>
+        <button type="button" class="btn btn-primary" (click)="declineImage()" >No</button>
+    </div>
+</ng-template>

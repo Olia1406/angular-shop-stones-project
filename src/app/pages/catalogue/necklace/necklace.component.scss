@@ -1,0 +1,43 @@
+@import '../../../common_scss/mixins';
+@import '../../../common_scss/variables';
+
+.new-products{
+    @include flexbox(row, wrap, flex-start, flex-start);
+    // background-color: white;
+    margin-bottom: 15px;
+    .product{
+       margin: 20px;
+       @include dimentions(220px,340px);
+       @include flexbox(column, wrap, flex-start, center);
+       @include fonts($mainFontF,15px);
+       background-color: white;
+       border-radius: 5px;
+       box-shadow: 0 0 5px 0 gray;
+       .p-image{
+        @include dimentions(220px,200px);
+        margin-bottom: 20px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        }
+        p{
+          color:$secondColor;
+          text-align: center;
+        }
+        h6{
+          color: $mainColor;
+        }
+        .button{
+        @include dimentions(90px,30px);
+        background-color: $mainColor;
+        color: white;
+        text-align: center;
+        line-height: 30px;
+        border-radius: 10px;
+        &:hover{
+          // color: $secondColor;
+          box-shadow: 0 0 3px 1px $secondColor;
+        }
+        // @include fonts()
+        }
+    }
+}

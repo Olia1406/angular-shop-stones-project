@@ -3,6 +3,9 @@
 // @import 'mixins';
 @import './app/common_scss/fonts';
 
+*{
+    outline: none;
+}
 body{
     background-color: whitesmoke;
 }

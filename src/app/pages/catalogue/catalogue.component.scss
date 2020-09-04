@@ -1,0 +1,51 @@
+@import '../../common_scss/mixins';
+@import '../../common_scss/variables';
+*{
+    outline: none;
+}
+.catlogue-container{
+    @include flexbox(row, nowrap, center, flex-start);
+    margin: 50px auto;
+    position: relative;
+    .nav-prod{
+        // position: sticky;
+        // top: 150;
+        // left: 0;
+        // z-index: 9;
+        width: 270px;
+        margin-right: 20px;
+        // background: #000;
+        @include flexbox(column, nowrap, flex-start, flex-start);
+        // @include dimentions(270px,270px); 
+        .categories{
+            @include flexbox(column, wrap, space-between, flex-start);
+            @include dimentions(250px, 300px); 
+            margin: 20px;  
+            padding: 20px;
+            background-color: white;
+           .category-title{
+            @include fonts($mainFont, 20px);
+            color: $mainColor;  
+            }
+            .category-name{
+            @include fonts($mainFont, 17px);
+            color: $secondColor; 
+            // margin-bottom: 15px;
+            }
+            .current-category{
+                color: $mainColor;
+            }
+        }
+        .price-filter{
+            @extend .categories ;
+            height: 200px;
+        } 
+        .stone-name-filter,.stone-color-filter,.zodiak-filter{
+            @extend .categories ; 
+            height: 100px;
+        }  
+    }
+    .prod-container{
+        @include flexbox(column, wrap, flex-start, flex-start); 
+    }
+}

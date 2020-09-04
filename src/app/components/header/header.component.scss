@@ -1,6 +1,14 @@
 @import '../../common_scss/mixins';
 @import '../../common_scss/variables';
 
+header{
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 10;
 .inform{
  height: 50px;
  border: 1px solid transparent;
@@ -29,7 +37,6 @@
    }
 }
 .hdr{
-    // border: 1px solid #000;
     height: 120px;
     padding: 5px;
     background-color: white;
@@ -56,10 +63,10 @@
             margin-top: -7px;
             letter-spacing: 1px;
           }
-          &:hover{
-            box-shadow: 0 0 6px 0px $secondColorLt;
-            border-radius: 7px;
-          }
+          // &:hover{
+            // box-shadow: 0 0 6px 0px $secondColorLt;
+            // border-radius: 7px;
+          // }
       }
       .pages{
           margin-left: 50px;
@@ -99,4 +106,9 @@
         }         
     }
     
+}
+.active{
+  color: $mainColor;
+  outline: none;
+}
 }

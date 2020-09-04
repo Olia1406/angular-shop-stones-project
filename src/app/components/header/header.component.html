@@ -1,49 +1,50 @@
-<div class="inform">
- <div class="inform_left">
-     <div class="inform_left_mail">
-         <img src="../../../assets/icons/envelope-alt.svg" alt="">
-         <span>schorl@gmail.com</span>
-     </div>
-     <div class="inform_left_tel">
-        <span><img src="../../../assets/icons/phone.svg" alt=""></span>
-        <span>+38(097)-555-55-55</span>
-        <span class="empty-space"> </span>
-        <span><img src="../../../assets/icons/viber-brands.svg" alt=""></span>
-     </div>
- </div>
- <div class="inform_right">
-     <a href="https://www.facebook.com/agatagemstore/" target="_blank">
-        <img src="../../../assets/icons/facebook-f (1).svg" alt="">
-    </a>
-     <a href="" target="_blank">
-        <img src="../../../assets/icons/twitter (1).svg" alt="">  
-     </a>  
-    <a href="https://www.instagram.com/agatagemstore/p/BtnUpGiglBd/" target="_blank">
-        <img src="../../../assets/icons/instagram (1).svg" alt="">
-    </a>
- </div>
-</div>
-<header class="hdr">
-    <div class="hdr_left">
-        <div class="logo">
-            <img src="../../../assets/icons/stone.svg" alt="">
-            <div>
-                <span class="logo_text">schorl</span>
-                <p>natural stones</p>
-            </div>     
+<header>
+    <div class="inform">
+        <div class="inform_left">
+            <div class="inform_left_mail">
+                <img src="../../../assets/icons/envelope-alt.svg" alt="">
+                <span>schorl@gmail.com</span>
+            </div>
+            <div class="inform_left_tel">
+                <span><img src="../../../assets/icons/phone.svg" alt=""></span>
+                <span>+38(097)-555-55-55</span>
+                <span class="empty-space"> </span>
+                <span><img src="../../../assets/icons/viber-brands.svg" alt=""></span>
+            </div>
         </div>
-        <div class="pages">
-          <!-- <p>головна</p> -->
-          <p>каталог</p>
-          <p>акції</p>
-          <p>контакти</p>
-          <p>відгуки</p>
+        <div class="inform_right">
+            <a href="https://www.facebook.com/agatagemstore/" target="_blank">
+                <img src="../../../assets/icons/facebook-f (1).svg" alt="">
+            </a>
+            <a href="" target="_blank">
+                <img src="../../../assets/icons/twitter (1).svg" alt="">
+            </a>
+            <a href="https://www.instagram.com/agatagemstore/p/BtnUpGiglBd/" target="_blank">
+                <img src="../../../assets/icons/instagram (1).svg" alt="">
+            </a>
         </div>
     </div>
-    <div class="hdr_right">
-        <div class="basket"><img src="../../../assets/icons/shopping-basket.svg" alt=""></div>   
-        <div class="sum">0</div>
-        <div class="sign">увійти</div>
+    <div class="hdr">
+        <div class="hdr_left">
+            <div class="logo" routerLink="home" routerLinkActive="active">
+                <img src="../../../assets/icons/stone.svg" alt="">
+                <div>
+                    <span class="logo_text">scharl</span>
+                    <p>natural stones</p>
+                </div>
+            </div>
+            <nav class="pages">
+                <!-- <p>головна</p> -->
+                <p [routerLink]="[ '/catalogue' ]" routerLinkActive="active">каталог</p>
+                <p [routerLink]="[ '/home' ]" routerLinkActive="active">акції</p>
+                <p [routerLink]="[ '/contacts' ]" routerLinkActive="active">контакти</p>
+                <p [routerLink]="[ '/feedback' ]" routerLinkActive="active">відгуки</p>
+            </nav>
+        </div>
+        <div class="hdr_right">
+            <div class="basket"><img src="../../../assets/icons/shopping-basket.svg" alt=""></div>
+            <div class="sum">0</div>
+            <div class="sign" [routerLink]="[ '/admin' ]">адмін</div>
+        </div>
     </div>
 </header>
-
