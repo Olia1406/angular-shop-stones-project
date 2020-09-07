@@ -1,15 +1,15 @@
 <!-- <p>admin works!</p> -->
 <div class="container-fluid mt-2">
     <div class="row">
-      <div class="col-2">
+      <div class="col-2 mr-3">
         <div class="nav flex-column nav-pills">
-          <a class="nav-link" [routerLink]="[ 'admin-category' ]" routerLinkActive="bg-dark text-light">Category</a>
-          <a class="nav-link" [routerLink]="[ 'admin-product' ]" routerLinkActive="bg-dark text-light">Product</a>
-          <a class="nav-link" [routerLink]="[ 'admin-order' ]" routerLinkActive="bg-dark text-light">Order</a>
-          <a class="nav-link" [routerLink]="[ 'admin-discount' ]" routerLinkActive="bg-dark text-light">Discount</a>
+          <a class="nav-link" [routerLink]="[ 'admin-category' ]" routerLinkActive="admin-item">Category</a>
+          <a class="nav-link" [routerLink]="[ 'admin-product' ]" routerLinkActive="admin-item">Product</a>
+          <a class="nav-link" [routerLink]="[ 'admin-order' ]" routerLinkActive="admin-item">Order</a>
+          <a class="nav-link" [routerLink]="[ 'admin-discount' ]" routerLinkActive="admin-item">Discount</a>
         </div>
       </div>
-      <div class="col-10">
+      <div class="col-9 ml-3">
         <div class="tab-content">
           <router-outlet></router-outlet>
         </div>

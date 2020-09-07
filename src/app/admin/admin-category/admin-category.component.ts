@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ICategory } from 'src/app/shared/interfaces/category.interface';
 import { Category } from 'src/app/shared/models/category.model';
 import { CategoryService } from 'src/app/shared/services/category.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-admin-category',
@@ -13,7 +14,12 @@ export class AdminCategoryComponent implements OnInit {
   categoryID = 1;
   nameEN: string;
   nameUA: string;
-  constructor(private catService: CategoryService) { }
+  cat: ICategory;
+
+  modalRef: BsModalRef;
+
+  constructor(private catService: CategoryService,
+              private modalService: BsModalService) { }
 
   ngOnInit(): void {
     this.adminJSONCategories();
@@ -34,15 +40,35 @@ export class AdminCategoryComponent implements OnInit {
     this.resetForm();
   }
 
-  deleteCategory(category: ICategory): void {
-    this.catService.deleteJSONCategory(category.id).subscribe(() => {
-      this.adminJSONCategories();
-    });
+  // deleteCategory(category: ICategory): void {
+  // this.catService.deleteJSONCategory(category.id).subscribe(() => {
+  // this.adminJSONCategories();
+  // });
+  // }
+
+  deleteCategory(category: ICategory, template: TemplateRef<any>): void {
+    this.openModal(template);
+    this.cat = category;
   }
 
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+  }
   private resetForm(): void {
     this.nameEN = '';
     this.nameUA = '';
+  }
+
+
+  confirmDeleteCategory(c): void {
+    this.modalRef.hide();
+    c = this.cat;
+    this.catService.deleteJSONCategory(c.id).subscribe(() => {
+    this.adminJSONCategories();
+    });
+  }
+  decline(): void {
+    this.modalRef.hide();
   }
 
 }

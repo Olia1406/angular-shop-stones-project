@@ -1,0 +1,15 @@
+
+
+.table {
+    display: table;
+    width: 100%;
+    // border-collapse: collapse;
+  }
+    
+  .table .tr {
+    display: table-row;
+  }
+    
+  .table .td {
+    display: table-cell;
+  }

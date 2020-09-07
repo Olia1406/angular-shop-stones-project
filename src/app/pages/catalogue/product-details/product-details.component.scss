@@ -1,0 +1,65 @@
+@import '../../../common_scss/mixins';
+@import '../../../common_scss/variables';
+
+.nav{
+    margin: 20px;
+}
+.prod-details{
+    background: white;
+    @include flexbox(row, wrap,center,flex-start);
+    min-height: 440px;
+    .images-box{
+        padding: 30px 0;
+        @include dimentions(440px,440px);
+        // background: rgb(214, 167, 167);
+        margin-right: 10px;
+        @include flexbox(row, wrap,center,flex-start);
+        .big-image{
+        @include dimentions(380px,380px);
+        box-shadow: 0 0 3px 2px $secondColorLt;
+        border-radius: 10px;
+        }
+    }
+    .info-box{
+        padding: 30px 50px;
+        // max-width: 600px;
+        // height: 440px;
+        @include dimentions(600px,440px);
+        // background: rgb(214, 167, 167);
+        // .info-details{
+          h2{
+            @include fonts($mainFont, 40px);
+            color: $mainColor;
+            }
+          p{
+            @include fonts($mainFont, 15px);
+            color: $secondColor;
+           } 
+
+          h4{
+            @include fonts($mainFont, 22px);
+            color: $secondColor;
+          }
+        // }
+        .count{
+          width: 170px;
+          @include flexbox(row, wrap,space-between,flex-start);
+          span{
+            margin-top: -5px;
+          }
+        }
+        .row-info{
+          @include flexbox(row, wrap,space-between,center);
+        }
+        .bt{
+          background-color: $mainColor;
+          font-size: 16px;
+          font-weight: 500;
+          color: white;
+          &:hover{
+              box-shadow: 0 0 3px 2px $mainColor;
+          }
+      }
+
+    }
+}

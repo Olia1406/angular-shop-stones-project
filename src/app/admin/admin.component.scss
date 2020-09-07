@@ -1,0 +1,12 @@
+@import '../common_scss/variables';
+@import '../common_scss/mixins';
+
+a{
+    font-size: 18px;
+    font-weight: 500;
+}
+.admin-item{
+   color: $mainColor;
+   border: 2px solid $mainColor;
+   border-radius: 8px;
+}

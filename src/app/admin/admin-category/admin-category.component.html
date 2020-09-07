@@ -1,32 +1,43 @@
 <!-- <p>admin-category works!</p> -->
 <form>
-    <div class="form-group">
-        <label for="nameEN">Name En</label>
-        <input [(ngModel)]="nameEN" name="nameEN" type="text" id="nameEN" class="form-control">
+  <div class="row">
+    <div class="form-group col-5">
+      <label for="nameEN">Name En</label>
+      <input [(ngModel)]="nameEN" name="nameEN" type="text" id="nameEN" class="form-control">
     </div>
-    <div class="form-group">
-        <label for="nameUA">Name UA</label>
-        <input [(ngModel)]="nameUA" name="nameUA" type="text" id="nameUA" class="form-control">
+    <div class="form-group col-5">
+      <label for="nameUA">Name UA</label>
+      <input [(ngModel)]="nameUA" name="nameUA" type="text" id="nameUA" class="form-control">
     </div>
-    <button class="btn btn-success" (click)="addCategory()">Add</button>
+    <div class="form-group col-2" style="margin-top: 32px">
+      <button class="btn bt " (click)="addCategory()">Add</button>
+    </div>
+  </div>
 </form>
 <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Name EN</th>
-        <th scope="col">Name UA</th>
-        <th scope="col">Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let c of adminCategory">
-          <td>{{ c.id }}</td>
-          <td>{{ c.nameEN }}</td>
-          <td>{{ c.nameUA }}</td>
-          <td>
-              <input type="button" value="delete" class="btn btn-danger" (click)="deleteCategory(c)">
-          </td>
-      </tr>
-    </tbody>
-  </table>
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name EN</th>
+      <th scope="col">Name UA</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of adminCategory">
+      <td>{{ c.id }}</td>
+      <td>{{ c.nameEN }}</td>
+      <td>{{ c.nameUA }}</td>
+      <td>
+        <input type="button" value="delete" class="btn btn-dark" (click)="deleteCategory(c,template)">
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #template >
+  <div class="modal-body text-center" >
+    <button type="button" class="btn bt col-5 m-2" (click)="decline()" >dismiss</button>
+    <button type="button" class="btn btn-dark col-5 m-2" (click)="confirmDeleteCategory(c)" >delete</button>
+  </div>
+</ng-template>

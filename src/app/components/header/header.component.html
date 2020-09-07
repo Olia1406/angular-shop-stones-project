@@ -35,16 +35,16 @@
             </div>
             <nav class="pages">
                 <!-- <p>головна</p> -->
-                <p [routerLink]="[ '/catalogue' ]" routerLinkActive="active">каталог</p>
-                <p [routerLink]="[ '/home' ]" routerLinkActive="active">акції</p>
-                <p [routerLink]="[ '/contacts' ]" routerLinkActive="active">контакти</p>
-                <p [routerLink]="[ '/feedback' ]" routerLinkActive="active">відгуки</p>
+                <a [routerLink]="[ '/catalogue' ]" routerLinkActive="active">каталог</a>
+                <a [routerLink]="[ '/discount' ]" routerLinkActive="active">акції</a>
+                <a [routerLink]="[ '/contacts' ]" routerLinkActive="active">контакти</a>
+                <a [routerLink]="[ '/feedback' ]" routerLinkActive="active">відгуки</a>
             </nav>
         </div>
         <div class="hdr_right">
-            <div class="basket"><img src="../../../assets/icons/shopping-basket.svg" alt=""></div>
-            <div class="sum">0</div>
-            <div class="sign" [routerLink]="[ '/admin' ]">адмін</div>
+            <a [routerLink]="[ '/basket' ]" routerLinkActive="active" class="basket"><img src="../../../assets/icons/shopping-basket.svg" alt=""></a>
+            <div class="sum">{{totalPrice}}</div>
+            <a class="sign" [routerLink]="[ '/admin' ]">адмін</a>
         </div>
     </div>
 </header>

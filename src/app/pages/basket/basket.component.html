@@ -1,0 +1,37 @@
+<!-- <p>basket works!</p> -->
+<div class="container">
+    <!-- <div class="row"> -->
+    <div class="col-lg-12 empty-basket" *ngIf="!orders.length">
+        <p>Кошик порожній.</p>
+        <a routerLink="/home" style="color:red">Повернутись до покупок</a>
+    </div>
+
+
+    <div class="col-lg-12 mt-5 smt-basket" *ngIf="orders.length">
+        <div class="table">
+            <div class="tr thead">
+                <!-- <div class="tr"> -->
+                <div class="td">Видалити</div>
+                <div class="td">Товар</div>
+                <div class="td">Ціна</div>
+                <div class="td">Кількість</div>
+                <div class="td">Загалом</div>
+                <!-- </div> -->
+            </div>
+            <div class="tr tbody" *ngFor="let order of orders">
+                <div class="td" (click)="deleteProduct(order)">&times;</div>
+                <div class="td">{{order?.nameUA}}</div>
+                <div class="td">{{order?.price}}</div>
+                <div class="td">
+                    <app-counter [product]="order" (changeCount)="detectChangeCount($event)"></app-counter>
+                    <!-- (changeCount)="detectChangeCount($event)" -->
+                </div>
+                <div class="td"><span>{{order?.count * order?.price}}</span></div>
+            </div>
+            <div class="tr tfoot">
+                      <div class="td">Всього: <span>{{totalPrice}}</span></div>
+            </div>
+        </div>
+        <!-- </div> -->
+
+    </div>

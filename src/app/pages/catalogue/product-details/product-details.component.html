@@ -1,0 +1,45 @@
+<div class="mb-5">
+  <div class="nav">
+    <span><a [routerLink]="[ '/home' ]"> Головна > </a></span>
+    <span><a [routerLink]="['/catalogue', 'menu', product?.category.nameEN ]">
+        {{ product?.category.nameUA | titlecase }} > </a></span>
+    <span><a> {{ product?.nameUA }}</a></span>
+  </div>
+  <div class="prod-details">
+    <div class="images-box">
+      <div>
+        <img class="big-image" [src]="product?.image" alt="">
+      </div>
+      <!-- <div class="small-images"> -->
+      <!-- <div class="sm-im"></div> -->
+      <!-- <div class="sm-im"></div> -->
+      <!-- <div class="sm-im"></div> -->
+      <!-- </div> -->
+    </div>
+    <div class="info-box">
+      <div class="info-details">
+        <h2>{{ product?.nameUA }}</h2>
+        <p>{{ product?.description }}</p>
+        <p>Колір: {{ product?.color}}</p>
+        <p>Довжина: {{ product?.length }} см</p>
+        <p>Розмір каменя: {{ product?.width }} мм</p>
+        <!-- <p>stone</p> -->
+        <!-- <p>zodiac</p> -->
+      </div>
+      <hr>
+      <div class="row-info">
+        <p>Ціна: {{ product?.price }} грн</p>
+        <div class="count">
+          <p>Kількість:</p><span>
+            <app-counter [product]="product"></app-counter>
+          </span>
+        </div>
+      </div>
+      <hr>
+      <div class="row-info">
+        <h4>Всього: {{ product?.price*product?.count }} грн</h4>
+        <button class="btn bt" (click)="addToBasket(product)">у кошик</button>
+      </div>
+    </div>
+  </div>
+</div>

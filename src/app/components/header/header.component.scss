@@ -40,6 +40,8 @@ header{
     height: 120px;
     padding: 5px;
     background-color: white;
+    border: 2px solid transparent;
+    border-bottom-color: rgb(231, 229, 229);
     @include flexbox(row, wrap, space-between, center);
     &_left{
       margin-left: 20px;   

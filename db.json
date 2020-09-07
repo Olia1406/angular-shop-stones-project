@@ -23,37 +23,150 @@
         "nameEN": "necklace",
         "nameUA": "намиста"
       },
-      "nameEN": "dfg",
-      "nameUA": "dfg",
-      "description": "dfgdgdgdfg",
-      "length": "23",
-      "width": "23",
-      "price": 333,
-      "image": "https://firebasestorage.googleapis.com/v0/b/my-project-d612f.appspot.com/o/images%2F8.jpeg?alt=media&token=c88e2823-9a2f-43c6-a24a-8a2f0357abe4",
-      "color": "red",
-      "zodiac": "fggfh",
-      "stone": "weqeeqe",
+      "nameEN": "Perls",
+      "nameUA": "Намисто з перлин",
+      "description": "Трьохрядне намисто з річкових перлин",
+      "length": "48",
+      "width": "8",
+      "price": 100,
+      "image": "https://firebasestorage.googleapis.com/v0/b/my-project-d612f.appspot.com/o/images%2Fimages%20(1).jpeg?alt=media&token=4428fa54-c133-4b20-b426-4a1ced98aa7e",
+      "color": "білий",
+      "zodiac": "Козеpіг, водолій",
+      "stone": "перли",
       "count": 1,
       "id": 1
     },
     {
       "category": {
+        "id": 1,
+        "nameEN": "necklace",
+        "nameUA": "намиста"
+      },
+      "nameEN": "amber",
+      "nameUA": "Намисто з бурштину",
+      "length": "55",
+      "width": "14",
+      "price": 100,
+      "image": "https://firebasestorage.googleapis.com/v0/b/my-project-d612f.appspot.com/o/images%2Fimages%20(2).jpeg?alt=media&token=41084fb3-f841-438b-9847-93189c75ccba",
+      "color": "жовтий, коричневий",
+      "zodiac": "стрілець",
+      "stone": "бурштин",
+      "count": 1,
+      "id": 2
+    },
+    {
+      "category": {
+        "nameEN": "necklace",
+        "nameUA": "намиста",
+        "id": 1
+      },
+      "nameEN": "coral",
+      "nameUA": "Намисто з коралу",
+      "description": "Трьохрядне намисто з рожевого коралу",
+      "length": "55",
+      "width": "10-18мм",
+      "price": 100,
+      "image": "https://firebasestorage.googleapis.com/v0/b/my-project-d612f.appspot.com/o/images%2Fkoral.jpeg?alt=media&token=469a497c-19ab-45a7-8c3b-bc433264f08a",
+      "color": "коралово-оранджевий",
+      "zodiac": "всім",
+      "stone": "корал",
+      "count": 1,
+      "id": 3
+    },
+    {
+      "category": {
+        "id": 1,
+        "nameEN": "necklace",
+        "nameUA": "намиста"
+      },
+      "nameEN": "agat",
+      "nameUA": "Намисто з турмалінів",
+      "description": "Намисто з турмаліну різних кольорів ",
+      "length": "44",
+      "width": "11-12",
+      "price": 100,
+      "image": "https://firebasestorage.googleapis.com/v0/b/my-project-d612f.appspot.com/o/images%2Fimages%20(3).jpeg?alt=media&token=591823ca-fb93-4517-ad8c-25d8b43a8723",
+      "color": "зелений, чорний",
+      "zodiac": "всім",
+      "stone": "турмалін",
+      "count": 1,
+      "id": 4
+    },
+    {
+      "id": 5,
+      "category": {
+        "nameEN": "bracelet",
+        "nameUA": "браслети",
+        "id": 2
+      },
+      "nameEN": "Rose kv",
+      "nameUA": "Браслет з рожевого кв",
+      "description": "Браслет з рожевого кварцу багаторядний",
+      "length": "19",
+      "width": "6-30",
+      "price": 100,
+      "image": "https://firebasestorage.googleapis.com/v0/b/my-project-d612f.appspot.com/o/images%2Fb-rose%20kv.jpeg?alt=media&token=9267d8ee-8a50-4b69-a97c-f87ce79909ab",
+      "color": "рожевий",
+      "zodiac": "близнюк, козеріг",
+      "stone": "рожевий кварц",
+      "count": 1
+    },
+    {
+      "category": {
+        "nameEN": "bracelet",
+        "nameUA": "браслети",
+        "id": 2
+      },
+      "nameEN": "agat",
+      "nameUA": "Браслет з зеленого агату",
+      "description": "Браслет з зеленого агату баторядний",
+      "length": "19",
+      "width": "6-30",
+      "price": 100,
+      "image": "https://firebasestorage.googleapis.com/v0/b/my-project-d612f.appspot.com/o/images%2Fb-green.jpeg?alt=media&token=40381322-8e16-4041-8d85-668da7e4f85d",
+      "color": "зелений",
+      "zodiac": "всім",
+      "stone": "агат",
+      "count": 1,
+      "id": 6
+    },
+    {
+      "id": 7,
+      "category": {
+        "nameEN": "bracelet",
+        "nameUA": "браслети",
+        "id": 2
+      },
+      "nameEN": "ametyst",
+      "nameUA": "Браслет з аметисту",
+      "description": "Браслет з аметисту багаторядний",
+      "length": "19",
+      "width": "2-30",
+      "price": 100,
+      "image": "https://firebasestorage.googleapis.com/v0/b/my-project-d612f.appspot.com/o/images%2Fb-ametyst.jpeg?alt=media&token=12b150b4-97ea-4a75-943a-ae96ae6b8aeb",
+      "color": "фіолетовий",
+      "zodiac": "близнюки, рак, стрілець",
+      "stone": "аметист",
+      "count": 1
+    },
+    {
+      "id": 8,
+      "category": {
         "nameEN": "earring",
         "nameUA": "сережки",
         "id": 3
       },
-      "nameEN": "dfg",
-      "nameUA": "dfg",
-      "description": "dfggggggggggggggggggggggg",
-      "length": "5555",
-      "width": "55",
-      "price": 555,
-      "image": "https://firebasestorage.googleapis.com/v0/b/my-project-d612f.appspot.com/o/images%2Fmid_302207_494268.jpeg?alt=media&token=0657f3d9-f7d3-4809-8707-ac3de199a911",
-      "color": "dfsf",
-      "zodiac": "gggg",
-      "stone": "gggg",
-      "count": 1,
-      "id": 2
+      "nameEN": "amber",
+      "nameUA": "Сережки з бурштину",
+      "description": "Сережки з бурштину",
+      "length": "3",
+      "width": "5-12",
+      "price": 100,
+      "image": "https://firebasestorage.googleapis.com/v0/b/my-project-d612f.appspot.com/o/images%2Fe-girl.jpeg?alt=media&token=ee97db5b-c820-4ad7-855f-94601d5c6eb5",
+      "color": "жовтий, коричневий",
+      "zodiac": "всім",
+      "stone": "бурштин",
+      "count": 1
     }
   ]
 }

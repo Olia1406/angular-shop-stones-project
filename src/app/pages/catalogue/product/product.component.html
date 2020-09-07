@@ -1,1 +1,18 @@
-<p>product works!</p>
+<div class="new-products">
+    <div class="product" *ngFor="let prod of products">
+        <!-- <div class="p-image" [style.backgroundImage]="'url('+prod.image+')'" -->
+        <!-- <div> -->
+            <img [src]="prod?.image" alt="" class="p-image"
+            [routerLink]="[ '/menu/'+prod.category.nameEN, prod.id ]">
+        <!-- </div> -->
+        <a [routerLink]="[ '/menu/'+prod.category.nameEN, prod.id ]">детальніше</a>
+        <p>{{prod?.nameUA}}</p>
+        <h6>{{prod?.price}} <i>грн</i></h6>
+        <div class="button" (click)="addToBasket(prod)">у кошик</div>
+    </div>
+</div>
+<div class="switch">
+    <a href="#"></a>
+    <a href="#"></a>
+    <a href="#"></a>
+</div>

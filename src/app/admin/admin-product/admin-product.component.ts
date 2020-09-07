@@ -30,6 +30,8 @@ export class AdminProductComponent implements OnInit {
   productZodiac: string;
   productStone: string;
 
+  currProduct: IProduct;
+  editStatus: boolean;
   imageStatus: boolean;
   uploadProgress: Observable<number>;
 
@@ -75,10 +77,24 @@ export class AdminProductComponent implements OnInit {
       this.productColor,
       this.productZodiac,
       this.productStone);
-    delete newProd.id;
-    this.prodService.postJSONProduct(newProd).subscribe(() => {
-      this.getProducts();
-    });
+    if (this.editStatus == true) {
+      this.prodService.updateJSONProduct(newProd).subscribe(() => {
+        this.getProducts();
+      })
+      // this.prodService.updateFireCloudProduct({ ...newProd })
+      // .then(message => console.log(message))
+      // .catch(err => console.log(err));
+      this.editStatus = false;
+    }
+    else {
+      delete newProd.id;
+      this.prodService.postJSONProduct(newProd).subscribe(() => {
+        this.getProducts();
+      });
+      // this.prodService.postFireCloudProduct({ ...newProd })
+      // .then(message => console.log(message))
+      // .catch(err => console.log(err));
+    }
     this.resetForm();
   }
 
@@ -98,14 +114,14 @@ export class AdminProductComponent implements OnInit {
   }
 
   deleteImage(template: TemplateRef<any>): void {
-    this.modalRef = this.modalService.show(template, {class: 'modal-md'});
+    this.modalRef = this.modalService.show(template, { class: 'modal-md' });
   }
   confirmImage(): void {
     this.afStorage.storage.refFromURL(this.productImage).delete();
     this.modalRef.hide();
     this.imageStatus = false;
   }
-  declineImage(): void {
+  decline(): void {
     this.modalRef.hide();
   }
 
@@ -121,6 +137,42 @@ export class AdminProductComponent implements OnInit {
     this.productColor = '';
     this.productZodiac = '';
     this.productStone = '';
+    this.imageStatus = false;
+  }
+
+  deleteProduct(product: IProduct, template: TemplateRef<any>): void {
+    this.modalRef = this.modalService.show(template, { class: 'modal-md' });
+    this.currProduct = product;
+  }
+  confirmDeleteProduct(product: IProduct): void {
+    product = this.currProduct;
+    // if (product.image !== 'https://probapera.org/content/publication/PH19623_2.JPG') {
+    // this.afStorage.storage.refFromURL(product.image).delete();
+    // }
+    this.prodService.deleteJSONProduct(product.id).subscribe(() => {
+      this.getProducts();
+      // this.adminFireCloudProducts();
+    });
+    // this.prodService.deleteFireCloudProduct(product.id.toString())
+    // .then(data => console.log(data))
+    // .catch(error => console.log(error))
+    this.modalRef.hide();
+  }
+  editProduct(prod: IProduct): void {
+    this.editStatus = true;
+    this.productID = prod.id;
+    this.productCategory = this.categories.filter(cat => cat.nameEN === prod.category.nameEN)[0];
+    this.categoryName = prod.category.nameEN;
+    this.productNameEN = prod.nameEN;
+    this.productNameUA = prod.nameUA;
+    this.productDescription = prod.description;
+    this.productLength = prod.length;
+    this.productWidth = prod.width;
+    this.productPrice = prod.price;
+    this.productImage = prod.image;
+    this.productColor = prod.color;
+    this.productZodiac = prod.zodiac;
+    this.productStone = prod.stone;
     this.imageStatus = false;
   }
 
