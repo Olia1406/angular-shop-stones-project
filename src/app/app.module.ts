@@ -25,6 +25,8 @@ import { ProductDetailsComponent } from './pages/catalogue/product-details/produ
 import { CounterComponent } from './components/counter/counter.component';
 import { BasketComponent } from './pages/basket/basket.component';
 
+import { ProfileComponent } from './pages/profile/profile.component';
+import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
 import { AdminProductComponent } from './admin/admin-product/admin-product.component';
@@ -39,6 +41,11 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
+
+import { NgxUiLoaderModule, NgxUiLoaderRouterModule } from 'ngx-ui-loader';
+import { loaderConfig } from './preloader-config';
+import { PriceOrderPipe } from './shared/pipes/price-order.pipe';
+// import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 @NgModule({
   declarations: [
@@ -64,7 +71,10 @@ import { environment } from '../environments/environment';
     SearchDiscountPipe,
     ProductDetailsComponent,
     CounterComponent,
-    BasketComponent
+    BasketComponent,
+    LoginComponent,
+    ProfileComponent,
+    PriceOrderPipe
   ],
   imports: [
     BrowserModule,
@@ -75,7 +85,11 @@ import { environment } from '../environments/environment';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    // NgxUiLoaderModule,
+    NgxUiLoaderModule.forRoot(loaderConfig),
+    NgxUiLoaderRouterModule,
+    // PaginationModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

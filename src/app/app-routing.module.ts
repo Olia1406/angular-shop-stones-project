@@ -16,13 +16,16 @@ import { ProductComponent } from './pages/catalogue/product/product.component';
 import { ProductDetailsComponent } from './pages/catalogue/product-details/product-details.component';
 // import { CounterComponent } from './components/counter/counter.component';
 
-
+import { ProfileComponent } from './pages/profile/profile.component';
+// import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
 import { AdminProductComponent } from './admin/admin-product/admin-product.component';
 import { AdminDiscountComponent } from './admin/admin-discount/admin-discount.component';
 import { AdminOrderComponent } from './admin/admin-order/admin-order.component';
 import { BasketComponent } from './pages/basket/basket.component';
+import { AuthGuard } from './shared/guards/auth.guard';
+import { ProfileGuard } from './shared/guards/profile.guard';
 
 const routes: Routes = [
   {path: '', redirectTo:'home', pathMatch:'full'},
@@ -38,8 +41,10 @@ const routes: Routes = [
     {path: '', redirectTo: 'menu/necklace', pathMatch: 'full'},
     {path: 'menu/:category', component: ProductComponent}
   ]},
-  {path: 'admin', component: AdminComponent, children:[
-     {path: '', redirectTo: 'admin-category', pathMatch:'full'},
+  {path: 'profile', component: ProfileComponent, canActivate:[ProfileGuard] },
+  // {path: 'admin-login', component: LoginComponent},
+  {path: 'admin', component: AdminComponent, canActivate:[AuthGuard], children:[
+     {path: '', redirectTo: 'admin-product', pathMatch:'full'},
      {path: 'admin-category', component: AdminCategoryComponent},
      {path: 'admin-product', component: AdminProductComponent},
      {path: 'admin-order', component: AdminOrderComponent},
@@ -48,7 +53,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

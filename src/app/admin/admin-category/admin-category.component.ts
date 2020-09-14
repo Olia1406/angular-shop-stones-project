@@ -22,7 +22,8 @@ export class AdminCategoryComponent implements OnInit {
               private modalService: BsModalService) { }
 
   ngOnInit(): void {
-    this.adminJSONCategories();
+    // this.adminJSONCategories();
+    this.adminFireCloudCategories();
   }
 
   private adminJSONCategories(): void {
@@ -31,20 +32,35 @@ export class AdminCategoryComponent implements OnInit {
     });
   }
 
+  private adminFireCloudCategories(): void {
+    this.catService.getFireCloudCategory().subscribe(
+      collection => {
+        this.adminCategory = collection.map(document => {
+          const data = document.payload.doc.data() as ICategory;
+          const id = document.payload.doc.id;
+          return { id, ...data };
+        });
+      }
+    );
+  }
+
+  // addCategory(): void {
+    // const newC = new Category(this.categoryID, this.nameEN, this.nameUA);
+    // delete newC.id;
+    // this.catService.postJSONCategory(newC).subscribe(() => {
+      // this.adminJSONCategories();
+    // });
+    // this.resetForm();
+  // }
+
   addCategory(): void {
     const newC = new Category(this.categoryID, this.nameEN, this.nameUA);
     delete newC.id;
-    this.catService.postJSONCategory(newC).subscribe(() => {
-      this.adminJSONCategories();
-    });
+    this.catService.postFireCloudCategory({...newC})
+      .then(message => console.log(message))
+      .catch(err => console.log(err));
     this.resetForm();
   }
-
-  // deleteCategory(category: ICategory): void {
-  // this.catService.deleteJSONCategory(category.id).subscribe(() => {
-  // this.adminJSONCategories();
-  // });
-  // }
 
   deleteCategory(category: ICategory, template: TemplateRef<any>): void {
     this.openModal(template);
@@ -60,13 +76,26 @@ export class AdminCategoryComponent implements OnInit {
   }
 
 
+  // confirmDeleteCategory(c): void {
+    // this.modalRef.hide();
+    // c = this.cat;
+    // this.catService.deleteJSONCategory(c.id).subscribe(() => {
+    // this.adminJSONCategories();
+    // });
+  // }
+
   confirmDeleteCategory(c): void {
     this.modalRef.hide();
     c = this.cat;
-    this.catService.deleteJSONCategory(c.id).subscribe(() => {
-    this.adminJSONCategories();
-    });
+    // this.catService.deleteJSONCategory(c.id).subscribe(() => {
+    // this.adminFireCloudCategories();
+    // });
+    this.catService.deleteFireCloudCategory(c.id)
+      // .then(() => this.adminFireCloudCategories())
+      .then(data => console.log(data))
+      .catch(error => console.log(error));
   }
+  
   decline(): void {
     this.modalRef.hide();
   }

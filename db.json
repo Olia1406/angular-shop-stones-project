@@ -168,5 +168,172 @@
       "stone": "бурштин",
       "count": 1
     }
+  ],
+  "orders": [
+    {
+      "userName": "ыв",
+      "userPhone": "вы",
+      "userDelivery": "нова пошта",
+      "userCity": "ыв",
+      "deliveryDepartment": "ыв",
+      "userPaymentType": "на карту",
+      "totalPayment": 500,
+      "productOrder": [
+        {
+          "category": {
+            "id": 1,
+            "nameEN": "necklace",
+            "nameUA": "намиста"
+          },
+          "nameEN": "amber",
+          "nameUA": "Намисто з бурштину",
+          "length": "55",
+          "width": "14",
+          "price": 100,
+          "image": "https://firebasestorage.googleapis.com/v0/b/my-project-d612f.appspot.com/o/images%2Fimages%20(2).jpeg?alt=media&token=41084fb3-f841-438b-9847-93189c75ccba",
+          "color": "жовтий, коричневий",
+          "zodiac": "стрілець",
+          "stone": "бурштин",
+          "count": 2,
+          "id": 2
+        },
+        {
+          "category": {
+            "nameEN": "necklace",
+            "nameUA": "намиста",
+            "id": 1
+          },
+          "nameEN": "coral",
+          "nameUA": "Намисто з коралу",
+          "description": "Трьохрядне намисто з рожевого коралу",
+          "length": "55",
+          "width": "10-18мм",
+          "price": 100,
+          "image": "https://firebasestorage.googleapis.com/v0/b/my-project-d612f.appspot.com/o/images%2Fkoral.jpeg?alt=media&token=469a497c-19ab-45a7-8c3b-bc433264f08a",
+          "color": "коралово-оранджевий",
+          "zodiac": "всім",
+          "stone": "корал",
+          "count": 2,
+          "id": 3
+        },
+        {
+          "id": 7,
+          "category": {
+            "nameEN": "bracelet",
+            "nameUA": "браслети",
+            "id": 2
+          },
+          "nameEN": "ametyst",
+          "nameUA": "Браслет з аметисту",
+          "description": "Браслет з аметисту багаторядний",
+          "length": "19",
+          "width": "2-30",
+          "price": 100,
+          "image": "https://firebasestorage.googleapis.com/v0/b/my-project-d612f.appspot.com/o/images%2Fb-ametyst.jpeg?alt=media&token=12b150b4-97ea-4a75-943a-ae96ae6b8aeb",
+          "color": "фіолетовий",
+          "zodiac": "близнюки, рак, стрілець",
+          "stone": "аметист",
+          "count": 1
+        }
+      ],
+      "dateOrder": "2020-09-11T11:13:04.558Z",
+      "statusOrder": "в обробці",
+      "id": 1
+    },
+    {
+      "userName": "ми",
+      "userPhone": "0971401561",
+      "userDelivery": "нова пошта",
+      "userPaymentType": "на карту",
+      "totalPayment": 300,
+      "productOrder": [
+        {
+          "category": {
+            "id": 1,
+            "nameEN": "necklace",
+            "nameUA": "намиста"
+          },
+          "nameEN": "Perls",
+          "nameUA": "Намисто з перлин",
+          "description": "Трьохрядне намисто з річкових перлин",
+          "length": "48",
+          "width": "8",
+          "price": 100,
+          "image": "https://firebasestorage.googleapis.com/v0/b/my-project-d612f.appspot.com/o/images%2Fimages%20(1).jpeg?alt=media&token=4428fa54-c133-4b20-b426-4a1ced98aa7e",
+          "color": "білий",
+          "zodiac": "Козеpіг, водолій",
+          "stone": "перли",
+          "count": 2,
+          "id": 1
+        },
+        {
+          "category": {
+            "id": 1,
+            "nameEN": "necklace",
+            "nameUA": "намиста"
+          },
+          "nameEN": "amber",
+          "nameUA": "Намисто з бурштину",
+          "length": "55",
+          "width": "14",
+          "price": 100,
+          "image": "https://firebasestorage.googleapis.com/v0/b/my-project-d612f.appspot.com/o/images%2Fimages%20(2).jpeg?alt=media&token=41084fb3-f841-438b-9847-93189c75ccba",
+          "color": "жовтий, коричневий",
+          "zodiac": "стрілець",
+          "stone": "бурштин",
+          "count": 1,
+          "id": 2
+        }
+      ],
+      "dateOrder": "2020-09-11T12:12:03.100Z",
+      "statusOrder": "в обробці",
+      "id": 2
+    },
+    {
+      "userName": "кепкпвап",
+      "userPhone": "вап",
+      "userDelivery": "нова пошта",
+      "userCity": "выа",
+      "deliveryDepartment": "вып",
+      "userPaymentType": "на карту",
+      "totalPayment": 0,
+      "productOrder": [],
+      "dateOrder": "2020-09-11T12:14:27.408Z",
+      "statusOrder": "в обробці",
+      "id": 3
+    },
+    {
+      "userName": "іі",
+      "userPhone": "іі",
+      "userDelivery": "нова пошта",
+      "userCity": "іі",
+      "deliveryDepartment": "іі",
+      "userPaymentType": "на карту",
+      "totalPayment": 200,
+      "productOrder": [
+        {
+          "dataID": "DkBuat0MmnVjKvSyqV4Y",
+          "image": "https://firebasestorage.googleapis.com/v0/b/my-project-d612f.appspot.com/o/images%2Fe-girl.jpeg?alt=media&token=fc94c414-aa11-4b7a-95d9-42ca68358ab3",
+          "width": "5-12",
+          "count": 2,
+          "price": 100,
+          "length": "3",
+          "zodiac": "всім",
+          "category": {
+            "nameEN": "earring",
+            "nameUA": "сережки",
+            "id": "RI3NayZiwPOwFBNpe44v"
+          },
+          "description": "Сережки з бурштину різного кольору",
+          "color": "жовтий, коричневий",
+          "nameEN": "amber",
+          "nameUA": "Сережки з бурштину",
+          "stone": "бурштин"
+        }
+      ],
+      "dateOrder": "2020-09-12T20:40:45.796Z",
+      "statusOrder": "в обробці",
+      "id": 4
+    }
   ]
 }

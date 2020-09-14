@@ -59,3 +59,17 @@
         }
   }
 }
+
+.price-title{
+  @include fonts($mainFont, 16px);
+  color: $secondColor;  
+}
+ 
+.price-filter{
+ @include flexbox(row, wrap, space-around, flex-start);
+ margin: 20px;  
+ padding: 20px;
+ background-color: white;
+ 
+ 
+}   

@@ -1,51 +1,47 @@
-<!-- <p>catalogue works!</p> -->
-<!-- <div class="container-fluid mt-2"> -->
-<!-- <div class="row"> -->
-<!-- <div class="col-2"> -->
-<!-- <div class="nav flex-column nav-pills"> -->
-<!-- <h5 class="nav-link" [routerLink]="[ 'product' ]" routerLinkActive="bg-dark text-light">Категорії</h5> -->
-<!-- <h5 class="nav-link" [routerLink]="[ 'necklace' ]" routerLinkActive="bg-dark text-light">намиста</h5> -->
-<!-- <h5 class="nav-link" [routerLink]="[ 'bracelet' ]" routerLinkActive="bg-dark text-light">браслети</h5> -->
-<!-- <h5 class="nav-link" [routerLink]="[ 'earring' ]" routerLinkActive="bg-dark text-light">сережки</h5> -->
-<!-- <h5 class="nav-link" [routerLink]="[ 'discount' ]" routerLinkActive="bg-dark text-light">знижки</h5> -->
-<!-- </div> -->
-<!-- </div> -->
-<!-- <div class="col-10"> -->
-<!-- <div class="tab-content"> -->
-<!-- <router-outlet></router-outlet> -->
-<!-- </div> -->
-<!-- </div> -->
-<!-- </div> -->
-<!-- </div> -->
-
 <div class="catlogue-container">
   <div class="nav-prod">
     <div class="categories">
       <h4 class="category-title">Категорії</h4>
-      <!-- <h5 class="category-name" [routerLink]="[ 'product' ]" routerLinkActive="current-category">товари</h5> -->
       <h5 class="category-name" [routerLink]="[ 'menu/necklace' ]" routerLinkActive="current-category">намиста</h5>
       <h5 class="category-name" [routerLink]="[ 'menu/bracelet' ]" routerLinkActive="current-category">браслети</h5>
       <h5 class="category-name" [routerLink]="[ 'menu/earring' ]" routerLinkActive="current-category">сережки</h5>
-      <h5 class="category-name" [routerLink]="[ 'menu/discount' ]" routerLinkActive="current-category">знижки</h5>
+      <h5 class="category-name" [routerLink]="[ 'menu/pendant' ]" routerLinkActive="current-category">кулони</h5>
     </div>
-    <div class="price-filter">
-      <h4 class="category-title">Ціна</h4>
-    </div>
+
     <div class="stone-name-filter">
       <h4 class="category-title">Назва каменя</h4>
+      <div class="stone-list">
+        <!-- <label class="chekbox-label"></label> -->
+        <!-- <input type="checkbox" value="агат" name="агат" (click)="filterProducts()"><span -->
+          <!-- class="stone-name">агат</span> -->
+        <div *ngFor="let stone of stoneNames">
+          <label class="chekbox-label"></label>
+          <input type="checkbox" value="stone" name="stone" (click)="filterProducts(stone)"><span
+            class="stone-name">{{stone}}</span>
+        </div>
+      </div>
     </div>
     <div class="stone-color-filter">
       <h4 class="category-title">Колір</h4>
+      <div class="color-list">
+        <div *ngFor="let stcolor of stonecolors">
+          <label class="chekbox-label"></label>
+          <input type="checkbox" value="stcolor" name="stcolor"><span class="stone-color">{{stcolor}}</span>
+        </div>
+      </div>
     </div>
     <div class="zodiak-filter">
       <h4 class="category-title">Зодіак</h4>
+      <div class="zodiac-list">
+        <div *ngFor="let stzodiac of zodiacs">
+          <label class="chekbox-label"></label>
+          <input type="checkbox" value="stzodiac" name="stzodiac"><span class="zodiac">{{stzodiac}}</span>
+        </div>
+      </div>
     </div>
   </div>
+
   <div class="prod-container">
-    <!-- <div class="col-10"> -->
-      <!-- <div class="tab-content"> -->
-        <router-outlet></router-outlet>
-      <!-- </div> -->
-    <!-- </div> -->
+    <router-outlet></router-outlet>
   </div>
 </div>

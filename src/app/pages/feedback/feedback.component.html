@@ -1,1 +1,26 @@
-<p>feedback works!</p>
+<!-- <p>feedback works!</p> -->
+<div class="container">
+    <div *ngFor="let fb of feedbacks; let i=index" class="container border mt-3 ml-5 col-11 row"
+        style="border-radius: 5px;">
+
+        <div class="container-fluid p-3 col-9 ">
+            <p style="color: rgb(104, 103, 103);">posted by: {{fb.postedBy}}</p>
+            <div style="overflow-wrap: break-word;">{{fb.message}}</div>
+        </div>
+
+        <div class="container col-2 d-flex flex-column justify-content-around align-content-around">
+            <span class=""><i class="uil uil-clock"
+                    style="font-size: 19px;"></i>{{fb.date | date:'HH:mm:ss, dd.MM.yyyy'}}</span>
+
+            <!-- <div *ngIf="(post.postedBy == currentUserName || currentUserName == 'admin')" class="btn-group "> -->
+            <!-- <button type="button" class="btn btn-warning" (click)="editBlogPost(template,post)">edit</button> -->
+            <!-- <button type="button" class="btn btn-danger" (click)="deleteBlogPost(post)">delete</button> -->
+            <!-- </div> -->
+        </div>
+    </div>
+    <div class="container-fluid p-3 col-9">
+    <textarea name="" id="" cols="60" rows="5" [(ngModel)]="userMessage"></textarea>
+    <br>
+    <button class="btn btn-secondary" (click)="addFB()">Add</button>
+</div>
+</div>

@@ -13,42 +13,43 @@
         // left: 0;
         // z-index: 9;
         width: 270px;
+        min-height: 600px;
         margin-right: 20px;
-        // background: #000;
-        @include flexbox(column, nowrap, flex-start, flex-start);
-        // @include dimentions(270px,270px); 
-        .categories{
+        // background-color: yellow;
+        @include flexbox(column, wrap, flex-start, flex-start);
+        .categories,.stone-name-filter,.stone-color-filter,.zodiak-filter{
             @include flexbox(column, wrap, space-between, flex-start);
             @include dimentions(250px, 300px); 
             margin: 20px;  
             padding: 20px;
             background-color: white;
-           .category-title{
-            @include fonts($mainFont, 20px);
-            color: $mainColor;  
-            }
             .category-name{
             @include fonts($mainFont, 17px);
             color: $secondColor; 
-            // margin-bottom: 15px;
             }
             .current-category{
                 color: $mainColor;
             }
         }
-        .price-filter{
-            @extend .categories ;
-            height: 200px;
-        } 
-        .stone-name-filter,.stone-color-filter,.zodiak-filter{
-            @extend .categories ; 
-            height: 100px;
-        }  
     }
-    // .prod-container{
-        // @include flexbox(row, wrap, center, center); 
-    // }
 }
-// .prod-container{
-    // @include flexbox(row, wrap, center, center); 
-// }
+.category-title{
+    @include fonts($mainFont, 20px);
+    color: $mainColor;  
+    }
+
+.stone-list, .color-list, .zodiac-list{
+    @include dimentions(200px, 210px); 
+    overflow-y: scroll;
+    }
+.stone-name, .stone-color, .zodiac{
+    @include fonts($mainFont, 15px);
+    color: $secondColor; 
+    height: 30px;
+    margin-left: 10px;
+    }
+.stone-name:hover,
+.stone-color:hover,
+.zodiac:hover{
+    color:$mainColor;
+    }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/shared/interfaces/product.interface';
 import { OrdersService } from 'src/app/shared/services/orders.service';
+import { NgForm } from '@angular/forms';
+import { Order } from '../../shared/models/order.model';
 
 @Component({
   selector: 'app-basket',
@@ -9,6 +11,14 @@ import { OrdersService } from 'src/app/shared/services/orders.service';
 })
 export class BasketComponent implements OnInit {
  orders: Array<IProduct> = [];
+ orderID=1;
+ userName: string;
+ userPhone: string;
+ userCity: string;
+ userComments:string='';
+ deliveryType ='нова пошта';
+ deliveryDepartment:string;
+ paymentType='на карту';
  totalPrice = 0;
   constructor(private ordersService: OrdersService) { }
 
@@ -45,5 +55,36 @@ export class BasketComponent implements OnInit {
       this.updateBasket();
     }
   }
+
+  addOrder(): void {
+    console.log('erjeghjeggeegvvre');
+    const order = new Order(this.orderID,
+                            this.userName,
+                            this.userPhone,
+                            this.userComments,
+                            this.deliveryType,
+                            this.userCity,
+                            this.deliveryDepartment,
+                            this.paymentType,
+                            this.totalPrice,
+                            this.orders,
+                            new Date());
+    delete order.id;
+    // this.ordersService.addOrder(order).subscribe(
+      // () => {
+        // this.resetOrder();
+      // }
+    // );
+    this.ordersService.postFireCloudOrder({...order})
+    .then(() => this.resetOrder())
+    .catch(err => console.log(err));
+  }
+
+  resetOrder(): void{
+    localStorage.removeItem('myOrder');
+    this.orders = [];
+    this.ordersService.basket.next('Замовлення оформлено');
+  }
+
 
 }

@@ -1,50 +1,109 @@
 <header>
-    <div class="inform">
-        <div class="inform_left">
-            <div class="inform_left_mail">
-                <img src="../../../assets/icons/envelope-alt.svg" alt="">
-                <span>schorl@gmail.com</span>
-            </div>
-            <div class="inform_left_tel">
-                <span><img src="../../../assets/icons/phone.svg" alt=""></span>
-                <span>+38(097)-555-55-55</span>
-                <span class="empty-space"> </span>
-                <span><img src="../../../assets/icons/viber-brands.svg" alt=""></span>
-            </div>
-        </div>
-        <div class="inform_right">
-            <a href="https://www.facebook.com/agatagemstore/" target="_blank">
-                <img src="../../../assets/icons/facebook-f (1).svg" alt="">
-            </a>
-            <a href="" target="_blank">
-                <img src="../../../assets/icons/twitter (1).svg" alt="">
-            </a>
-            <a href="https://www.instagram.com/agatagemstore/p/BtnUpGiglBd/" target="_blank">
-                <img src="../../../assets/icons/instagram (1).svg" alt="">
-            </a>
-        </div>
+  <div class="inform">
+    <div class="inform_left">
+      <div class="inform_left_mail">
+        <img src="../../../assets/icons/envelope-alt.svg" alt="">
+        <span>schorl@gmail.com</span>
+      </div>
+      <div class="inform_left_tel">
+        <span><img src="../../../assets/icons/phone.svg" alt=""></span>
+        <span>+38(097)-555-55-55</span>
+        <span class="empty-space"> </span>
+        <span><img src="../../../assets/icons/viber-brands.svg" alt=""></span>
+      </div>
     </div>
-    <div class="hdr">
-        <div class="hdr_left">
-            <div class="logo" routerLink="home" routerLinkActive="active">
-                <img src="../../../assets/icons/stone.svg" alt="">
-                <div>
-                    <span class="logo_text">scharl</span>
-                    <p>natural stones</p>
-                </div>
-            </div>
-            <nav class="pages">
-                <!-- <p>головна</p> -->
-                <a [routerLink]="[ '/catalogue' ]" routerLinkActive="active">каталог</a>
-                <a [routerLink]="[ '/discount' ]" routerLinkActive="active">акції</a>
-                <a [routerLink]="[ '/contacts' ]" routerLinkActive="active">контакти</a>
-                <a [routerLink]="[ '/feedback' ]" routerLinkActive="active">відгуки</a>
-            </nav>
-        </div>
-        <div class="hdr_right">
-            <a [routerLink]="[ '/basket' ]" routerLinkActive="active" class="basket"><img src="../../../assets/icons/shopping-basket.svg" alt=""></a>
-            <div class="sum">{{totalPrice}}</div>
-            <a class="sign" [routerLink]="[ '/admin' ]">адмін</a>
-        </div>
+    <div class="inform_right">
+      <a href="https://www.facebook.com/agatagemstore/" target="_blank">
+        <img src="../../../assets/icons/facebook-f (1).svg" alt="">
+      </a>
+      <a href="" target="_blank">
+        <img src="../../../assets/icons/twitter (1).svg" alt="">
+      </a>
+      <a href="https://www.instagram.com/agatagemstore/p/BtnUpGiglBd/" target="_blank">
+        <img src="../../../assets/icons/instagram (1).svg" alt="">
+      </a>
     </div>
+  </div>
+  <div class="hdr">
+    <div class="hdr_left">
+      <div class="logo" routerLink="home" routerLinkActive="active">
+        <img src="../../../assets/icons/stone.svg" alt="">
+        <div>
+          <span class="logo_text">scharl</span>
+          <p>natural stones</p>
+        </div>
+      </div>
+      <nav class="pages">
+        <!-- <p>головна</p> -->
+        <a [routerLink]="[ '/catalogue' ]" routerLinkActive="active">каталог</a>
+        <a [routerLink]="[ '/discount' ]" routerLinkActive="active">акції</a>
+        <a [routerLink]="[ '/contacts' ]" routerLinkActive="active">контакти</a>
+        <a [routerLink]="[ '/feedback' ]" routerLinkActive="active">відгуки</a>
+      </nav>
+    </div>
+    <div class="hdr_right">
+      <a [routerLink]="[ '/basket' ]" routerLinkActive="active" class="basket"><img
+          src="../../../assets/icons/shopping-basket.svg" alt=""></a>
+      <div class="sum">{{totalPrice}}</div>
+      <!-- <a class="sign" [routerLink]="[ '/admin' ]">адмін</a> -->
+      <a class="sign" (click)="loginModal(loginForm)" *ngIf="!loginStatus">увійти</a>
+      <a [routerLink]="[ '/'+loginUrl ]" *ngIf="loginStatus">{{ loginName | titlecase }}</a>
+    </div>
+  </div>
 </header>
+
+<ng-template #loginForm>
+  <div class="modal-header">
+    <h5 class="modal-title pull-left"
+      [textContent]="!switch ? 'Введіть електронну адресу та пароль': 'Заповніть поля для реєстрації'"></h5>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="loginBlock" *ngIf="!switch">
+      <form (ngSubmit)="loginUser()">
+        <div class="form-group">
+          <label for="userEmail">Електронна адреса</label>
+          <input type="email" class="form-control" id="userEmail" [(ngModel)]="userEmail" name="userEmail">
+        </div>
+        <div class="form-group">
+          <label for="userPassword">Пароль</label>
+          <input type="text" class="form-control" id="userPassword" [(ngModel)]="userPassword" name="userPassword">
+        </div>
+        <button type="submit" class="btn bt">Увійти</button>
+        <div class="form-group mt-3 h6">
+          <a (click)="switchForm()">Зареєструватись</a>
+        </div>
+      </form>
+    </div>
+    <div class="registerBlock" *ngIf="switch">
+      <form (ngSubmit)="registerUser()">
+        <div class="row">
+          <div class="form-group col-6">
+            <label for="firstName">Ім'я</label>
+            <input type="text" class="form-control" id="firstName" [(ngModel)]="firstName" name="firstName">
+          </div>
+          <div class="form-group col-6">
+            <label for="lastName">Прізвище</label>
+            <input type="text" class="form-control" id="lastName" [(ngModel)]="lastName" name="lastName">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-6">
+            <label for="userEmail">Електронна адреса</label>
+            <input type="email" class="form-control" id="userEmail" [(ngModel)]="userEmail" name="userEmail">
+          </div>
+          <div class="form-group col-6">
+            <label for="userPassword">Пароль</label>
+            <input type="text" class="form-control" id="userPassword" [(ngModel)]="userPassword" name="userPassword">
+          </div>
+        </div>
+        <button type="submit" class="btn bt">Зареєстуватись</button>
+        <div class="form-group mt-3 h6">
+          <a (click)="switchForm()">Ви вже зареєстровані? Увійдіть</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>

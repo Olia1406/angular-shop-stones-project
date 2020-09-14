@@ -1,6 +1,4 @@
-<!-- <p>basket works!</p> -->
 <div class="container">
-    <!-- <div class="row"> -->
     <div class="col-lg-12 empty-basket" *ngIf="!orders.length">
         <p>Кошик порожній.</p>
         <a routerLink="/home" style="color:red">Повернутись до покупок</a>
@@ -10,13 +8,11 @@
     <div class="col-lg-12 mt-5 smt-basket" *ngIf="orders.length">
         <div class="table">
             <div class="tr thead">
-                <!-- <div class="tr"> -->
                 <div class="td">Видалити</div>
                 <div class="td">Товар</div>
                 <div class="td">Ціна</div>
                 <div class="td">Кількість</div>
                 <div class="td">Загалом</div>
-                <!-- </div> -->
             </div>
             <div class="tr tbody" *ngFor="let order of orders">
                 <div class="td" (click)="deleteProduct(order)">&times;</div>
@@ -24,14 +20,56 @@
                 <div class="td">{{order?.price}}</div>
                 <div class="td">
                     <app-counter [product]="order" (changeCount)="detectChangeCount($event)"></app-counter>
-                    <!-- (changeCount)="detectChangeCount($event)" -->
                 </div>
                 <div class="td"><span>{{order?.count * order?.price}}</span></div>
             </div>
             <div class="tr tfoot">
-                      <div class="td">Всього: <span>{{totalPrice}}</span></div>
+                <div class="td">Всього: <span>{{totalPrice}}</span></div>
             </div>
         </div>
-        <!-- </div> -->
-
     </div>
+    <hr>
+    <div *ngIf="orders.length">
+        <form #orderForm="ngForm" novalidate (ngSubmit)="addOrder()">
+            <div class="order-data row">
+                <div class="delivery">
+                    <h5>Спосіб доставки:</h5>
+                    <div class="deliveryCheckboxs">
+                        <label class="checkboxEntry radio">
+                            <input type="radio" name="delivery" value="delivery" checked="checked"><span> Нова
+                                пошта</span>
+                        </label>
+                        <label class="checkboxEntry radio ml-3">
+                            <input type="radio" name="delivery" value="driveway"><span> Укрпошта</span>
+                        </label>
+                    </div>
+                    <p>Місто</p>
+                    <input type="text" [(ngModel)]="userCity" name="userCity" required>
+                    <p>Номер відділення</p>
+                    <input type="text" [(ngModel)]="deliveryDepartment" name="deliveryDepartment" required>
+                    <h6>Коментар:</h6>
+                    <textarea [(ngModel)]="userComments" name="userComments" id="" cols="33" rows="3"></textarea>
+                </div>
+                <div class="contacts ml-5">
+                    <h5>Спосіб оплати:</h5>
+                    <div class="deliveryCheckboxs">
+                        <label class="checkboxEntry radio">
+                            <input type="radio" name="payment" value="payment" checked="checked"><span> На карту</span>
+                        </label>
+                        <label class="checkboxEntry radio ml-3">
+                            <input type="radio" name="payment" value="payment"><span> Оплата при доставці</span>
+                        </label>
+                    </div>
+                    <p>Ваше ім'я</p>
+                    <input type="text" [(ngModel)]="userName" name="userName" required>
+                    <p>Ваш номер телефону</p>
+                    <input type="tel" [(ngModel)]="userPhone" name="userPhone" required>
+                    <br>
+                    <button [disabled]="orderForm.invalid" type="submit" class="btn btn-dark mt-5">офрмити
+                        замовлення</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>

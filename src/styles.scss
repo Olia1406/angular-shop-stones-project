@@ -98,3 +98,14 @@ input[type=number] {
   .product-qty-single{
       color: $mainColor;
   }
+
+
+  .bt{
+    background-color: $mainColor;
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    &:hover{
+        box-shadow: 0 0 4px 1px $mainColor;
+    }
+}

@@ -1,3 +1,8 @@
+<div class="price-filter">
+    <h4 class="price-title">Cортувати за ціною</h4>
+    <span (click)="sortProdUp()">за зростанням</span>
+    <span (click)="sortProdDown()">за спаданням</span>
+  </div>
 <div class="new-products">
     <div class="product" *ngFor="let prod of products">
         <!-- <div class="p-image" [style.backgroundImage]="'url('+prod.image+')'" -->
@@ -11,8 +16,14 @@
         <div class="button" (click)="addToBasket(prod)">у кошик</div>
     </div>
 </div>
+<!-- <pagination [totalItems]="30"></pagination> -->
+<!-- <div class="row"> -->
+    <!-- <div class="col-xs-12 col-12"> -->
+      <!-- <pagination [totalItems]="totalItems" [(ngModel)]="currentPage"></pagination> -->
+    <!-- </div> -->
+  <!-- </div> -->
 <div class="switch">
-    <a href="#"></a>
-    <a href="#"></a>
-    <a href="#"></a>
+    <a  (click)="firstPage()"></a>
+    <a  (click)="secondPage()"></a>
+    <a ></a>
 </div>

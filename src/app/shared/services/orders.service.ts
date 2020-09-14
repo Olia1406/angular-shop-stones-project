@@ -1,32 +1,29 @@
-// import { Injectable } from '@angular/core';
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class OrdersService {
-
-//   constructor() { }
-// }
 import { Injectable } from '@angular/core';
 import { IProduct } from '../interfaces/product.interface';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { IOrder } from '../interfaces/order.interface';
+import { AngularFirestore, DocumentChangeAction, DocumentReference } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrdersService {
   basket: Subject<any> = new Subject<any>();
-  constructor() { }
+  private url: string;
+  constructor(private http: HttpClient,private firecloud: AngularFirestore) {
+    this.url = 'http://localhost:3000/orders';
+  }
 
   addBasket(product: IProduct): void {
     let localProducts: Array<IProduct> = [];
-    if (localStorage.getItem('myOrder')){
+    if (localStorage.getItem('myOrder')) {
       localProducts = JSON.parse(localStorage.getItem('myOrder'));
-      if (localProducts.some(prod => prod.id === product.id)){
+      if (localProducts.some(prod => prod.id === product.id)) {
         const index = localProducts.findIndex(prod => prod.id === product.id);
         localProducts[index].count += product.count;
       }
-      else{
+      else {
         localProducts.push(product);
       }
     }
@@ -34,6 +31,32 @@ export class OrdersService {
       localProducts.push(product);
     }
     localStorage.setItem('myOrder', JSON.stringify(localProducts));
-    this.basket.next('Хто щось добавив в кошик')
+    this.basket.next('Додано в кошик')
   }
+
+  addOrder(order: IOrder): Observable<IOrder> {
+    return this.http.post<IOrder>(this.url, order);
+  }
+  getOrder(): Observable<Array<IOrder>> {
+    return this.http.get<Array<IOrder>>(this.url);
+  }
+  updateOrder(order: IOrder): Observable<IOrder> {
+    return this.http.put<IOrder>(`${this.url}/${order.id}`, order);
+  }
+
+  // ------------------------------- firecloud ------------------------------------
+  getFireCloudOrder(): Observable<DocumentChangeAction<unknown>[]> {
+    return this.firecloud.collection('orders').snapshotChanges();
+  }
+  postFireCloudOrder(order: IOrder): Promise<DocumentReference> {
+    return this.firecloud.collection('orders').add(order);
+  }
+  updateFireCloudOrder(order: IOrder): Promise<void> {
+    return this.firecloud.collection('orders').doc(order.id.toString()).update(order);
+  }
+  deleteFireCloudOrder(order: IOrder): Promise<void> {
+    return this.firecloud.collection('orders').doc(order.id.toString()).delete();
+  }
+
+
 }

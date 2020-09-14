@@ -25,6 +25,7 @@ export class AdminProductComponent implements OnInit {
   productLength: string;
   productWidth: string;
   productPrice: number;
+  // productImage = 'https://probapera.org/content/publication/PH19623_2.JPG';
   productImage: string;
   productColor: string;
   productZodiac: string;
@@ -44,21 +45,47 @@ export class AdminProductComponent implements OnInit {
     private modalService: BsModalService) { }
 
   ngOnInit(): void {
-    this.adminJSONCategories();
-    this.getProducts();
+    // this.adminJSONCategories();
+    this.adminFireCloudCategories();
+    // this.getProducts();
+    this.adminFireCloudProducts();
   }
 
-  private adminJSONCategories(): void {
-    this.catService.getJSONCategory().subscribe(data => {
-      this.categories = data;
-    });
-  }
+  // private adminJSONCategories(): void {
+    // this.catService.getJSONCategory().subscribe(data => {
+      // this.categories = data;
+    // });
+  // }
 
-  private getProducts(): void {
-    this.prodService.getJSONProduct().subscribe(data => {
-      this.adminProducts = data;
-    });
-  }
+  private adminFireCloudCategories(): void {
+    this.catService.getFireCloudCategory().subscribe(
+      collection => {
+        this.categories = collection.map(document => {
+          const data = document.payload.doc.data() as ICategory;
+          const id = document.payload.doc.id;
+          return { id, ...data };
+        });
+      }
+    );
+  } 
+
+  // private getProducts(): void {
+    // this.prodService.getJSONProduct().subscribe(data => {
+      // this.adminProducts = data;
+    // });
+  // }
+
+  private adminFireCloudProducts(): void {
+    this.prodService.getFireCloudProduct().subscribe(
+      collection => {
+        this.adminProducts = collection.map(document => {
+          const data = document.payload.doc.data() as IProduct;
+          const id = document.payload.doc.id;
+          return { id, ...data };
+        });
+      }
+    );
+  } 
 
   setCategory(): void {
     this.productCategory = this.categories.filter(cat => cat.nameEN === this.categoryName)[0];
@@ -78,22 +105,22 @@ export class AdminProductComponent implements OnInit {
       this.productZodiac,
       this.productStone);
     if (this.editStatus == true) {
-      this.prodService.updateJSONProduct(newProd).subscribe(() => {
-        this.getProducts();
-      })
-      // this.prodService.updateFireCloudProduct({ ...newProd })
-      // .then(message => console.log(message))
-      // .catch(err => console.log(err));
+      // this.prodService.updateJSONProduct(newProd).subscribe(() => {
+        // this.getProducts();
+      // })
+      this.prodService.updateFireCloudProduct({ ...newProd })
+      .then(message => console.log(message))
+      .catch(err => console.log(err));
       this.editStatus = false;
     }
     else {
       delete newProd.id;
-      this.prodService.postJSONProduct(newProd).subscribe(() => {
-        this.getProducts();
-      });
-      // this.prodService.postFireCloudProduct({ ...newProd })
-      // .then(message => console.log(message))
-      // .catch(err => console.log(err));
+      // this.prodService.postJSONProduct(newProd).subscribe(() => {
+        // this.getProducts();
+      // });
+      this.prodService.postFireCloudProduct({ ...newProd })
+      .then(message => console.log(message))
+      .catch(err => console.log(err));
     }
     this.resetForm();
   }
@@ -144,20 +171,22 @@ export class AdminProductComponent implements OnInit {
     this.modalRef = this.modalService.show(template, { class: 'modal-md' });
     this.currProduct = product;
   }
+  
   confirmDeleteProduct(product: IProduct): void {
     product = this.currProduct;
     // if (product.image !== 'https://probapera.org/content/publication/PH19623_2.JPG') {
     // this.afStorage.storage.refFromURL(product.image).delete();
     // }
-    this.prodService.deleteJSONProduct(product.id).subscribe(() => {
-      this.getProducts();
+    // this.prodService.deleteJSONProduct(product.id).subscribe(() => {
+      // this.getProducts();
       // this.adminFireCloudProducts();
-    });
-    // this.prodService.deleteFireCloudProduct(product.id.toString())
-    // .then(data => console.log(data))
-    // .catch(error => console.log(error))
+    // });
+    this.prodService.deleteFireCloudProduct(product.id.toString())
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
     this.modalRef.hide();
   }
+
   editProduct(prod: IProduct): void {
     this.editStatus = true;
     this.productID = prod.id;
