@@ -54,10 +54,7 @@ export class HeaderComponent implements OnInit {
   }
 
   loginModal(template: TemplateRef<any>): void {
-    // if(localStorage.getItem('user')!=null){
     this.modalRef = this.modalService.show(template, { class: 'modal-dialog-centered' });
-    // }
-    // else loginUser()
   }
 
   switchForm(): void {
@@ -101,7 +98,7 @@ export class HeaderComponent implements OnInit {
     }
     else if (user != null && user.role === 'user') {
       this.loginStatus = true;
-      this.loginName = 'кабінет';
+      this.loginName = 'користувач';
       this.loginUrl = 'profile';
     }
     else {
