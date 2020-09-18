@@ -69,7 +69,42 @@
  @include flexbox(row, wrap, space-around, flex-start);
  margin: 20px;  
  padding: 20px;
- background-color: white;
- 
- 
+ background-color: white; 
 }   
+.filters-container{
+  @include flexbox(row, wrap, space-around, flex-start);
+}
+
+.stone-name-filter,.stone-color-filter,.zodiak-filter{
+  @include flexbox(column, wrap, flex-start, flex-start);
+  // @include dimentions(250px, 300px); 
+  width: 200px;
+  margin: 20px;  
+  padding: 20px;
+  background-color: white;
+  // z-index: 3;
+}
+
+.sel-title{
+  @include fonts($mainFont, 17px);
+  color: $mainColor;  
+  }
+
+.stone-list, .color-list, .zodiac-list{
+  @include dimentions(180px, 100px); 
+  overflow-y: scroll;
+  // z-index: 4;
+
+  }
+.stone-name, .stone-color, .zodiac{
+  @include fonts($mainFont, 15px);
+  color: $secondColor; 
+  height: 15px;
+  line-height: 15px;
+  margin-left: 10px;
+  }
+.stone-name:hover,
+.stone-color:hover,
+.zodiac:hover{
+  color:$mainColor;
+  }

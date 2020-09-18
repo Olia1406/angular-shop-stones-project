@@ -45,7 +45,9 @@ import { environment } from '../environments/environment';
 import { NgxUiLoaderModule, NgxUiLoaderRouterModule } from 'ngx-ui-loader';
 import { loaderConfig } from './preloader-config';
 import { PriceOrderPipe } from './shared/pipes/price-order.pipe';
+import { CarouselComponent } from './components/carousel/carousel.component';
 // import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,8 @@ import { PriceOrderPipe } from './shared/pipes/price-order.pipe';
     BasketComponent,
     // LoginComponent,
     ProfileComponent,
-    PriceOrderPipe
+    PriceOrderPipe,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +92,8 @@ import { PriceOrderPipe } from './shared/pipes/price-order.pipe';
     // NgxUiLoaderModule,
     NgxUiLoaderModule.forRoot(loaderConfig),
     NgxUiLoaderRouterModule,
-    // PaginationModule.forRoot()
+    // PaginationModule.forRoot(),
+    CarouselModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

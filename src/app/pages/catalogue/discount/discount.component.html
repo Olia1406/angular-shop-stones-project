@@ -1,1 +1,24 @@
-<p>discount works!</p>
+<!-- <p>discount works!</p> -->
+<div class="container">
+    <div class="row">
+        <h3>Акції</h3>
+    </div>
+    <br>
+    <div class="row">
+        <!-- <div class="disc-info" *ngFor="let d of discounts"> -->
+        <!-- <h2 [style.color]="'red'">Some text style</h2> -->
+        <!-- [ngStyle]="{'background-image': 'url(' + course.imageUrl + ')'}" -->
+        <div class="disc-info" *ngFor="let d of discounts">
+            <!-- <div class="bg-image" [style.backgroundImage]="'url('+ d.image +')'"></div> -->
+            <!-- <div class="bg-image" [style.backgroundImage]="'url('../../../../assets/images/nefryt')'"></div> -->
+            <div class="bg-image" [ngStyle]="{'background-image': 'url(' + d.image + ')'}"></div>
+            <!-- <img width="450" height="450" src="../../../../assets/images/nefryt - Копія.jpg" -->
+                <!-- class="attachment-full size-full" alt=""> -->
+            <p>{{d.title}}</p>
+            <p>{{d.text}}</p>
+            <a href="#" class="btn bt">Перейти до покупок</a>
+        </div>
+
+    </div>
+
+</div>

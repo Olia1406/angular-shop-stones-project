@@ -1,29 +1,64 @@
 <div class="price-filter">
-    <h4 class="price-title">Cортувати за ціною</h4>
-    <span (click)="sortProdUp()">за зростанням</span>
-    <span (click)="sortProdDown()">за спаданням</span>
-  </div>
-<div class="new-products">
-    <div class="product" *ngFor="let prod of products">
-        <!-- <div class="p-image" [style.backgroundImage]="'url('+prod.image+')'" -->
-        <!-- <div> -->
-            <img [src]="prod?.image" alt="" class="p-image"
-            [routerLink]="[ '/menu/'+prod.category.nameEN, prod.id ]">
-        <!-- </div> -->
-        <a [routerLink]="[ '/menu/'+prod.category.nameEN, prod.id ]">детальніше</a>
-        <p>{{prod?.nameUA}}</p>
-        <h6>{{prod?.price}} <i>грн</i></h6>
-        <div class="button" (click)="addToBasket(prod)">у кошик</div>
+  <h4 class="price-title">Cортувати за ціною</h4>
+  <span (click)="sortProdUp()">за зростанням</span>
+  <span (click)="sortProdDown()">за спаданням</span>
+</div>
+
+<div class="filters-container">
+  <div class="stone-name-filter">
+    <h3 class="sel-title">Камінь <span (click)="openStoneList()">&times;</span> </h3>
+    <p [textContent]='currentStone'></p>
+    <div class="stone-list" *ngIf="stoneStatus">
+      <p style="background-color: rgb(204, 200, 200);" (click)="getAllStones()">відобразити всі</p>
+      <p class="stone-name" *ngFor="let stone of stoneNames" (click)="filterByStone(stone)">{{stone}}</p>
     </div>
+  </div>
+
+  <div class="stone-color-filter">
+    <h3 class="sel-title">Колір <span (click)="openColorList()">&times;</span> </h3>
+    <p [textContent]='currentColor'></p>
+    <div class="color-list" *ngIf="colorStatus">
+      <p style="background-color: rgb(204, 200, 200);" (click)="getAllColorsProd()">відобразити всі</p>
+      <p class="stone-color" *ngFor="let color of stoneColors" (click)="filterByColor(color)">{{color}}</p>
+    </div>
+  </div>
+
+  <div class="zodiak-filter">
+    <h3 class="sel-title">Зодіак <span (click)="openZodiacList()">&times;</span> </h3>
+    <p [textContent]='currentZodiac'></p>
+    <div class="zodiac-list" *ngIf="zodiacStatus">
+      <p style="background-color: rgb(204, 200, 200);" (click)="getAllZodiacsProd()">відобразити всі</p>
+      <p class="zodiac" *ngFor="let zodiac of zodiacs" (click)="filterByZodiac(zodiac)">{{zodiac}}</p>
+    </div>
+  </div>
+</div>
+
+<div class="new-products">
+  <div class="product" *ngFor="let prod of someProducts">
+    <!-- <div class="p-image" [style.backgroundImage]="'url('+prod.image+')'" -->
+    <!-- <div> -->
+    <img [src]="prod?.image" alt="" class="p-image" [routerLink]="[ '/menu/'+prod.category.nameEN, prod.id ]">
+    <!-- </div> -->
+    <a [routerLink]="[ '/menu/'+prod.category.nameEN, prod.id ]">детальніше</a>
+    <p>{{prod?.nameUA}}</p>
+    <h6>{{prod?.price}} <i>грн</i></h6>
+    <div class="button" (click)="addToBasket(prod)">у кошик</div>
+  </div>
 </div>
 <!-- <pagination [totalItems]="30"></pagination> -->
 <!-- <div class="row"> -->
-    <!-- <div class="col-xs-12 col-12"> -->
-      <!-- <pagination [totalItems]="totalItems" [(ngModel)]="currentPage"></pagination> -->
-    <!-- </div> -->
-  <!-- </div> -->
+<!-- <div class="col-xs-12 col-12"> -->
+<!-- <pagination [totalItems]="totalItems" [(ngModel)]="currentPage"></pagination> -->
+<!-- </div> -->
+<!-- </div> -->
 <div class="switch">
-    <a  (click)="firstPage()"></a>
-    <a  (click)="secondPage()"></a>
-    <a ></a>
+  <!-- <a (click)="firstPage()"></a> -->
+  <!-- <a (click)="secondPage()"></a> -->
+  <a></a>
+  <a></a>
+  <a></a>
+  <!-- <button (click)="prevPage()">prev</button> -->
+  <!-- <button (click)="nextPage()">next</button> -->
+<!--    -->
+<!-- <p (click)="more()" >показати більше</p> -->
 </div>
