@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit {
   firstName: string;
   lastName: string;
 
+  products:Array<IProduct>;
   constructor(private ordersService: OrdersService,
     private modalService: BsModalService,
     private authService: AuthService) { }
@@ -33,7 +34,9 @@ export class HeaderComponent implements OnInit {
     this.getLocalProducts();
     this.updateCheckLogin();
     this.checkLogin();
+
   }
+
 
   private checkBasket(): void {
     this.ordersService.basket.subscribe(() => {
@@ -107,6 +110,7 @@ export class HeaderComponent implements OnInit {
       this.loginUrl = '';
     }
   }
+
 
 
 

@@ -1,10 +1,15 @@
 @import '../../../common_scss/mixins';
 @import '../../../common_scss/variables';
 
+.main-container{
+  margin-top: 90px;
+  @include flexbox(row, nowrap, space-between, flex-start);
+}
 .new-products{
-    @include flexbox(row, wrap, flex-start, flex-start);
+    @include flexbox(row, wrap, center, flex-start);
     // background-color: white;
     margin-bottom: 15px;
+    width: 70vw;
     .product{
        margin: 20px;
        @include dimentions(220px,340px);
@@ -43,6 +48,7 @@
 }
 
 .switch{
+  margin-bottom: 20px;
   height: 60px;
   @include flexbox(row, nowrap, center, center);
   background-color: white;
@@ -65,20 +71,22 @@
   color: $secondColor;  
 }
  
-.price-filter{
- @include flexbox(row, wrap, space-around, flex-start);
- margin: 20px;  
- padding: 20px;
- background-color: white; 
-}   
 .filters-container{
-  @include flexbox(row, wrap, space-around, flex-start);
+  @include flexbox(column, wrap, flex-start, flex-start);
+  width: 200px;
 }
-
+.price-filter{
+  @include flexbox(column, wrap, flex-start, flex-start);
+  // @include dimentions(250px, 300px); 
+  width: 180px;
+  margin: 20px;  
+  padding: 20px;
+  background-color: white;
+}   
 .stone-name-filter,.stone-color-filter,.zodiak-filter{
   @include flexbox(column, wrap, flex-start, flex-start);
   // @include dimentions(250px, 300px); 
-  width: 200px;
+  width: 180px;
   margin: 20px;  
   padding: 20px;
   background-color: white;
@@ -91,7 +99,7 @@
   }
 
 .stone-list, .color-list, .zodiac-list{
-  @include dimentions(180px, 100px); 
+  @include dimentions(160px, 180px); 
   overflow-y: scroll;
   // z-index: 4;
 

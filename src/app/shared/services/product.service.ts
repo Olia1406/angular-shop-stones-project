@@ -58,7 +58,9 @@ export class ProductService {
   getOneFireCloudProduct(id: string): any {
     return this.firecloud.collection('products').doc(id).get();
   }
-
+  // getFFireCloudProduct(): any {
+    // return this.firecloud.collection('products').get().pipe()
+  // }
 
 }
 

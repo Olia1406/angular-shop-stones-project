@@ -1,3 +1,9 @@
+@import '../../common_scss/mixins';
+@import '../../common_scss/variables';
+
+// @include flexbox(row, nowrap, space-between, center);
+// @include dimentions(16px,16px);
+// @include fonts($mainFont, 12px);
 
 
 .table {
@@ -8,8 +14,53 @@
     
   .table .tr {
     display: table-row;
+    color:$secondColor;
   }
-    
+  .thead{
+    @include fonts($mainFont, 16px);
+    // color:$secondColor;
+    height: 40px;
+    margin: 15px 0;
+  }
+  .tbody{
+    height: 40px;
+    margin: 5px 0;
+    span{
+      font-weight: 900;
+      &:hover{
+        color:$mainColor;
+      }
+    }
+  }  
+  .tfoot{
+    margin-top: 25px;
+    .td{
+      width: 200px;
+      @include fonts($mainFont, 17px);
+      color: $secondColor;
+        span{
+          color: $mainColor;
+          }
+      }
+  }
+
   .table .td {
     display: table-cell;
+  }
+
+  // ------order-------------------------------
+
+  .order-data{
+    @include flexbox(row, wrap, space-around, flex-start);
+    color:$secondColor;
+    .delivery,.payment{
+      margin:10px;
+      h5{
+      @include fonts($mainFont, 17px);
+      }
+      p{
+        margin-top: 10px;
+        margin-bottom: 5px;
+      }
+    }
   }

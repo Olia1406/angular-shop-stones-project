@@ -1,0 +1,39 @@
+@import '../../common_scss/mixins';
+@import '../../common_scss/variables';
+
+
+.payment-container{
+    margin: 30px 0;
+    // border: 1px solid #000;
+    color:$secondColor;
+    @include flexbox(row, wrap, space-around,flex-start);
+    // background-color: white;
+    // @include dimentions(150px,150px);
+    // @include fonts($mainFont, 25px);
+    // font-family: $mainFont;
+    .delivery,.payment{
+        @include dimentions(300px,300px);
+        margin-bottom: 20px;
+        // border: 1px solid #000;
+        h4{
+           @include fonts($mainFont, 20px);
+        }
+        h6{
+           @include fonts($mainFont, 16px);
+           color:$mainColor;
+           margin-top: 15px;
+        //    margin-bottom: px;
+        }
+        p{
+            line-height: 17px;
+        }
+        // span{
+            // line-height: 17px;
+        // }
+
+    }  
+}
+.ask{
+    color:$secondColor;
+    margin-bottom: 20px;
+}

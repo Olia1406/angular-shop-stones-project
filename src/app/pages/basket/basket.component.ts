@@ -45,7 +45,7 @@ export class BasketComponent implements OnInit {
   private updateBasket(): void {
     localStorage.setItem('myOrder', JSON.stringify(this.orders));
     this.getTotal();
-    this.ordersService.basket.next('віфвіф');
+    this.ordersService.basket.next('оновлено');
   }
 
   deleteProduct(product: IProduct): void {
@@ -56,8 +56,15 @@ export class BasketComponent implements OnInit {
     }
   }
 
+  getDelivery(delivery){
+    this.deliveryType = delivery;
+  }
+
+  getPayment(payment){
+    this.paymentType = payment;
+  }
+
   addOrder(): void {
-    console.log('erjeghjeggeegvvre');
     const order = new Order(this.orderID,
                             this.userName,
                             this.userPhone,

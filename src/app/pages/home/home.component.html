@@ -25,31 +25,17 @@
     <h3 class="gray">НАДХОДЖЕННЯ</h3>
 </div>
 <div class="new-products">
-    <div class="product">
-        <img class="p-image" src="../../../assets/images/b-ametyst.jpg" alt="">
-       <p>Браслет з аметисту</p>
-       <h6>100</h6>
-    </div>
-    <div class="product">
-        <img class="p-image" src="../../../assets/images/one.jpg" alt="">
-       <p>Браслет з аметисту</p>
-       <h6>100</h6>
-    </div>
-    <div class="product">
-        <img class="p-image" src="../../../assets/images/koral.jpg" alt="">
-       <p>Браслет з аметисту</p>
-       <h6>100</h6>
-    </div>
-    <div class="product">
-        <img class="p-image" src="../../../assets/images/rose-cv.jpg" alt="">
-       <p>Браслет з аметисту</p>
-       <h6>100</h6>
+    <div class="product" *ngFor="let prod of products">
+        <img class="p-image" [src]="prod?.image" alt="">
+       <p>{{prod?.nameUA}}</p>
+       <h6>{{prod?.price}} <i>грн</i></h6>
     </div>
 </div>
 <div class="switch">
-    <a href="#"></a>
-    <a href="#"></a>
-    <a href="#"></a>
+    <!-- <p (click)="getFour()">n</p> -->
+    <a ></a>
+    <a ></a>
+    <a ></a>
 </div>
 <!-- <span [ngSwitch]=""> -->
 <!-- <p *ngSwitchCase="true"> -->
@@ -68,18 +54,18 @@
 </div>
 <div class="best-salers">
     <div class="product">
-        <img class="p-image" src="../../../assets/images/green.jpg" alt="">
-       <p>Браслет з аметисту</p>
-       <h6>100</h6>
+        <img class="p-image" src="../../../assets/images/b-green.jpg" alt="">
+       <p>Браслет з агату</p>
+       <h6>111 <i>грн</i></h6>
     </div>
     <div class="product">
-        <img class="p-image" src="../../../assets/images/green.jpg" alt="">
-       <p>Браслет з аметисту</p>
-       <h6>100</h6>
+        <img class="p-image" src="../../../assets/images/perl.jpg" alt="">
+       <p>Набір з перлин</p>
+       <h6>222 <i>грн</i></h6>
     </div>
     <div class="product">
-        <img class="p-image" src="../../../assets/images/rose-cv.jpg" alt="">
-       <p>Браслет з аметисту</p>
-       <h6>100</h6>
+        <img class="p-image" src="../../../assets/images/koral.jpg" alt="">
+       <p>Намисто з коралу</p>
+       <h6>333 <i>грн</i></h6>
     </div>
 </div>

@@ -19,7 +19,64 @@ export class ProductComponent implements OnInit {
   // moreCount:number=3;
   // addPages: number=3;
 
-  stoneNames: Array<string> = ['всі',"агат", 'аквамарин', 'амазонит', 'аметист', 'бурштин', 'турмалін', 'гранат', 'корал', 'рожевий кварц', 'аквамарин', 'амазонит'].sort();
+  stoneNames: Array<string> = ['всі',
+    'Авантюрин',
+'Aгат',
+'Aквамарин',
+'Aамазоніт',
+'Aметист',
+'Бірюза',
+'Бурштин',
+'Волове око',
+'Варисцит',
+'Гематит',
+'Гірський кришталь',
+'Гранат',
+'Жадеїт',
+'Змієвик',
+'Кахолонг',
+'Кварц',
+'Корал',
+'Котяче око',
+'Лабрадор',
+'Лава вулканічна',
+'Лазурит',
+'Ларімар',
+'Малахіт',
+'Місячний камінь',
+'Нефрит',
+'Обсидіан',
+'Онікс',
+'Опал',
+'Перламутр',
+'Перли',
+'Пірит',
+'Раухтопаз',
+'Родоніт',
+'Рожевий кварц',
+'Рубін',
+'Рутиловий кварц',
+'Сапфір',
+'Сардрнікс',
+'Сердолік',
+'Содаліт',
+'Соколине око',
+'Тигрове око',
+'Турмалін',
+'Флюорит',
+'Халцедон',
+'Хризоколла',
+'Хризопраз',
+'Циркон',
+'Цитрин',
+'Цоізіт',
+'Чароїт',
+'Шпінель',
+'Шунгіт',
+'Яшма',
+'Янтар'
+  ];
+  // .sort();
   stoneColors: Array<string> = ['всі','фіолетовий', 'білий', 'коричневий', 'жовтий', 'рожевий', 'зелений', 'чорний', 'синій', 'кораловий', 'оранжевий'].sort();
   zodiacs: Array<string> = ['всі','козеріг', 'водолій', 'риби', 'овен', 'телець', 'близнюки', 'рак', 'лев', 'діва', 'терези', 'скорпіон', 'стрілець'];
 
@@ -94,15 +151,16 @@ export class ProductComponent implements OnInit {
   filterByStone(stone): void {
     this.stoneStatus = false;
     this.currentStone = stone;
+    this.currentZodiac = 'всі';
     // this.products = this.products.filter(prod => prod.stone.includes(stone));
     this.filter();
   }
-  getAllStones(): void {
-    this.stoneStatus = false;
-    this.currentStone = 'всі';
-    this.filter();
-    // this.getFireCloudProducts();
-  }
+  // getAllStones(): void {
+    // this.stoneStatus = false;
+    // this.currentStone = 'всі';
+    // this.filter();
+
+  // }
   openStoneList(): void {
     this.stoneStatus = true;
   }
@@ -113,12 +171,12 @@ export class ProductComponent implements OnInit {
     this.filter();
     // this.products = this.products.filter(prod => prod.color.includes(color));
   }
-  getAllColorsProd(): void {
-    this.colorStatus = false;
-    this.currentColor = 'всі';
-    this.filter();
+  // getAllColorsProd(): void {
+    // this.colorStatus = false;
+    // this.currentColor = 'всі';
+    // this.filter();
     // this.getFireCloudProducts();
-  }
+  // }
   openColorList(): void {
     this.colorStatus = true;
   }
@@ -126,15 +184,16 @@ export class ProductComponent implements OnInit {
   filterByZodiac(zodiac): void {
     this.zodiacStatus = false;
     this.currentZodiac = zodiac;
+    this.currentStone = 'всі';
     this.filter();
     // this.products = this.products.filter(prod => prod.zodiac.includes(zodiac) || prod.zodiac.includes('всім'));
   }
-  getAllZodiacsProd(): void {
-    this.zodiacStatus = false;
-    this.currentZodiac = 'всі';
-    this.filter();
+  // getAllZodiacsProd(): void {
+    // this.zodiacStatus = false;
+    // this.currentZodiac = 'всі';
+    // this.filter();
     // this.getFireCloudProducts();
-  }
+  // }
   openZodiacList(): void {
     this.zodiacStatus = true;
   }
@@ -142,56 +201,62 @@ export class ProductComponent implements OnInit {
   private filter() {
     // const categoryName = this.actRoute.snapshot.paramMap.get('category');
     // this.getFireCloudProducts(categoryName);
+    console.log('---------------------------');
     this.someProducts = this.products;
     // 1
     if (this.currentStone !== 'всі' && this.currentColor === 'всі' && this.currentZodiac === 'всі') {
       console.log(this.currentStone);
-      this.someProducts = this.products.filter(prod => prod.stone.includes(this.currentStone));
+      this.someProducts = this.products.filter(prod => prod.stone.toLowerCase().includes(this.currentStone.toLowerCase()));
       // console.log(this.products)
     }
     // 2
     else if (this.currentStone != 'всі' && this.currentColor == 'всі' && this.currentZodiac != 'всі') {
       console.log(this.currentStone);
       console.log(this.currentZodiac);
-      this.someProducts = this.products.filter(prod => prod.stone.includes(this.currentStone) && (prod.zodiac.includes(this.currentZodiac) || prod.zodiac.includes('всім')));
+      this.someProducts = this.products.filter(prod => prod.stone.toLowerCase().includes(this.currentStone.toLowerCase()) && 
+      prod.zodiac.toLowerCase().includes(this.currentZodiac.toLowerCase()));
     }
     //  3   
     else if (this.currentStone != 'всі' && this.currentColor != 'всі' && this.currentZodiac == 'всі') {
       console.log(this.currentStone);
       console.log(this.currentColor);
-      this.someProducts = this.products.filter(prod => prod.stone.includes(this.currentStone) && prod.color.includes(this.currentColor));
+      this.someProducts = this.products.filter(prod => prod.stone.toLowerCase().includes(this.currentStone.toLowerCase()) && 
+      prod.color.toLowerCase().includes(this.currentColor.toLowerCase()));
     }
     // 4
     else if (this.currentStone != 'всі' && this.currentColor != 'всі' && this.currentZodiac != 'всі') {
       console.log(this.currentStone);
       console.log(this.currentColor);
       console.log(this.currentZodiac);
-      this.someProducts = this.products.filter(prod => prod.stone.includes(this.currentStone) && prod.color.includes(this.currentColor) && (prod.zodiac.includes(this.currentZodiac) || prod.zodiac.includes('всім')));
+      this.someProducts = this.products.filter(prod => prod.stone.toLowerCase().includes(this.currentStone.toLowerCase()) && 
+      prod.color.toLowerCase().includes(this.currentColor.toLowerCase()) && 
+      prod.zodiac.toLowerCase().includes(this.currentZodiac.toLowerCase()));
     }
     // 5
     else if (this.currentStone == 'всі' && this.currentColor == 'всі' && this.currentZodiac != 'всі') {
       console.log(this.currentZodiac);
-      this.someProducts = this.products.filter(prod => prod.zodiac.includes(this.currentZodiac) || prod.zodiac.includes('всім'));
+      this.someProducts = this.products.filter(prod => prod.zodiac.toLowerCase().includes(this.currentZodiac.toLowerCase()));
     }
     // 6
     else if (this.currentStone == 'всі' && this.currentColor != 'всі' && this.currentZodiac != 'всі') {
       console.log(this.currentColor);
       console.log(this.currentZodiac);
-      this.someProducts = this.products.filter(prod => prod.color.includes(this.currentColor) && (prod.zodiac.includes(this.currentZodiac) || prod.zodiac.includes('всім')));
+      this.someProducts = this.products.filter(prod => prod.color.includes(this.currentColor) && 
+      prod.zodiac.toLowerCase().includes(this.currentZodiac.toLowerCase()));
     }
     // 7
     else if (this.currentStone == 'всі' && this.currentColor != 'всі' && this.currentZodiac == 'всі') {
       console.log(this.currentColor);
-      this.someProducts = this.products.filter(prod => prod.color.includes(this.currentColor));
+      this.someProducts = this.products.filter(prod => prod.color.toLowerCase().includes(this.currentColor.toLowerCase()));
     }
     // 8
     else if (this.currentStone == 'всі' && this.currentColor == 'всі' && this.currentZodiac == 'всі') {
       console.log(this.currentStone);
       console.log(this.currentColor);
       console.log(this.currentZodiac);
-      // this.someProducts = this.products;
-      const categoryName = this.actRoute.snapshot.paramMap.get('category');
-      this.getFireCloudProducts(categoryName);
+      this.someProducts = this.products;
+      // const categoryName = this.actRoute.snapshot.paramMap.get('category');
+      // this.getFireCloudProducts(categoryName);
     }
 
   }

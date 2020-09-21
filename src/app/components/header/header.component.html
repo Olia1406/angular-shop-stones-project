@@ -35,10 +35,15 @@
       </div>
       <nav class="pages">
         <!-- <p>головна</p> -->
-        <a [routerLink]="[ '/catalogue' ]" routerLinkActive="active">каталог</a>
-        <a [routerLink]="[ '/discount' ]" routerLinkActive="active">акції</a>
-        <a [routerLink]="[ '/contacts' ]" routerLinkActive="active">контакти</a>
-        <a [routerLink]="[ '/feedback' ]" routerLinkActive="active">відгуки</a>
+        <div class="part1">
+          <a [routerLink]="[ '/catalogue' ]" routerLinkActive="active">каталог</a>
+          <a [routerLink]="[ '/more' ]" routerLinkActive="active">про камені</a>
+          <a [routerLink]="[ '/discount' ]" routerLinkActive="active">акції</a>
+        </div>
+        <div class="part2">
+          <a [routerLink]="[ '/contacts' ]" routerLinkActive="active">контакти</a>
+          <a [routerLink]="[ '/payment' ]" routerLinkActive="active">оплата і доставка</a>
+        </div>
       </nav>
     </div>
     <div class="hdr_right row">

@@ -10,7 +10,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 
 import { ContactsComponent } from './pages/contacts/contacts.component';
-import { FeedbackComponent } from './pages/feedback/feedback.component';
+// import { FeedbackComponent } from './pages/feedback/feedback.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { MoreAboutStonesComponent } from './pages/more-about-stones/more-about-stones.component';
@@ -58,7 +58,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     ContactsComponent,
     PaymentComponent,
     MoreAboutStonesComponent,
-    FeedbackComponent,
+    // FeedbackComponent,
     CatalogueComponent,
     ProductComponent,
     // NecklaceComponent,

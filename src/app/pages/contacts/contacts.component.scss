@@ -1,0 +1,37 @@
+@import '../../common_scss/mixins';
+@import '../../common_scss/variables';
+
+.contacts-container{
+    @include flexbox(column, wrap, flex-start, center);
+    // background-color: white;
+    // @include dimentions(150px,150px);
+    // @include fonts($mainFont, 25px);
+    font-family: $mainFont;
+    color:$secondColor;
+    .contacts-title{
+        margin: 30px auto;
+
+    }
+    .contacts-type{
+       @include flexbox(row, wrap, space-around, flex-start);
+      .write-on-messanger,.call,.write-on-email{
+          margin: 20px;
+          padding:15px;
+          background-color: white;
+          @include dimentions(300px,200px);
+        //   border: 1px solid rgb(216, 213, 213);
+        //   letter-spacing: 2px;
+          h5{
+              font-size: 18px;
+              color:$mainColor;
+              margin-bottom: 20px;
+          }
+          p{
+              line-height: 15px;
+          }
+
+      }
+    }
+
+
+}

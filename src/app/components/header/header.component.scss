@@ -72,14 +72,20 @@ header{
       }
       .pages{
           margin-left: 50px;
-          width: 400px;
+          width: 600px;
+          // height: 80px;
+          // border: 1px solid #000;
           color: $secondColorLt;
           @include fonts($mainFont, $fontSizeXS);
-          @include flexbox(row, wrap, space-around, center);
+          @include flexbox(row, wrap, center, center);
           }  
           p:hover{
             color: $mainColor;
-          }         
+          } 
+      .part1,.part2{
+        width: 280px;
+        @include flexbox(row, wrap, space-around, center);
+      }        
     }
     &_right{
         width: 120px;

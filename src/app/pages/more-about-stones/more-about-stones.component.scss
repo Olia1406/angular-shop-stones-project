@@ -1,0 +1,105 @@
+@import '../../common_scss/mixins';
+@import '../../common_scss/variables';
+
+
+.container{
+    // @include flexbox(column, wrap, flex-start, center);
+
+}
+
+h3{
+    margin-top: 35px;
+    @include fonts($mainFont, 25px);
+    color: $secondColor;
+}
+.title-img{
+    @include dimentions(150px,150px);
+    float: left;
+}
+.entrens{
+    color: $secondColor;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    line-break: loose;
+    line-height: 30px;
+    span{
+        // margin-left: 30px;
+
+    }
+}
+h4{
+    margin-top: 20px;
+    @include fonts($mainFont, 20px);
+    color: $mainColor;  
+}
+.zodiac-containerM{
+    @include flexbox(column, wrap, flex-start, flex-start);
+    .zodiac-item{
+        margin-top: 15px;
+       @include flexbox(row, wrap, flex-start, flex-start);
+        .zodiac-icon{
+            @include dimentions(65px,65px);
+            // background-image: url('../../../assets/zodiacs/Aquarius.jpg');
+            background-size: cover;
+            margin: 0 10px;
+            border: 1px solid rgb(216, 214, 214);
+         }
+         .icon1{background-image: url('../../../assets/zodiacs/Capricorn.jpg');}
+         .icon2{background-image: url('../../../assets/zodiacs/Aquarius.jpg');}
+         .icon3{background-image: url('../../../assets/zodiacs/Pisces.jpg');}
+         .icon4{background-image: url('../../../assets/zodiacs/Aries.jpg');}
+         .icon5{background-image: url('../../../assets/zodiacs/Taurus.jpg');}
+         .icon6{background-image: url('../../../assets/zodiacs/Gemini.jpg');}
+         .icon7{background-image: url('../../../assets/zodiacs/Cancer.jpg');}
+         .icon8{background-image: url('../../../assets/zodiacs/leo.jpg');}
+         .icon9{background-image: url('../../../assets/zodiacs/Virgo.jpg');}
+         .icon10{background-image: url('../../../assets/zodiacs/Libra.jpg');}
+         .icon11{background-image: url('../../../assets/zodiacs/Scorpio.jpg');}
+         .icon12{background-image: url('../../../assets/zodiacs/Sagittarius.jpg')}
+        .list{
+            // height: 80px;
+            max-width: 55vw;
+            @include flexbox(column, wrap, flex-start, flex-start);
+            p{
+              line-height: 17px;
+            }
+            .zodiac-list{
+                margin-top: -10px;
+            }
+        }   
+    }
+}
+.zM-name{
+    @include fonts($mainFont, 16px);
+    color: $secondColor;
+    line-height: 19px;
+ }
+.stones-list{
+    @include flexbox(row, wrap, space-around, flex-start);
+    .part1, .part2, .part3, .part4{
+        width: 16vw;
+        @include flexbox(column, wrap, flex-start, center);
+        a{
+          @include fonts($mainFont, 14px);
+          color: $secondColor;
+          line-height: 17px;  
+        }
+        a:hover{
+            color:$mainColor;
+        }
+
+    }
+
+}
+
+.stone-name-properties{
+    margin-top: 15px;
+    @include fonts($mainFont, 18px);
+    color: $secondColor;
+    line-height: 19px;
+ }
+
+ .stone-prop-img{
+    @include dimentions(300px,300px);
+    float: right;  
+}

@@ -4,23 +4,22 @@
     outline: none;
 }
 .catlogue-container{
-    @include flexbox(row, nowrap, flex-start, flex-start);
-    margin: 50px auto;
+    @include flexbox(column, wrap, flex-start, center);
+    margin: -20px 0 0 0;
     position: relative;
     .nav-prod{
-        // position: sticky;
-        // top: 150;
-        // left: 0;
-        // z-index: 9;
-        width: 270px;
-        min-height: 600px;
-        margin-right: 20px;
-        // background-color: yellow;
-        @include flexbox(column, wrap, flex-start, flex-start);
-        .categories,.stone-name-filter,.stone-color-filter,.zodiak-filter{
-            @include flexbox(column, wrap, space-between, flex-start);
-            @include dimentions(250px, 300px); 
-            margin: 20px;  
+        position: fixed;
+        top: 10;
+        left: 0;
+        z-index: 9;
+        height: 60px;
+        width: 100vw;
+        padding-top: 15px;
+        @include flexbox(row, wrap, center, center);
+        .categories{
+            @include flexbox(row, wrap, space-around, center); 
+            height: 60px;
+            width: 100%;
             padding: 20px;
             background-color: white;
             .category-name{
@@ -36,20 +35,4 @@
 .category-title{
     @include fonts($mainFont, 20px);
     color: $mainColor;  
-    }
-
-.stone-list, .color-list, .zodiac-list{
-    @include dimentions(200px, 210px); 
-    overflow-y: scroll;
-    }
-.stone-name, .stone-color, .zodiac{
-    @include fonts($mainFont, 15px);
-    color: $secondColor; 
-    height: 30px;
-    margin-left: 10px;
-    }
-.stone-name:hover,
-.stone-color:hover,
-.zodiac:hover{
-    color:$mainColor;
     }

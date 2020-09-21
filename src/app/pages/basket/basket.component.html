@@ -1,30 +1,36 @@
 <div class="container">
     <div class="col-lg-12 empty-basket" *ngIf="!orders.length">
         <p>Кошик порожній.</p>
-        <a routerLink="/home" style="color:red">Повернутись до покупок</a>
+        <a routerLink="/catalogue" style="color:#ff5912">Повернутись до покупок</a>
     </div>
 
 
     <div class="col-lg-12 mt-5 smt-basket" *ngIf="orders.length">
         <div class="table">
             <div class="tr thead">
-                <div class="td">Видалити</div>
+                <div class="td"></div>
                 <div class="td">Товар</div>
                 <div class="td">Ціна</div>
                 <div class="td">Кількість</div>
                 <div class="td">Загалом</div>
             </div>
             <div class="tr tbody" *ngFor="let order of orders">
-                <div class="td" (click)="deleteProduct(order)">&times;</div>
+                <div class="td del" (click)="deleteProduct(order)"><span>&times;</span></div>
                 <div class="td">{{order?.nameUA}}</div>
-                <div class="td">{{order?.price}}</div>
+                <div class="td">{{order?.price}} грн</div>
                 <div class="td">
                     <app-counter [product]="order" (changeCount)="detectChangeCount($event)"></app-counter>
                 </div>
-                <div class="td"><span>{{order?.count * order?.price}}</span></div>
+                <div class="td"><span>{{order?.count * order?.price}} грн</span></div>
             </div>
             <div class="tr tfoot">
-                <div class="td">Всього: <span>{{totalPrice}}</span></div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="td"></div>
+                <div class="td">
+                    <hr>
+                    Всього: <span>{{totalPrice}} грн</span></div>
             </div>
         </div>
     </div>
@@ -36,36 +42,36 @@
                     <h5>Спосіб доставки:</h5>
                     <div class="deliveryCheckboxs">
                         <label class="checkboxEntry radio">
-                            <input type="radio" name="delivery" value="delivery" checked="checked"><span> Нова
+                            <input (click)="getDelivery('нова пошта')" type="radio" name="delivery" value="Novaposhta" checked="checked"><span> Нова
                                 пошта</span>
                         </label>
                         <label class="checkboxEntry radio ml-3">
-                            <input type="radio" name="delivery" value="driveway"><span> Укрпошта</span>
+                            <input (click)="getDelivery('укрпошта')" type="radio" name="delivery" value="Ukrposhta"><span> Укрпошта</span>
                         </label>
                     </div>
-                    <p>Місто</p>
+                    <p>Місто*:</p>
                     <input type="text" [(ngModel)]="userCity" name="userCity" required>
-                    <p>Номер відділення</p>
+                    <p>Номер відділення*:</p>
                     <input type="text" [(ngModel)]="deliveryDepartment" name="deliveryDepartment" required>
-                    <h6>Коментар:</h6>
+                    <p>Коментар:</p>
                     <textarea [(ngModel)]="userComments" name="userComments" id="" cols="33" rows="3"></textarea>
                 </div>
-                <div class="contacts ml-5">
+                <div class="payment">
                     <h5>Спосіб оплати:</h5>
-                    <div class="deliveryCheckboxs">
+                    <div class="paymentCheckboxs">
                         <label class="checkboxEntry radio">
-                            <input type="radio" name="payment" value="payment" checked="checked"><span> На карту</span>
+                            <input (click)="getPayment('на карту')" type="radio" name="payment" value="card" checked="checked"><span> На карту</span>
                         </label>
                         <label class="checkboxEntry radio ml-3">
-                            <input type="radio" name="payment" value="payment"><span> Оплата при доставці</span>
+                            <input (click)="getPayment('при доставці')" type="radio" name="payment" value="after"><span> Оплата при доставці</span>
                         </label>
                     </div>
-                    <p>Ваше ім'я</p>
+                    <p>Ваше ім'я*:</p>
                     <input type="text" [(ngModel)]="userName" name="userName" required>
-                    <p>Ваш номер телефону</p>
+                    <p>Ваш номер телефону*:</p>
                     <input type="tel" [(ngModel)]="userPhone" name="userPhone" required>
-                    <br>
-                    <button [disabled]="orderForm.invalid" type="submit" class="btn btn-dark mt-5">офрмити
+                    <p style="margin-top: 35px; margin-bottom: 10px;">* поля обов'язкові до заповнення</p>
+                    <button [disabled]="orderForm.invalid" type="submit" class="btn btn-dark">офрмити
                         замовлення</button>
                 </div>
             </div>

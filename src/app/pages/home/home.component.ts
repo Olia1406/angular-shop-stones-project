@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-// import {DemoCarouseAnimatedComponent} 
+import { ProductService } from '../../shared/services/product.service';
+import { IProduct } from '../../shared/interfaces/product.interface';
 
 @Component({
   selector: 'app-home',
@@ -7,11 +8,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  // export class DemoCarouseAnimatedComponent {}
 
-  constructor() { }
+products:Array<IProduct>;
+  constructor(private prodService: ProductService) { }
 
   ngOnInit(): void {
+    this.getFireClProducts();
+  }
+
+  private getFireClProducts(){
+    this.prodService.getFireCloudProduct()
+    .subscribe(
+      collection => {
+        this.products = collection.map(document => {
+          const data = document.payload.doc.data() as IProduct;
+          const id = document.payload.doc.id;
+          return { id, ...data };
+        }).splice(-4, 4);
+      }
+    )
   }
 
 }

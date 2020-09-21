@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
-import { FeedbackComponent } from './pages/feedback/feedback.component';
+// import { FeedbackComponent } from './pages/feedback/feedback.component';
 import { MoreAboutStonesComponent } from './pages/more-about-stones/more-about-stones.component';
 
 import { CatalogueComponent } from './pages/catalogue/catalogue.component';
@@ -32,7 +32,7 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'discount', component: DiscountComponent},
   {path: 'contacts', component: ContactsComponent},
-  {path: 'feedback', component: FeedbackComponent},
+  // {path: 'feedback', component: FeedbackComponent},
   {path: 'basket', component: BasketComponent},
   {path: 'more', component: MoreAboutStonesComponent},
   {path: 'payment', component: PaymentComponent},
