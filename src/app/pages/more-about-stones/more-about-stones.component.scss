@@ -11,10 +11,12 @@ h3{
     margin-top: 35px;
     @include fonts($mainFont, 25px);
     color: $secondColor;
+    text-align: center;
 }
 .title-img{
     @include dimentions(150px,150px);
     float: left;
+    margin-right: 10px;
 }
 .entrens{
     color: $secondColor;
@@ -93,13 +95,23 @@ h4{
 }
 
 .stone-name-properties{
-    margin-top: 15px;
+    margin-top: 30px;
+    margin-left: 50px;
+    margin-bottom: 20px;
     @include fonts($mainFont, 18px);
     color: $secondColor;
     line-height: 19px;
  }
 
  .stone-prop-img{
-    @include dimentions(300px,300px);
+    @include dimentions(350px,300px);
     float: right;  
+    margin-left: 30px;
+    margin-bottom: 30px;
+}
+.about-st{
+    min-height: 340px;
+    background-color: white;
+    padding:30px;
+    margin-bottom: 30px;
 }

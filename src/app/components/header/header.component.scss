@@ -7,39 +7,46 @@ header{
   left: 0;
   right: 0;
   width: 100%;
-  background: #fff;
-  z-index: 10;
+  z-index: 110;
+  background-image: url('../../../assets/images/footerBL.jpg');
+  background-size: cover;
 .inform{
  height: 50px;
  border: 1px solid transparent;
- border-bottom-color: rgb(231, 229, 229);
- background-color: white;
+ border-bottom-color: $secondColor;
+ background-color: rgba(15, 15, 15, 0.4);
  @include flexbox(row, nowrap, space-between, center);
  padding: 5px;
- img{
-    margin: 4px;
-    @include dimentions(16px,16px)
-    }
    &_left{
     margin-left: 20px;   
     width: 330px;
-    color: $secondColor;
+    color: white;
     @include fonts($mainFont, 12px);
     @include flexbox(row, nowrap, space-between, center);
+    img{
+      margin: 4px;
+      @include dimentions(16px,16px);
+      }
    }
    &_right{
     @include flexbox(row, nowrap, space-around, center);
     width: 120px;
     margin-right: 20px;
+    img{
+      margin: 4px;
+      @include dimentions(20px,20px);
+      padding:3px;
+      background-color :white;
+      border-radius: 3px;
+      }
     img:hover{
       @include dimentions(19px,19px);
     }
    }
 }
 .hdr{
-    height: 120px;
-    padding: 5px;
-    background-color: white;
+    height: 125px;
+    // padding: 5px;
     border: 2px solid transparent;
     border-bottom-color: rgb(231, 229, 229);
     @include flexbox(row, wrap, space-between, center);
@@ -57,7 +64,6 @@ header{
          .logo_text{
             @include fonts($mainFont, 26px);
             color: $mainColor;
-            // text-transform: uppercase;
            }
           p{
             @include fonts($mainFont, 9px);
@@ -65,23 +71,13 @@ header{
             margin-top: -7px;
             letter-spacing: 1px;
           }
-          // &:hover{
-            // box-shadow: 0 0 6px 0px $secondColorLt;
-            // border-radius: 7px;
-          // }
       }
       .pages{
           margin-left: 50px;
-          width: 600px;
-          // height: 80px;
-          // border: 1px solid #000;
-          color: $secondColorLt;
+          width: 570px;
           @include fonts($mainFont, $fontSizeXS);
           @include flexbox(row, wrap, center, center);
           }  
-          p:hover{
-            color: $mainColor;
-          } 
       .part1,.part2{
         width: 280px;
         @include flexbox(row, wrap, space-around, center);
@@ -89,7 +85,6 @@ header{
     }
     &_right{
         width: 120px;
-        color: $secondColorLt;
         margin-right: 20px;
         margin-left: 20px;
         margin-top: -15px;
@@ -107,6 +102,7 @@ header{
           background-color: $secondColor;
           color: white;
           @include fonts($mainFont, 11px);
+          box-shadow: 0 0 2px 0 whitesmoke;
           border-radius: 50%;
           @include flexbox(row, wrap, space-around, center);
           position: relative;
@@ -125,7 +121,51 @@ header{
   color: $mainColor;
   outline: none;
 }
-// a:hover{
-  // color:$mainColor
-// }
-// 
+
+@media screen and (max-width: 970px){
+  header{
+    // border: 1px solid #000;
+    .hdr{
+      // border: 1px solid #000;
+      &_left{
+        // border: 1px solid #000;
+        .pages{
+          margin-left: 10px;
+          width: 400px;
+          // height: 60px;
+          // border: 1px solid #000;
+          @include flexbox(column, nowrap, space-between, center);
+        }
+        .part1,.part2{
+          // width: 198px;
+          @include flexbox(row, wrap, space-around, center);
+        }        
+      }
+    }
+  }
+
+
+}
+
+@media screen and (max-width: 768px){
+  header{
+    // border: 1px solid #000;
+    .hdr{
+      // border: 1px solid #000;
+      &_left{
+        // border: 1px solid #000;
+        .pages{
+          width: 150px;
+          // border: 1px solid #000;
+          @include flexbox(row, wrap, flex-start, flex-start);
+        }
+        .part1,.part2{
+          // width: 280px;
+          @include flexbox(column, wrap, space-around, center);
+        }        
+      }
+    }
+  }
+
+
+}

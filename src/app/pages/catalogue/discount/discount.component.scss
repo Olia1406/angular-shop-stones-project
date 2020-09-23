@@ -1,12 +1,40 @@
+@import '../../../common_scss/mixins';
+@import '../../../common_scss/variables';
+
+.disc-cont{
+    @include flexbox(row, wrap, space-around, center);
+
+}
+h3{
+    // font-family: $mainFont;
+    @include fonts($mainFont, 25px);
+    color:$secondColor;
+    margin: 30px auto;
+}
+
 .disc-info{
-    margin: 20px auto;
+    margin: 20px;
     box-shadow: 0 0 5px 1px gray;
+    border-radius: 5px;
+    @include flexbox(column, wrap, space-around, center);
+    // @include dimentions(150px,150px);
+    // height: 450px;
 
 }
 .bg-image{
     width: 300px;
     height: 300px;
     margin: 10px;
+    @include flexbox(column, wrap, center, center);
+    @include fonts($mainFont, 23px);
+    color:#ff5912;
+    text-shadow: 0px 2px 4px black;
+    text-align: center;
     // border: 1px solid #000;
     // background-image: ;
+}
+.descr{
+    width: 300px;
+    margin: 10px;
+    @include flexbox(column, wrap, center, center);
 }

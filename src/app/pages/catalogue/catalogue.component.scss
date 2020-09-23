@@ -36,3 +36,16 @@
     @include fonts($mainFont, 20px);
     color: $mainColor;  
     }
+
+
+@media screen and (max-width: 768px){
+    .catlogue-container{
+        .nav-prod{
+            width: 90vw;
+            .categories{
+                width: inherit;
+            }
+        }
+    }
+    
+}

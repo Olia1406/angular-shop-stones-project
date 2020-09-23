@@ -1,10 +1,17 @@
 @import '../../common_scss/mixins';
 @import '../../common_scss/variables';
 
+footer{
+    background-image: url('../../../assets/images/foot.jpg');
+    // background-size: 100% 100%;
+    background-size: cover;
+    background-position-x: center;
+    background-position-y: center;
+
 .foot{
     height: 250px;
     padding: 5px;
-    background-color: white;
+    // background-color: rgba(15, 15, 15, 0.301);
     @include flexbox(row, wrap, space-between, center);
     .foot_left{
         margin-left: 20px;
@@ -45,7 +52,7 @@
         }
     }
 }
-
+}
 
 
 

@@ -25,11 +25,15 @@
     }
 }
 .title{
-    margin: 15px;
+    margin: 40px 15px 20px;
     @include flexbox(row, nowrap, center, center);
     @include fonts('Roboto,600', 30px);
     h3{
         margin-right: 10px;
+    }
+    h4{
+        margin-right: 15px;
+        // font-family: $mainFont;
     }    
 }
 .orange{

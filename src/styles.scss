@@ -7,14 +7,12 @@
     outline: none;
 }
 body{
-    background-color: whitesmoke;
+    background-color: whitesmoke
 }
 
 a{
  color: $secondColor;
 }
-// a:link,
-// a:visited,
 a:active,
 a:hover {
   cursor: pointer;
