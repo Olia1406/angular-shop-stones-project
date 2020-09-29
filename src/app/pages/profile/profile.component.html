@@ -1,12 +1,40 @@
-<!-- <p>profile works!</p> -->
-<div class="container mt-3 mb-3">
-    <div class="col-9">
-        <h4>Привіт, {{ firstName }}!</h4>
-        <p>Ви успішно зареєструвались.</p>
-        <p>Вітаємо у вашому кабінеті</p>
-        <p>Email: {{ email }}</p>
+<div class="ml-5 mr-5 mt-3 mb-3">
+    <div class="first-line">
         <div>
-            <button class="btn btn-secondary mt-3" (click)="signOut()">вийти</button>
+            <h6>Доброго дня, {{ firstName | titlecase }}!</h6>
+            <h6>Вітаємо у вашому кабінеті.</h6>
+            <!-- <p>Email: {{ email }}</p> -->
+        </div>
+        <button class="btn btn-outline-secondary mt-3" (click)="signOut()">вийти</button>
+    </div>
+    <h6 *ngIf="userOrders.length">Ваші попередні замовлення:</h6>
+    <p *ngIf="!userOrders.length">У вас ще не було замовлень.</p>
+    <div class="prev-orders-container">
+        <div class="prev-order" *ngFor="let order of userOrders">
+            <div class="date">Дата замовлення: {{readableDate(order.dateOrder)}} </div>
+            <!-- <div class="date">Дата замовлення: {{order.dateOrder.seconds}} </div> -->
+            <div class="product-details" *ngFor="let prod of order.productOrder">
+                <div class="image"><img [src]="prod?.image" alt=""></div>
+                <div class="details">
+                    <h4>{{prod?.nameUA}}</h4>
+                    <p>Опис: {{prod?.description}}</p>
+                    <div>
+                        <span>Ціна: {{prod?.price}} грн</span>
+                        <span>Кількість: {{prod?.count}} </span>
+                    </div>
+                    <p>Загальна вартість: {{prod?.price*prod?.count}} грн</p>
+                </div>
+            </div>
+            <div class="line"></div>
+            <!-- <hr> -->
+            <p>Спосіб доставки: {{order.userDelivery}}, {{order.deliveryDepartment}} </p>
+            <p>Спосіб оплати: {{order.userPaymentType}}</p>
         </div>
     </div>
+
+
+
+
+
+
 </div>

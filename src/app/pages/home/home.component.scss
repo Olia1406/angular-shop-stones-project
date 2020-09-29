@@ -2,32 +2,36 @@
 @import '../../common_scss/variables';
 
 .bg-im{
-    height: 400px;
-    background-image: url('../../../assets/images/main.jpg');
+    height: 30vw;
+    background-image: url('../../../assets/images/ggg.jpg');
     background-repeat: no-repeat;
-    background-position: right;
+    background-position: bottom;
     background-size: cover;
-    opacity: 0.3;
+    @include flexbox(column, nowrap, center, flex-start);
+    padding: 0 150px;
+
+    // opacity: 0.3;
     }
 
-.main-text{
-    position: relative;
-    top: -230px;
-    left: 0px;
-    padding-left: 100px;
+// .main-text{
+    // position: relative;
+    // top: -130px;
+    // left: 0px;
+    // padding-left: 100px;
     h1{
         color: $mainColor;
-        @include fonts($mainFont, 50px);
+        @include fonts($mainFont, 40px);
       }
     p{
-        color: $secondColor;
+        // color: $secondColor;
+        color: white;
         @include fonts($mainFont, 20px);
     }
-}
+// }
 .title{
     margin: 40px 15px 20px;
     @include flexbox(row, nowrap, center, center);
-    @include fonts('Roboto,600', 30px);
+    @include fonts($mainFont, 30px);
     h3{
         margin-right: 10px;
     }
@@ -100,17 +104,30 @@
     height: 60px;
     @include flexbox(row, nowrap, center, center);
     background-color: white;
-    a{
+    div{
         @include dimentions(8px, 8px);
         border: 1px solid $mainColor;
         border-radius: 50%;
         margin: 5px;
         // background-color: $mainColor;
-        &:active{
-            background-color: $mainColor;
-            }
+        // &:active{
+            // background-color: $mainColor;
+            // }
         &:hover{
             background-color: $mainColor;
             }
     }
+}
+
+
+
+@media screen and (max-width: 970px){
+
+.bg-im{
+    height: 45vw;
+    h1{
+        @include fonts($mainFont, 30px);
+    }
+}
+
 }

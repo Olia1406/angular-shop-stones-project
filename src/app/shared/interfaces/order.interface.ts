@@ -10,6 +10,7 @@ export interface IOrder {
     userPaymentType: string;
     totalPayment: number;
     productOrder: Array<IProduct>;
-    dateOrder: Date;
+    dateOrder: any;
     statusOrder: string;
+    userOrderEmail?: string;
 }

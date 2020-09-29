@@ -11,16 +11,17 @@ header{
   background-image: url('../../../assets/images/footerBL.jpg');
   background-size: cover;
 .inform{
- height: 50px;
+ height: 40px;
  border: 1px solid transparent;
- border-bottom-color: $secondColor;
- background-color: rgba(15, 15, 15, 0.4);
+ border-bottom-color:rgb(231, 229, 229);
+//  background-color:$mainColor;
+ background-color: white;
  @include flexbox(row, nowrap, space-between, center);
  padding: 5px;
    &_left{
     margin-left: 20px;   
     width: 330px;
-    color: white;
+    color: $secondColor;
     @include fonts($mainFont, 12px);
     @include flexbox(row, nowrap, space-between, center);
     img{
@@ -34,10 +35,10 @@ header{
     margin-right: 20px;
     img{
       margin: 4px;
-      @include dimentions(20px,20px);
-      padding:3px;
-      background-color :white;
-      border-radius: 3px;
+      @include dimentions(16px,16px);
+      // padding:3px;
+      // background-color :white;
+      // border-radius: 3px;
       }
     img:hover{
       @include dimentions(19px,19px);
@@ -45,8 +46,9 @@ header{
    }
 }
 .hdr{
-    height: 125px;
+    height: 100px;
     // padding: 5px;
+    background-color: white;
     border: 2px solid transparent;
     border-bottom-color: rgb(231, 229, 229);
     @include flexbox(row, wrap, space-between, center);
@@ -75,6 +77,7 @@ header{
       .pages{
           margin-left: 50px;
           width: 570px;
+          display: block;
           @include fonts($mainFont, $fontSizeXS);
           @include flexbox(row, wrap, center, center);
           }  
@@ -132,12 +135,16 @@ header{
         .pages{
           margin-left: 10px;
           width: 400px;
+          display: none;
+
           // height: 60px;
           // border: 1px solid #000;
           @include flexbox(column, nowrap, space-between, center);
         }
         .part1,.part2{
           // width: 198px;
+          display: none;
+
           @include flexbox(row, wrap, space-around, center);
         }        
       }
@@ -153,16 +160,23 @@ header{
     .hdr{
       // border: 1px solid #000;
       &_left{
+        // display: none;
+
         // border: 1px solid #000;
         .pages{
+          display: none;
+
           width: 150px;
           // border: 1px solid #000;
-          @include flexbox(row, wrap, flex-start, flex-start);
-        }
+          @include flexbox(row, wrap, space-around, center);
+        
         .part1,.part2{
           // width: 280px;
-          @include flexbox(column, wrap, space-around, center);
-        }        
+          display: none;
+
+          // @include flexbox(column, wrap, space-around, center);
+        } 
+      }       
       }
     }
   }

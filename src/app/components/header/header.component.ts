@@ -101,7 +101,7 @@ export class HeaderComponent implements OnInit {
     }
     else if (user != null && user.role === 'user') {
       this.loginStatus = true;
-      this.loginName = 'користувач';
+      this.loginName = 'кабінет';
       this.loginUrl = 'profile';
     }
     else {

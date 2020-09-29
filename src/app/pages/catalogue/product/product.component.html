@@ -2,71 +2,50 @@
   <div class="filters-container">
     <div class="price-filter">
       <h4 class="sel-title">Cортувати за ціною</h4>
-      <span (click)="sortProdUp()">за зростанням</span>
-      <span (click)="sortProdDown()">за спаданням</span>
+      <span class="sortDirection" (click)="sortProdUp()">за зростанням</span>
+      <span class="sortDirection" (click)="sortProdDown()">за спаданням</span>
     </div>
 
-    <!-- <div class="filters-container"> -->
     <div class="stone-name-filter">
-      <!-- <h3 class="sel-title">Камінь <span (click)="openStoneList()">&times;</span> </h3> -->
       <h3 class="sel-title">Назва каменя</h3>
-      <span [textContent]='currentStone'></span>
+      <p class="chosen" [textContent]='currentStone'></p>
       <div class="stone-list">
-        <!-- <p class="stone-name"  style="background-color: rgb(204, 200, 200);" (click)="getAllStones()">відобразити всі</p> -->
         <p class="stone-name" *ngFor="let stone of stoneNames" (click)="filterByStone(stone)">{{stone}}</p>
       </div>
     </div>
 
     <div class="stone-color-filter">
-      <!-- <h3 class="sel-title">Колір <span (click)="openColorList()">&times;</span> </h3> -->
       <h3 class="sel-title">Колір</h3>
-      <p [textContent]='currentColor'></p>
+      <p class="chosen" [textContent]='currentColor'></p>
       <div class="color-list">
-        <!-- <p class="stone-color" style="background-color: rgb(204, 200, 200);" (click)="getAllColorsProd()">відобразити всі</p> -->
         <p class="stone-color" *ngFor="let color of stoneColors" (click)="filterByColor(color)">{{color}}</p>
       </div>
     </div>
 
     <div class="zodiak-filter">
-      <!-- <h3 class="sel-title">Зодіак <span (click)="openZodiacList()">&times;</span> </h3> -->
       <h3 class="sel-title">Зодіак</h3>
-      <p [textContent]='currentZodiac'></p>
-      <div class="zodiac-list" >
-        <!-- <p class="zodiac"style="background-color: rgb(204, 200, 200);" (click)="getAllZodiacsProd()">відобразити всі</p> -->
+      <p class="chosen" [textContent]='currentZodiac'></p>
+      <div class="zodiac-list">
         <p class="zodiac" *ngFor="let zodiac of zodiacs" (click)="filterByZodiac(zodiac)">{{zodiac}}</p>
       </div>
     </div>
   </div>
-  <!-- </div> -->
 
   <div class="new-products">
-    <div class="product" *ngFor="let prod of someProducts">
-      <!-- <div class="p-image" [style.backgroundImage]="'url('+prod.image+')'" -->
-      <!-- <div> -->
+    <div class="no-data" *ngIf="!products.length">Не знайдено товарів за Вашим запитом</div>
+    <div class="product" *ngFor="let prod of products">
       <img [src]="prod?.image" alt="" class="p-image" [routerLink]="[ '/menu/'+prod.category.nameEN, prod.id ]">
-      <!-- </div> -->
-      <a [routerLink]="[ '/menu/'+prod.category.nameEN, prod.id ]">детальніше</a>
-      <p>{{prod?.nameUA}}</p>
+      <a [routerLink]="[ '/menu/'+prod.category.nameEN, prod.id ]">{{prod?.nameUA}}</a>
       <h6>{{prod?.price}} <i>грн</i></h6>
-      <div class="button" (click)="addToBasket(prod)">у кошик</div>
+      <button class="btn bt add-btn" (click)="addToBasket(prod)">додати в кошик</button>
     </div>
-    <!-- </div> -->
-    <!-- <pagination [totalItems]="30"></pagination> -->
-    <!-- <div class="row"> -->
-    <!-- <div class="col-xs-12 col-12"> -->
-    <!-- <pagination [totalItems]="totalItems" [(ngModel)]="currentPage"></pagination> -->
-    <!-- </div> -->
-    <!-- </div> -->
   </div>
+  
 </div>
-<div class="switch">
-  <!-- <a (click)="firstPage()"></a> -->
-  <!-- <a (click)="secondPage()"></a> -->
-  <a></a>
-  <a></a>
-  <a></a>
-  <!-- <button (click)="prevPage()">prev</button> -->
-  <!-- <button (click)="nextPage()">next</button> -->
-  <!--    -->
-  <!-- <p (click)="more()" >показати більше</p> -->
+
+<div class="switch" *ngIf="paginationStatus">
+  <button class="btn bt  mr-3" style="width: 120px;" (click)="prevPage()"
+  [disabled]="disable_prev || !(pagination_clicked_count>0)">Попередня</button> <b>сторінка:
+  {{pagination_clicked_count+1}}</b>
+<button class="btn bt ml-3" style="width: 120px;" (click)="nextPage()" [disabled]="disable_next">Наступна </button>
 </div>

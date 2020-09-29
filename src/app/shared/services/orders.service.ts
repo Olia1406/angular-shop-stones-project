@@ -46,7 +46,7 @@ export class OrdersService {
 
   // ------------------------------- firecloud ------------------------------------
   getFireCloudOrder(): Observable<DocumentChangeAction<unknown>[]> {
-    return this.firecloud.collection('orders').snapshotChanges();
+    return this.firecloud.collection('orders', ref => ref.orderBy('dateOrder', 'desc')).snapshotChanges();
   }
   postFireCloudOrder(order: IOrder): Promise<DocumentReference> {
     return this.firecloud.collection('orders').add(order);
@@ -57,6 +57,10 @@ export class OrdersService {
   deleteFireCloudOrder(order: IOrder): Promise<void> {
     return this.firecloud.collection('orders').doc(order.id.toString()).delete();
   }
+
+// getFClPrevOrder(email): Observable<DocumentChangeAction<unknown>[]>{
+  // return this.firecloud.collection('orders').ref.where('userOrderEmail','==',email)
+// }
 
 
 }

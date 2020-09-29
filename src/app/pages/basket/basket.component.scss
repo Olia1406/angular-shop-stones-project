@@ -5,31 +5,53 @@
 // @include dimentions(16px,16px);
 // @include fonts($mainFont, 12px);
 
+// .basket-container{
+// @include flexbox(column, wrap, space-between, center);
+// }
 
 .table {
     display: table;
     width: 100%;
+    background-color: white;
+    padding: 20px 10px;
     // border-collapse: collapse;
   }
-    
+.line{
+  width: 100%;
+  border: 1px solid $mainColor;
+}  
   .table .tr {
     display: table-row;
     color:$secondColor;
   }
   .thead{
     @include fonts($mainFont, 16px);
-    // color:$secondColor;
+    color:$mainColor;
     height: 40px;
     margin: 15px 0;
+    .td{
+    color:$mainColor;
+    }
+    // border: 1px solid #000;
+
   }
   .tbody{
+    // border: 1px solid #000;
+
+    font-family: 'Roboto,400';
     height: 40px;
     margin: 5px 0;
     span{
-      font-weight: 900;
+      // font-weight: 900;
+      font-family: $mainFont;
+      font-size: 22px;
       &:hover{
         color:$mainColor;
       }
+    }
+    img{
+      @include dimentions(70px,70px);
+      margin: 5px;
     }
   }  
   .tfoot{
@@ -51,16 +73,132 @@
   // ------order-------------------------------
 
   .order-data{
-    @include flexbox(row, wrap, space-around, flex-start);
+    @include flexbox(row, wrap, center, flex-start);
     color:$secondColor;
+      background-color: white;
+      margin: 15px 15px 0 15px;
+
     .delivery,.payment{
-      margin:10px;
+      width: 350px;
+      margin: 10px 30px;
+      padding: 20px;
+      // border: 1px solid #000;
       h5{
       @include fonts($mainFont, 17px);
-      }
-      p{
-        margin-top: 10px;
-        margin-bottom: 5px;
+      // color: $mainColor;
       }
     }
   }
+  p,span{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-family: 'Roboto,400';
+  }
+.buy{
+  // width: 500px;
+  // border: 1px solid #000;
+  color: $secondColor;
+  margin: 0 15px 20px;
+  padding-bottom: 20px;
+  background-color:white;
+  @include flexbox(column, wrap, center, center);
+}
+  .inp{
+    width: 100%;
+    height: 35px;
+    padding: 5px;
+    border: 1px solid rgb(199, 197, 197);
+    border-radius: 3px;
+    color: $secondColor;
+    // @include fonts($mainFont, 15px);
+    &:focus{
+      // border: none;
+      box-shadow: 0 0 1px 2px $secondColorLt;
+    }
+  }
+  .comment{
+    width: 720px;
+    // height: 35px;
+    padding: 5px;
+    border: 1px solid rgb(199, 197, 197);
+    border-radius: 3px;
+    color: $secondColor;
+    outline: none;
+
+    // @include fonts($mainFont, 15px);
+    &:focus{
+      outline: none;
+      // border: none;
+      border: 2px solid $secondColor;
+      // box-shadow: 0 0 1px 2px $secondColorLt;
+    }
+  }
+
+  /* inputs */
+
+/*Radio CheckBox*/
+
+.inpRadio {
+  display: inline-block;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  min-width: 20px;
+  min-height: 20px;
+}
+
+.inpRadio input {
+  display: none;
+}
+
+.inpRadio input:checked + span:before {
+  background-position: center center;
+}
+
+.inpRadio input:checked + span:after {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.inpRadio span {
+  position: relative;
+  font-size: 17px;
+  line-height: 22px;
+  padding-left: 22px;
+  display: block;
+  font-family: 'Roboto,400';
+}
+
+.inpRadio span:before {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border: 2px $mainColor solid;
+  border-radius: 1px;
+  z-index: 1;
+  content: "";
+}
+
+.inpRadio span:after {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  background:$mainColor;
+  transform: scale(0.05);
+  // opacity: 1;
+  transition: opacity .150s linear, transform .150s linear;
+  content: '';
+}
+
+.inpRadio.radio span:before {
+  border-radius: 10px;
+  background: none;
+}
+
+.inpRadio.radio span:after {
+  border-radius: 100%;
+}

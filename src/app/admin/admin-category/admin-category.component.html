@@ -1,16 +1,16 @@
 <!-- <p>admin-category works!</p> -->
 <form>
   <div class="row">
-    <div class="form-group col-5">
+    <div class="form-group col-4 ml-1">
       <label for="nameEN">Name En</label>
-      <input [(ngModel)]="nameEN" name="nameEN" type="text" id="nameEN" class="form-control">
+      <input [(ngModel)]="nameEN" #inpNameEN="ngModel" name="nameEN" type="text" id="nameEN" class="form-control" required>
     </div>
-    <div class="form-group col-5">
+    <div class="form-group col-4">
       <label for="nameUA">Name UA</label>
-      <input [(ngModel)]="nameUA" name="nameUA" type="text" id="nameUA" class="form-control">
+      <input [(ngModel)]="nameUA" #inpNameUA="ngModel" name="nameUA" type="text" id="nameUA" class="form-control" required>
     </div>
-    <div class="form-group col-2" style="margin-top: 32px">
-      <button class="btn bt " (click)="addCategory()">Add</button>
+    <div class="form-group col-3" style="margin-top: 32px">
+      <button [disabled]="inpNameEN.invalid || inpNameUA.invalid" class="btn bt " (click)="addCategory()">Add</button>
     </div>
   </div>
 </form>
@@ -25,7 +25,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let c of adminCategory">
-      <td>{{ c.id }}</td>
+      <td>{{ c.id | slice:0:3}}</td>
       <td>{{ c.nameEN }}</td>
       <td>{{ c.nameUA }}</td>
       <td>

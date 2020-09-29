@@ -12,7 +12,8 @@ export class Product implements IProduct {
                 public price: number,
                 public image: string,
                 public color: string,
-                public zodiac: string,
+                // public zodiac: string,
+                public zodiac: any,
                 public stone: string,
                 public count: number = 1,
                 ) {}

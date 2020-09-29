@@ -26,7 +26,7 @@ export class AdminProductComponent implements OnInit {
   productWidth: string;
   productPrice: number;
   // productImage = 'https://probapera.org/content/publication/PH19623_2.JPG';
-  productImage: string;
+  productImage: string = 'https://firebasestorage.googleapis.com/v0/b/my-project-d612f.appspot.com/o/images%2F-.jpg_220x220.jpeg?alt=media&token=f76c638b-53d5-45ae-b180-78214604ff60';
   productColor: string;
   productZodiac: string;
   productStone: string;
@@ -37,7 +37,6 @@ export class AdminProductComponent implements OnInit {
   uploadProgress: Observable<number>;
 
   modalRef: BsModalRef;
-
 
   constructor(private catService: CategoryService,
     private prodService: ProductService,
@@ -102,7 +101,7 @@ export class AdminProductComponent implements OnInit {
       this.productPrice,
       this.productImage,
       this.productColor,
-      this.productZodiac,
+      this.productZodiac.split(','),
       this.productStone);
     if (this.editStatus == true) {
       // this.prodService.updateJSONProduct(newProd).subscribe(() => {
@@ -200,7 +199,7 @@ export class AdminProductComponent implements OnInit {
     this.productPrice = prod.price;
     this.productImage = prod.image;
     this.productColor = prod.color;
-    this.productZodiac = prod.zodiac;
+    this.productZodiac = prod.zodiac.toString();
     this.productStone = prod.stone;
     this.imageStatus = false;
   }

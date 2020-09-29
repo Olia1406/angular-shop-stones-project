@@ -12,6 +12,29 @@ h3{
     margin: 30px auto;
 }
 
+h4{
+    margin-top: 20px;
+    @include fonts($mainFont, 20px);
+    color: $mainColor;  
+    height: 50px;
+    line-height: 50px;
+    background-color: white;
+    padding-left: 15px;
+    text-align: center;
+    &::before{
+        content: '';
+        width: 6px;
+        height: 6px;
+        background-color: $mainColor;
+        border-radius: 50%;
+        position: relative;
+        top: 0;
+        left: 20px;
+        margin: 5px;
+    }
+}
+
+
 .disc-info{
     margin: 20px;
     box-shadow: 0 0 5px 1px gray;

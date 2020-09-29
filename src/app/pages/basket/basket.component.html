@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
     <div class="col-lg-12 empty-basket" *ngIf="!orders.length">
         <p>Кошик порожній.</p>
         <a routerLink="/catalogue" style="color:#ff5912">Повернутись до покупок</a>
@@ -9,69 +9,127 @@
         <div class="table">
             <div class="tr thead">
                 <div class="td"></div>
-                <div class="td">Товар</div>
+                <div class="td">Фото</div>
+                <div class="td">Назва товару</div>
                 <div class="td">Ціна</div>
                 <div class="td">Кількість</div>
                 <div class="td">Загалом</div>
             </div>
             <div class="tr tbody" *ngFor="let order of orders">
-                <div class="td del" (click)="deleteProduct(order)"><span>&times;</span></div>
+                <div class="td del"><span style="margin-left: 15px;"
+                        (click)="deleteProduct(order,template)">&times;</span></div>
+                <div class="td"><img [src]="order?.image" alt=""></div>
                 <div class="td">{{order?.nameUA}}</div>
                 <div class="td">{{order?.price}} грн</div>
                 <div class="td">
                     <app-counter [product]="order" (changeCount)="detectChangeCount($event)"></app-counter>
                 </div>
-                <div class="td"><span>{{order?.count * order?.price}} грн</span></div>
+                <div class="td">{{order?.count * order?.price}} грн</div>
             </div>
             <div class="tr tfoot">
                 <div class="td"></div>
                 <div class="td"></div>
                 <div class="td"></div>
                 <div class="td"></div>
+                <div class="td"></div>
                 <div class="td">
                     <hr>
-                    Всього: <span>{{totalPrice}} грн</span></div>
+                    Всього: {{totalPrice}} грн</div>
             </div>
         </div>
     </div>
-    <hr>
+    <!-- <div class="line"></div> -->
     <div *ngIf="orders.length">
         <form #orderForm="ngForm" novalidate (ngSubmit)="addOrder()">
-            <div class="order-data row">
+            <div class="order-data">
                 <div class="delivery">
                     <h5>Спосіб доставки:</h5>
                     <div class="deliveryCheckboxs">
-                        <label class="checkboxEntry radio">
-                            <input (click)="getDelivery('нова пошта')" type="radio" name="delivery" value="Novaposhta" checked="checked"><span> Нова
+                        <label class="inpRadio radio">
+                            <input (click)="getDelivery('нова пошта')" type="radio" name="delivery" value="Novaposhta"
+                                checked="checked"><span> Нова
                                 пошта</span>
                         </label>
-                        <label class="checkboxEntry radio ml-3">
-                            <input (click)="getDelivery('укрпошта')" type="radio" name="delivery" value="Ukrposhta"><span> Укрпошта</span>
+                        <label class="inpRadio radio ml-3">
+                            <input (click)="getDelivery('укрпошта')" type="radio" name="delivery"
+                                value="Ukrposhta"><span> Укрпошта</span>
                         </label>
                     </div>
                     <p>Місто*:</p>
-                    <input type="text" [(ngModel)]="userCity" name="userCity" required>
+                    <input class="inp" #city="ngModel" type="text" [(ngModel)]="userCity" name="userCity" required
+                        pattern="[a-zA-Zа-яА-Я]{2,}">
+
+                    <div class="text-danger" *ngIf="city.invalid && (city.dirty || city.touched)">
+                        <div *ngIf="city.errors.required">
+                            Заповніть поле
+                        </div>
+                        <div *ngIf="city.errors.pattern">
+                            Невірний формат
+                        </div>
+                    </div>
+
                     <p>Номер відділення*:</p>
-                    <input type="text" [(ngModel)]="deliveryDepartment" name="deliveryDepartment" required>
-                    <p>Коментар:</p>
-                    <textarea [(ngModel)]="userComments" name="userComments" id="" cols="33" rows="3"></textarea>
+                    <input class="inp" #num="ngModel" type="text" [(ngModel)]="deliveryDepartment"
+                        name="deliveryDepartment" required pattern="[0-9]{1,}">
+
+                    <div class="text-danger" *ngIf="num.invalid && (num.dirty || num.touched)">
+                        <div *ngIf="num.errors.required">
+                            Заповніть поле
+                        </div>
+                        <div *ngIf="num.errors.pattern">
+                            Невірний формат
+                        </div>
+                    </div>
                 </div>
+
                 <div class="payment">
                     <h5>Спосіб оплати:</h5>
                     <div class="paymentCheckboxs">
-                        <label class="checkboxEntry radio">
-                            <input (click)="getPayment('на карту')" type="radio" name="payment" value="card" checked="checked"><span> На карту</span>
+                        <label class="inpRadio radio">
+                            <input (click)="getPayment('на карту')" type="radio" name="payment" value="card"
+                                checked="checked"><span> На карту</span>
                         </label>
-                        <label class="checkboxEntry radio ml-3">
-                            <input (click)="getPayment('при доставці')" type="radio" name="payment" value="after"><span> Оплата при доставці</span>
+                        <label class="inpRadio radio ml-3">
+                            <input (click)="getPayment('при доставці')" type="radio" name="payment" value="after"><span>
+                                Оплата при доставці</span>
                         </label>
                     </div>
                     <p>Ваше ім'я*:</p>
-                    <input type="text" [(ngModel)]="userName" name="userName" required>
+                    <input class="inp" #name="ngModel" type="text" [(ngModel)]="userName" name="userName" required
+                        pattern="[a-zA-Zа-яА-Я]{2,}">
+                    <div class="text-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+                        <div *ngIf="name.errors.required">
+                            Заповніть поле
+                        </div>
+                        <div *ngIf="name.errors.pattern">
+                            Невірний формат
+                        </div>
+                    </div>
+
                     <p>Ваш номер телефону*:</p>
-                    <input type="tel" [(ngModel)]="userPhone" name="userPhone" required>
-                    <p style="margin-top: 35px; margin-bottom: 10px;">* поля обов'язкові до заповнення</p>
-                    <button [disabled]="orderForm.invalid" type="submit" class="btn btn-dark">офрмити
+                    <input class="inp" #tel="ngModel" type="text" [(ngModel)]="userPhone" name="userPhone" placeholder="*** *** ** **" required 
+                    pattern="[0,9,5,6,7,8,3]{3}[ ,-]{0,1}[0-9]{3}[ ,-]{0,1}[0-9]{2}[ ,-]{0,1}[0-9]{2}[ ,-]{0,}">
+                    <div class="text-danger" *ngIf="tel.invalid && (tel.dirty || tel.touched)">
+                        <div *ngIf="tel.errors.required">
+                            Заповніть поле
+                        </div>
+                        <div *ngIf="tel.errors.pattern">
+                            Введіть номер в зазначеному форматі
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="buy">
+                <div>
+                    <p>Коментар:</p>
+                    <textarea class="comment" [(ngModel)]="userComments" name="userComments" id="" cols="33"
+                        rows="3"></textarea>
+                </div>
+                <div>
+                    <p style="margin-top: 20px; margin-bottom: 8px; font-size: 13px;">* поля обов'язкові для заповнення
+                    </p>
+                    <button [disabled]="orderForm.invalid" type="submit" style="width: 350px" class="btn bt ">оформити
                         замовлення</button>
                 </div>
             </div>
@@ -79,3 +137,10 @@
     </div>
 
 </div>
+
+<ng-template #template>
+    <div class="modal-body text-center">
+        <button type="button" class="btn bt col-5 m-2" (click)="decline()">dismiss</button>
+        <button type="button" class="btn btn-dark col-5 m-2" (click)="confirmDeleteProduct(product)">delete</button>
+    </div>
+</ng-template>

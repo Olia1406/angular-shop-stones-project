@@ -25,7 +25,7 @@
         <p>Розмір каменя: {{ product?.width }} мм</p>
         <!-- <p>stone</p> -->
         <!-- <p>zodiac</p> -->
-        <i><a [routerLink]="[ '/more' ]" routerLinkActive="active">Дізнатись більше про властивості каменів</a></i>
+        <i><a [routerLink]="[ '/more' ]" routerLinkActive="active">Більше про властивості каменя {{product?.stone}}</a></i>
       </div>
       <hr>
       <div class="row-info">
@@ -39,7 +39,7 @@
       <hr>
       <div class="row-info">
         <h4>Всього: {{ product?.price*product?.count }} грн</h4>
-        <button class="btn bt" (click)="addToBasket(product)">у кошик</button>
+        <button class="btn bt" (click)="addToBasket(product)">додати в кошик</button>
       </div>
     </div>
   </div>

@@ -1,56 +1,34 @@
 <!-- <p>home works!</p> -->
 <main>
-    <!-- <div class="bg-im"></div> -->
-    <!-- <div class="main-text"> -->
-    <!-- <h1>Lorem ipsum dolor.</h1> -->
-    <!-- <p>Placeat obcaecati officiis. Ratione.</p> -->
-    <!-- </div> -->
-
-
-    <!-- <carousel [isAnimated]="true"> -->
-    <!-- <slide> -->
-    <!-- <img src="assets/images/nature/1.jpg" alt="first slide" style="display: block; width: 100%;"> -->
-    <!-- </slide> -->
-    <!-- <slide> -->
-    <!-- <img src="assets/images/nature/2.jpg" alt="second slide" style="display: block; width: 100%;"> -->
-    <!-- </slide> -->
-    <!-- <slide> -->
-    <!-- <img src="assets/images/nature/3.jpg" alt="third slide" style="display: block; width: 100%;"> -->
-    <!-- </slide> -->
-    <!-- </carousel> -->
-    <div class="title" style="margin: 10px 0 0 0;">
-        <h4 class="orange" >КОЛЕКЦІЇ</h4>
-        <h4 class="gray">ПРИКРАС</h4>
+    <div class="bg-im"><h1>ПРИКРАСИ З НАТУРАЛЬНОГО КАМІННЯ</h1>
+        <p>Класичні та авторські вироби.</p></div>
+    <div class="main-text">
+    <!-- <h1>ПРИКРАСИ З НАТУРАЛЬНОГО КАМІННЯ</h1> -->
+    <!-- <p>Класичні та авторські прикраси.</p> -->
     </div>
-    <app-carousel></app-carousel>
+
+    <!-- <div class="title" style="margin: 10px 0 0 0;"> -->
+        <!-- <h4 class="orange" >КОЛЕКЦІЇ</h4> -->
+        <!-- <h4 class="gray">ПРИКРАС</h4> -->
+    <!-- </div> -->
+    <!-- <app-carousel></app-carousel> -->
     <div class="title">
         <h3 class="orange">НОВІ</h3>
         <h3 class="gray">НАДХОДЖЕННЯ</h3>
     </div>
     <div class="new-products">
-        <div class="product" *ngFor="let prod of products">
-            <img class="p-image" [src]="prod?.image" alt="">
+        <div class="product" *ngFor="let prod of fourProd">
+            <img [routerLink]="[ '/menu/'+prod.category.nameEN, prod.id ]" class="p-image" [src]="prod?.image" alt="">
             <p>{{prod?.nameUA}}</p>
             <h6>{{prod?.price}} <i>грн</i></h6>
         </div>
     </div>
     <div class="switch">
-        <!-- <p (click)="getFour()">n</p> -->
-        <a></a>
-        <a></a>
-        <a></a>
+        <div (click)="first()"></div>
+        <div (click)="second()"></div>
+        <div (click)="third()"></div>
     </div>
-    <!-- <span [ngSwitch]=""> -->
-    <!-- <p *ngSwitchCase="true"> -->
 
-    <!-- </p> -->
-    <!-- <p *ngSwitchCase="false"> -->
-
-    <!-- </p> -->
-    <!-- <p *ngSwitchDefault> -->
-
-    <!-- </p> -->
-    <!-- </span> -->
     <div class="title">
         <h3 class="orange">ТОП</h3>
         <h3 class="gray">ПРОДАЖ</h3>

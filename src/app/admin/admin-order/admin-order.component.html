@@ -1,44 +1,45 @@
 <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">DEl</th>
-        <th scope="col">ID</th>
-        <th scope="col">userName</th>
-        <th scope="col">userPhone</th>
-        <th scope="col">totalPayment</th>
-        <!-- <th scope="col">dateOrder</th> -->
-        <th scope="col">Status</th>
-        <th scope="col">Details</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let order of adminOrders; let i=index">
+  <thead>
+    <tr>
+      <th scope="col">DEl</th>
+      <th scope="col">ID</th>
+      <th scope="col">uName</th>
+      <th scope="col">uPh</th>
+      <th scope="col">totalP.</th>
+      <th scope="col">date</th>
+      <th scope="col">Stat</th>
+      <th scope="col">Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of adminOrders; let i=index">
       <td scope="row" (click)="deleteUserOrder(order)"><span class="crosss">&times;</span></td>
-        <td>{{ order.id }}</td>
-        <td>{{ order.userName }}</td>
-        <td>{{ order.userPhone }}</td>
-        <td>{{ order.totalPayment }}</td>
-        <!-- <td>{{ order.dateOrder | date }}</td> -->
-        <td>{{ order.statusOrder }}</td>
-        <td>
-          <input type="button" value="details" class="btn btn-secondary" (click)="openDetailsModal(detailsForm,order)">
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <!-- <ng-template #detailsForm> -->
-    <!-- <div class="modal-header"> -->
-      <!-- <h4 class="modal-title pull-left">Modal</h4> -->
-      <!-- <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()"> -->
-        <!-- <span aria-hidden="true">&times;</span> -->
-      <!-- </button> -->
-    <!-- </div> -->
-    <!-- <div class="modal-body"> -->
-      <!-- This is a modal. -->
-    <!-- </div> -->
-  <!-- </ng-template> -->
+      <td>{{ order.id | slice:0:3}}</td>
+      <td style="word-break: break-all;">{{ order.userName }}</td>
+      <td style="word-break: break-all;">{{ order.userPhone }}</td>
+      <td style="word-break: break-all;">{{ order.totalPayment }} грн</td>
+      <td style="word-break: break-all;">{{ readableDate(order.dateOrder) }}</td>
+      <!-- <td>{{ order.dateOrder.seconds }}</td> -->
+      <td style="word-break: break-all;">{{ order.statusOrder }}</td>
+      <td>
+        <input type="button" value="details" class="btn btn-secondary" (click)="openDetailsModal(detailsForm,order)">
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- <ng-template #detailsForm> -->
+<!-- <div class="modal-header"> -->
+<!-- <h4 class="modal-title pull-left">Modal</h4> -->
+<!-- <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()"> -->
+<!-- <span aria-hidden="true">&times;</span> -->
+<!-- </button> -->
+<!-- </div> -->
+<!-- <div class="modal-body"> -->
+<!-- This is a modal. -->
+<!-- </div> -->
+<!-- </ng-template> -->
 <!--    -->
 <ng-template #detailsForm>
   <div class="modal-header">
@@ -53,7 +54,7 @@
       <thead>
         <tr>
           <!-- <td>Видалити</td> -->
-          <th>Категорія</th>
+          <th>Фото</th>
           <th>Назва</th>
           <th>Ксть</th>
           <th>Ціна,грн</th>
@@ -63,7 +64,7 @@
       <tbody>
         <tr *ngFor="let admProdOrder of currAdmOrder.productOrder; let i = index">
           <!-- <td (click)="deleteProduct(admOrder)"><span> &times; </span></td> -->
-          <td>{{admProdOrder.category.nameUA}}</td>
+          <td> <img style="width: 50px; height:50px" [src]="admProdOrder.image" alt=""></td>
           <td>{{admProdOrder.nameUA}} </td>
           <td>{{admProdOrder.count}} </td>
 
@@ -78,15 +79,22 @@
     <div style="float: right; font-size: 18px; font-weight: 600;">
       Загальна сума: {{totalPrice}} грн
     </div>
+    <!-- <hr style="margin-top: -10px;"> -->
   </div>
   <div *ngIf="currAdmOrder.userComment!==''" style="margin-top: -30px;">
-    <span class="ml-2 mb-2">Коментар клієнта:</span>
-    <div class="ml-2 border p-2"
-      style="width: 470px; max-height: 70px; line-break: strict; word-break: break-all; overflow-y: scroll;">
+    <span class="ml-3 mb-1">Коментар клієнта:</span>
+    <div class="ml-3 mr-3 mt-2 border p-2"
+      style="max-height: 70px; line-break: strict; word-break: break-all; overflow-y: scroll;">
       {{currAdmOrder.userComment}}</div>
   </div>
+  <div class="col-12 mt-3">
+    <div class="row">
+      <div class="col-6  "><span>Доставка:</span> {{currAdmOrder.userDelivery}}, {{currAdmOrder.deliveryDepartment}} </div>
+      <div class="col-5 "><span>Оплата:</span> {{currAdmOrder.userPaymentType}}</div>
+    </div>
+  </div>
   <form>
-    <div class="input-group m-3 col-10">
+    <div class="input-group mt-2 mb-3 col-12">
       <div class="input-group-prepend">
         <label class="input-group-text" for="inputGroupSelect01">Оберіть статус замовлення</label>
       </div>

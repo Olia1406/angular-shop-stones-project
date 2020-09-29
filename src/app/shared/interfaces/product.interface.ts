@@ -10,7 +10,8 @@ export interface IProduct {
     price: number;
     image: string;
     color: string;
-    zodiac: string;
+    zodiac: any;
+    // zodiac: string;
     stone: string;
     count: number;
 }

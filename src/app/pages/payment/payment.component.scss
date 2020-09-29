@@ -1,37 +1,51 @@
 @import '../../common_scss/mixins';
 @import '../../common_scss/variables';
 
-
-.payment-container{
-    margin: 30px 0;
+h4{
+    margin-top: 20px;
+    @include fonts($mainFont, 20px);
+    color: $mainColor;  
+    height: 50px;
+    line-height: 50px;
+    background-color: white;
+    padding-left: 15px;
+    text-align: center;
+}
+// .payment-container{
+    // margin: 30px 0;
     // border: 1px solid #000;
-    color:$secondColor;
-    @include flexbox(row, wrap, space-around,flex-start);
+    // color:$secondColor;
+    // @include flexbox(row, wrap, space-around,flex-start);
     // background-color: white;
     // @include dimentions(150px,150px);
     // @include fonts($mainFont, 25px);
     // font-family: $mainFont;
     .delivery,.payment{
-        @include dimentions(300px,300px);
-        margin-bottom: 20px;
-        // border: 1px solid #000;
-        h4{
-           @include fonts($mainFont, 20px);
-        }
+        // @include dimentions(400px,370px);
+        min-height: 150px;
+        // margin: 5px 5px 20px 5px;
+        padding:15px;
+        background-color: white;
+        // box-shadow: 3px 3px 3px rgb(179, 178, 178);
+        // h4{
+        //    @include fonts($mainFont, 20px);
+        //    color: $mainColor;
+        // }
         h6{
-           @include fonts($mainFont, 16px);
-           color:$mainColor;
+           @include fonts('Roboto,700', 16px);
+           color:$secondColor;
            margin-top: 15px;
         //    margin-bottom: px;
         }
-        p{
-            line-height: 17px;
+        p, span{
+            // line-height: 17px;
+            font-family: 'Roboto,400';
         }
         // span{
             // line-height: 17px;
         // }
 
-    }  
+    // }  
 }
 .ask{
     color:$secondColor;

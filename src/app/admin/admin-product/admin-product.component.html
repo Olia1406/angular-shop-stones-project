@@ -11,45 +11,45 @@
         </div>
         <div class="form-group col-4">
             <label for="nameEN">Name EN</label>
-            <input [(ngModel)]="productNameEN" name="productNameEN" type="text" id="nameEN" class="form-control">
+            <input [(ngModel)]="productNameEN" #inpNameEN="ngModel" name="productNameEN" type="text" id="nameEN" class="form-control" required>
         </div>
         <div class="form-group col-4">
             <label for="nameUA">Name UA</label>
-            <input [(ngModel)]="productNameUA" name="productNameUA" type="text" id="nameUA" class="form-control">
+            <input [(ngModel)]="productNameUA" #inpNameUA="ngModel" name="productNameUA" type="text" id="nameUA" class="form-control" required>
         </div>
     </div>
     <div class="form-group">
         <label for="description">Description</label>
-        <textarea [(ngModel)]="productDescription" name="productDescription" class="form-control" id="description"
-            rows="2"></textarea>
+        <textarea [(ngModel)]="productDescription" #txtArea="ngModel" name="productDescription" class="form-control" id="description"
+            rows="2" required></textarea>
     </div>
     <div class="row">
         <div class="form-group col-2">
             <label for="length">Length</label>
-            <input [(ngModel)]="productLength" name="productLength" type="text" id="length" class="form-control">
+            <input [(ngModel)]="productLength" #inpLength="ngModel" name="productLength" type="text" id="length" class="form-control" required>
         </div>
         <div class="form-group col-2">
             <label for="width">Width</label>
-            <input [(ngModel)]="productWidth" name="productWidth" type="text" id="width" class="form-control">
+            <input [(ngModel)]="productWidth" #inpWidth="ngModel" name="productWidth" type="text" id="width" class="form-control" required>
         </div>
         <div class="form-group col-2">
             <label for="price">Price</label>
-            <input [(ngModel)]="productPrice" name="productPrice" type="number" id="price" class="form-control">
+            <input [(ngModel)]="productPrice" #inpPrice="ngModel" name="productPrice" type="number" id="price" class="form-control" required>
         </div>
         <div class="form-group col-3">
             <label for="color">Color</label>
-            <input [(ngModel)]="productColor" name="productColor" type="text" id="color" class="form-control">
+            <input [(ngModel)]="productColor" #inpColor="ngModel" name="productColor" type="text" id="color" class="form-control" required>
         </div>
         <div class="form-group col-3">
             <label for="stone">Stone</label>
-            <input [(ngModel)]="productStone" name="productStone" type="text" id="stone" class="form-control">
+            <input [(ngModel)]="productStone" #inpStone="ngModel" name="productStone" type="text" id="stone" class="form-control" required>
         </div>
     </div>
 
     <div class="form-group">
         <label for="zodiac">Zodiac</label>
-        <textarea [(ngModel)]="productZodiac" name="productZodiac" type="text" id="zodiac"
-            class="form-control"></textarea>
+        <textarea [(ngModel)]="productZodiac" #inpZodiac="ngModel" name="productZodiac" type="text" id="zodiac"
+            class="form-control" required></textarea>
     </div>
     <div class="custom-file">
         <input type="file" (change)="uploadFile($event)" class="custom-file-input" id="image" required>
@@ -72,7 +72,8 @@
                 </svg>
             </span>
         </div>
-        <button class="btn bt" (click)="addProduct()" [textContent]="!editStatus ? 'Add' : 'Update'"></button>
+        <button [disabled]="inpNameEN.invalid || inpNameUA.invalid || txtArea.invalid || inpLength.invalid || inpWidth.invalid || inpPrice.invalid|| inpColor.invalid || inpStone.invalid || inpZodiac.invalid" 
+        class="btn bt" (click)="addProduct()" [textContent]="!editStatus ? 'Add' : 'Update'"></button>
     <!-- </div> -->
 </form>
 
@@ -80,14 +81,14 @@
     <thead>
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">Category</th>
-            <th scope="col">Name EN</th>
-            <th scope="col">Name UA</th>
+            <th scope="col">Cat</th>
+            <!-- <th scope="col">nEN</th> -->
+            <th scope="col">nUA</th>
             <th scope="col">Descr</th>
-            <th scope="col">Length</th>
-            <th scope="col">Width</th>
-            <th scope="col">Price</th>
-            <th scope="col">Color</th>
+            <th scope="col">Lg</th>
+            <th scope="col">Wd</th>
+            <th scope="col">Pr</th>
+            <th scope="col">Col</th>
             <th scope="col">Zodiac</th>
             <th scope="col">Stone</th>
             <th scope="col">Image</th>
@@ -97,19 +98,19 @@
     </thead>
     <tbody>
         <tr *ngFor="let prod of adminProducts">
-            <td>{{ prod.id }}</td>
-            <td>{{ prod.category.nameUA }}</td>
-            <td>{{ prod.nameEN }}</td>
-            <td>{{ prod.nameUA }}</td>
-            <td>{{ prod.description | slice:0:50 }}</td>
+            <td>{{ prod.id | slice:0:3 }}</td>
+            <td style=" word-break: break-all;">{{ prod.category.nameUA }}</td>
+            <!-- <td style=" word-break: break-all;">{{ prod.nameEN }}</td> -->
+            <td style=" word-break: break-all;">{{ prod.nameUA }}</td>
+            <td style=" word-break: break-all;">{{ prod.description | slice:0:20 }}</td>
             <td>{{ prod.length }}</td>
             <td>{{ prod.width }}</td>
             <td>{{ prod.price }}</td>
-            <td>{{ prod.color }}</td>
-            <td>{{ prod.zodiac }}</td>
-            <td>{{ prod.stone }}</td>
+            <td style=" word-break: break-all;">{{ prod.color }}</td>
+            <td style=" word-break: break-all;">{{ prod.zodiac }}</td>
+            <td style=" word-break: break-all;">{{ prod.stone }}</td>
             <td>
-                <img [src]="prod.image" style="width: 100px; height: 100px;" alt="">
+                <img [src]="prod.image" style="width: 70px; height: 70px;" alt="">
             </td>
             <td>
                 <input type="button" (click)="editProduct(prod)" value="edit" class="btn bt">

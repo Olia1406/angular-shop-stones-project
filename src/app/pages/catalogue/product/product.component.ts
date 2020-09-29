@@ -14,83 +14,56 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class ProductComponent implements OnInit {
   products: Array<any> = [];
   // products: Array<IProduct> = [];
-  someProducts:Array<any>;
+  // someProducts: Array<any>;
   category: string;
-  // moreCount:number=3;
-  // addPages: number=3;
 
-  stoneNames: Array<string> = ['всі',
-    'Авантюрин',
-'Aгат',
-'Aквамарин',
-'Aамазоніт',
-'Aметист',
-'Бірюза',
-'Бурштин',
-'Волове око',
-'Варисцит',
-'Гематит',
-'Гірський кришталь',
-'Гранат',
-'Жадеїт',
-'Змієвик',
-'Кахолонг',
-'Кварц',
-'Корал',
-'Котяче око',
-'Лабрадор',
-'Лава вулканічна',
-'Лазурит',
-'Ларімар',
-'Малахіт',
-'Місячний камінь',
-'Нефрит',
-'Обсидіан',
-'Онікс',
-'Опал',
-'Перламутр',
-'Перли',
-'Пірит',
-'Раухтопаз',
-'Родоніт',
-'Рожевий кварц',
-'Рубін',
-'Рутиловий кварц',
-'Сапфір',
-'Сардрнікс',
-'Сердолік',
-'Содаліт',
-'Соколине око',
-'Тигрове око',
-'Турмалін',
-'Флюорит',
-'Халцедон',
-'Хризоколла',
-'Хризопраз',
-'Циркон',
-'Цитрин',
-'Цоізіт',
-'Чароїт',
-'Шпінель',
-'Шунгіт',
-'Яшма',
-'Янтар'
-  ];
+  stoneNames: Array<string> = ['всі', 'авантюрин', 'агат', 'аквамарин', 'амазоніт', 'аметист', 'бірюза', 'бурштин', 'биче око',
+    'варисцит', 'гематит', 'гірський кришталь', 'гранат', 'жадеїт', 'змієвик', 'кахолонг', 'кварц', 'корал', 'котяче око', 'лабрадор',
+    'лава вулканічна', 'лазурит', 'ларімар', 'малахіт', 'місячний камінь', 'нефрит', 'обсидіан', 'онікс', 'опал', 'перламутр', 'перли', 'пірит',
+    'раухтопаз', 'родоніт', 'рожевий кварц', 'рубін', 'рутиловий кварц', 'сапфір', 'сардрнікс', 'сердолік', 'смарагд', 'содаліт', 'соколине око',
+    'тигрове око', 'турмалін', 'флюорит', 'халцедон', 'хризоколла', 'хризопраз', 'циркон', 'цитрин', 'цоізіт', 'чароїт', 'шпінель', 'шунгіт', 'яшма',
+    'янтар'];
   // .sort();
-  stoneColors: Array<string> = ['всі','фіолетовий', 'білий', 'коричневий', 'жовтий', 'рожевий', 'зелений', 'чорний', 'синій', 'кораловий', 'оранжевий'].sort();
-  zodiacs: Array<string> = ['всі','козеріг', 'водолій', 'риби', 'овен', 'телець', 'близнюки', 'рак', 'лев', 'діва', 'терези', 'скорпіон', 'стрілець'];
+  stoneColors: Array<string> = ['всі', 'фіолетовий', 'білий', 'коричневий', 'жовтий', 'рожевий', 'зелений', 'чорний', 'синій', 'кораловий', 'оранжевий'];
+  zodiacs: Array<string> = ['всі', 'козеріг', 'водолій', 'риби', 'овен', 'телець', 'близнюки', 'рак', 'лев', 'діва', 'терези', 'скорпіон', 'стрілець'];
+  categoryName: string;
+  paginationStatus: boolean = true;
+
+  // --------------------
+  //Models for Input fields
+  //  nameValue: string;
+  //  placeValue: string;
+
+  //Data object for listing items
+  //  tableData: any[] = [];
+
+  //Save first document in snapshot of items received
+  firstInResponse: any = [];
+
+  //Save last document in snapshot of items received
+  lastInResponse: any = [];
+
+  //Keep the array of first document of previous pages
+  prev_strt_at: any = [];
+
+  //Maintain the count of clicks on Next Prev button
+  pagination_clicked_count = 0;
+
+  //Disable next and prev buttons
+  disable_next: boolean = false;
+  disable_prev: boolean = false;
+  // ------------------------------------------
 
   constructor(private prodService: ProductService,
     private ordersService: OrdersService,
     private actRoute: ActivatedRoute,
     private router: Router,
-    private firecloud: AngularFirestore) 
-    {
+    private firecloud: AngularFirestore) {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
-        const categoryName = this.actRoute.snapshot.paramMap.get('category');
+        this.categoryName = this.actRoute.snapshot.paramMap.get('category');
         // this.getProducts(categoryName);
-        this.getFireCloudProducts(categoryName);
+        this.getFireCloudProducts(this.categoryName);
       }
     });
   }
@@ -106,174 +79,285 @@ export class ProductComponent implements OnInit {
   // }
 
   private getFireCloudProducts(categoryName: string = 'necklace'): void {
-    this.products = [];
-    this.firecloud.collection('products').ref.where('category.nameEN', '==', categoryName)
-    // .where('stone','==','корал')
-      // .limit(this.moreCount)
-      // .orderBy('')
-      .onSnapshot(
-        collection => {
-          collection.forEach(document => {
-            const data = document.data();
-            const id = document.id;
-            this.products.push({ id, ...data });
-          });
-          this.category = this.products[0].category.nameUA;
+    // this.products = [];
+    this.firecloud.collection('products', ref => ref.limit(5).where('category.nameEN', '==', categoryName))
+      .snapshotChanges()
+      .subscribe(response => {
+        if (!response.length) {
+          console.log("No Data Available");
+          return false;
         }
-      );
-      this.someProducts = this.products;
-  }
-  more(){
-    this.getFireCloudProducts();
+        this.firstInResponse = response[0].payload.doc;
+        this.lastInResponse = response[response.length - 1].payload.doc;
+        // this.tableData = [];
+        this.products = [];
+        for (let item of response) {
+          this.products.push(item.payload.doc.data());
+        }
+
+        //Initialize values
+        this.prev_strt_at = [];
+        this.pagination_clicked_count = 0;
+        this.disable_next = false;
+        this.disable_prev = false;
+
+        //Push first item to use for Previous action
+        this.push_prev_startAt(this.firstInResponse);
+      }, error => {
+      });
   }
 
+  //Show previous set 
+  prevPage() {
+    this.disable_prev = true;
+    this.firecloud.collection('products', ref => ref
+      .where('category.nameEN', '==', this.categoryName)
+      .startAt(this.get_prev_startAt())
+      .endBefore(this.firstInResponse)
+      .limit(5)
+    ).get()
+      .subscribe(response => {
+        this.firstInResponse = response.docs[0];
+        this.lastInResponse = response.docs[response.docs.length - 1];
+        this.products = [];
+        for (let item of response.docs) {
+          this.products.push(item.data());
+        }
+        //Maintaing page no.
+        this.pagination_clicked_count--;
+
+        //Pop not required value in array
+        this.pop_prev_startAt(this.firstInResponse);
+
+        //Enable buttons again
+        this.disable_prev = false;
+        this.disable_next = false;
+      }, error => {
+        this.disable_prev = false;
+      });
+
+
+  }
+
+  nextPage() {
+    this.disable_next = true;
+    this.firecloud.collection('products', ref => ref
+      .where('category.nameEN', '==', this.categoryName)
+      .limit(5)
+      .startAfter(this.lastInResponse)
+    ).get()
+      .subscribe(response => {
+
+        if (!response.docs.length) {
+          this.disable_next = true;
+          return;
+        }
+        this.firstInResponse = response.docs[0];
+
+        this.lastInResponse = response.docs[response.docs.length - 1];
+        this.products = [];
+        for (let item of response.docs) {
+          this.products.push(item.data());
+        }
+
+        this.pagination_clicked_count++;
+
+        this.push_prev_startAt(this.firstInResponse);
+
+        this.disable_next = false;
+      }, error => {
+        this.disable_next = false;
+      });
+
+
+
+
+  }
+
+
+
+  //Add document
+  push_prev_startAt(prev_first_doc) {
+    this.prev_strt_at.push(prev_first_doc);
+  }
+
+  //Remove not required document 
+  pop_prev_startAt(prev_first_doc) {
+    this.prev_strt_at.forEach(element => {
+      if (prev_first_doc.data().id == element.data().id) {
+        element = null;
+      }
+    });
+  }
+
+  //Return the Doc rem where previous page will startAt
+  get_prev_startAt() {
+    if (this.prev_strt_at.length > (this.pagination_clicked_count + 1))
+      this.prev_strt_at.splice(this.prev_strt_at.length - 2, this.prev_strt_at.length - 1);
+    return this.prev_strt_at[this.pagination_clicked_count - 1];
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // =====================================================================
   addToBasket(product: IProduct): void {
     this.ordersService.addBasket(product);
     product.count = 1;
   }
   // ---------------------------sort by price----------------------------
   sortProdUp(): Array<IProduct> {
-    return this.someProducts.sort((a, b) => a.price - b.price);
+    return this.products.sort((a, b) => a.price - b.price);
   }
 
   sortProdDown(): Array<IProduct> {
-    return this.someProducts.sort((a, b) => b.price - a.price)
+    return this.products.sort((a, b) => b.price - a.price)
   }
   // --------------------------filters----------------------------------
-  stoneStatus: boolean;
   currentStone = 'всі';
-  checkedStatus: boolean;
   currentColor = 'всі';
-  colorStatus: boolean;
   currentZodiac = 'всі';
-  zodiacStatus: boolean;
   // ------------------by stone---------------------------
-  filterByStone(stone): void {
-    this.stoneStatus = false;
-    this.currentStone = stone;
-    this.currentZodiac = 'всі';
-    // this.products = this.products.filter(prod => prod.stone.includes(stone));
-    this.filter();
-  }
-  // getAllStones(): void {
-    // this.stoneStatus = false;
-    // this.currentStone = 'всі';
-    // this.filter();
 
-  // }
-  openStoneList(): void {
-    this.stoneStatus = true;
+  filterByStone(stone): void {
+    this.paginationStatus = false;
+    this.currentStone = stone;
+    this.currentColor = 'всі';
+    this.currentZodiac = 'всі';
+    if (this.currentStone == 'всі') {
+      this.getFireCloudProducts(this.categoryName);
+      this.paginationStatus = true;
+      // this.products = [];
+      // this.firecloud.collection('products').ref.where('category.nameEN', '==', this.categoryName)
+        // .onSnapshot(
+          // collection => {
+            // collection.forEach(document => {
+              // const data = document.data();
+              // const id = document.id;
+              // this.products.push({ id, ...data });
+            // });
+            // this.category = this.products[0].category.nameUA;
+          // }
+        // );
+    }
+    else {
+      this.products = [];
+      this.firecloud.collection('products').ref.where('category.nameEN', '==', this.categoryName)
+        .where('stone', '==', stone)
+        .onSnapshot(
+          collection => {
+            collection.forEach(document => {
+              const data = document.data();
+              const id = document.id;
+              this.products.push({ id, ...data });
+            });
+            this.category = this.products[0].category.nameUA;
+          }
+        );
+      // this.someProducts = this.products;
+    }
   }
+
   // -----------------by color---------------------------
   filterByColor(color): void {
-    this.colorStatus = false;
+    this.paginationStatus = false;
+    this.currentStone = 'всі';
+    this.currentZodiac = 'всі';
     this.currentColor = color;
-    this.filter();
-    // this.products = this.products.filter(prod => prod.color.includes(color));
+    if (this.currentColor == 'всі') {
+      this.paginationStatus = true;
+      this.getFireCloudProducts(this.categoryName);
+      // this.products = [];
+      // this.firecloud.collection('products').ref.where('category.nameEN', '==', this.categoryName)
+        // .onSnapshot(
+          // collection => {
+            // collection.forEach(document => {
+              // const data = document.data();
+              // const id = document.id;
+              // this.products.push({ id, ...data });
+            // });
+            // this.category = this.products[0].category.nameUA;
+          // }
+        // );
+    }
+    else {
+      this.products = [];
+      this.firecloud.collection('products').ref.where('category.nameEN', '==', this.categoryName)
+        .where('color', '==', color)
+        .onSnapshot(
+          collection => {
+            collection.forEach(document => {
+              const data = document.data();
+              const id = document.id;
+              this.products.push({ id, ...data });
+            });
+            this.category = this.products[0].category.nameUA;
+          }
+        );
+      // this.someProducts = this.products;
+    }
   }
-  // getAllColorsProd(): void {
-    // this.colorStatus = false;
-    // this.currentColor = 'всі';
-    // this.filter();
-    // this.getFireCloudProducts();
-  // }
-  openColorList(): void {
-    this.colorStatus = true;
-  }
+
   // ------------------by zodiac--------------------------
   filterByZodiac(zodiac): void {
-    this.zodiacStatus = false;
+    this.paginationStatus = false;
     this.currentZodiac = zodiac;
     this.currentStone = 'всі';
-    this.filter();
-    // this.products = this.products.filter(prod => prod.zodiac.includes(zodiac) || prod.zodiac.includes('всім'));
-  }
-  // getAllZodiacsProd(): void {
-    // this.zodiacStatus = false;
-    // this.currentZodiac = 'всі';
-    // this.filter();
-    // this.getFireCloudProducts();
-  // }
-  openZodiacList(): void {
-    this.zodiacStatus = true;
+    this.currentColor = 'всі';
+    if (this.currentZodiac == 'всі') {
+      this.paginationStatus = true;
+      this.getFireCloudProducts(this.categoryName);
+      // this.products = [];
+      // this.firecloud.collection('products').ref.where('category.nameEN', '==', this.categoryName)
+        // .onSnapshot(
+          // collection => {
+            // collection.forEach(document => {
+              // const data = document.data();
+              // const id = document.id;
+              // this.products.push({ id, ...data });
+            // });
+            // this.category = this.products[0].category.nameUA;
+          // }
+        // );
+    }
+    else {
+      this.products = [];
+      this.firecloud.collection('products').ref.where('category.nameEN', '==', this.categoryName)
+        .where('zodiac', 'array-contains', zodiac)
+        .onSnapshot(
+          collection => {
+            collection.forEach(document => {
+              const data = document.data();
+              const id = document.id;
+              this.products.push({ id, ...data });
+            });
+            this.category = this.products[0].category.nameUA;
+          }
+        );
+      // this.someProducts = this.products;
+    }
   }
 
-  private filter() {
-    // const categoryName = this.actRoute.snapshot.paramMap.get('category');
-    // this.getFireCloudProducts(categoryName);
-    console.log('---------------------------');
-    this.someProducts = this.products;
-    // 1
-    if (this.currentStone !== 'всі' && this.currentColor === 'всі' && this.currentZodiac === 'всі') {
-      console.log(this.currentStone);
-      this.someProducts = this.products.filter(prod => prod.stone.toLowerCase().includes(this.currentStone.toLowerCase()));
-      // console.log(this.products)
-    }
-    // 2
-    else if (this.currentStone != 'всі' && this.currentColor == 'всі' && this.currentZodiac != 'всі') {
-      console.log(this.currentStone);
-      console.log(this.currentZodiac);
-      this.someProducts = this.products.filter(prod => prod.stone.toLowerCase().includes(this.currentStone.toLowerCase()) && 
-      prod.zodiac.toLowerCase().includes(this.currentZodiac.toLowerCase()));
-    }
-    //  3   
-    else if (this.currentStone != 'всі' && this.currentColor != 'всі' && this.currentZodiac == 'всі') {
-      console.log(this.currentStone);
-      console.log(this.currentColor);
-      this.someProducts = this.products.filter(prod => prod.stone.toLowerCase().includes(this.currentStone.toLowerCase()) && 
-      prod.color.toLowerCase().includes(this.currentColor.toLowerCase()));
-    }
-    // 4
-    else if (this.currentStone != 'всі' && this.currentColor != 'всі' && this.currentZodiac != 'всі') {
-      console.log(this.currentStone);
-      console.log(this.currentColor);
-      console.log(this.currentZodiac);
-      this.someProducts = this.products.filter(prod => prod.stone.toLowerCase().includes(this.currentStone.toLowerCase()) && 
-      prod.color.toLowerCase().includes(this.currentColor.toLowerCase()) && 
-      prod.zodiac.toLowerCase().includes(this.currentZodiac.toLowerCase()));
-    }
-    // 5
-    else if (this.currentStone == 'всі' && this.currentColor == 'всі' && this.currentZodiac != 'всі') {
-      console.log(this.currentZodiac);
-      this.someProducts = this.products.filter(prod => prod.zodiac.toLowerCase().includes(this.currentZodiac.toLowerCase()));
-    }
-    // 6
-    else if (this.currentStone == 'всі' && this.currentColor != 'всі' && this.currentZodiac != 'всі') {
-      console.log(this.currentColor);
-      console.log(this.currentZodiac);
-      this.someProducts = this.products.filter(prod => prod.color.includes(this.currentColor) && 
-      prod.zodiac.toLowerCase().includes(this.currentZodiac.toLowerCase()));
-    }
-    // 7
-    else if (this.currentStone == 'всі' && this.currentColor != 'всі' && this.currentZodiac == 'всі') {
-      console.log(this.currentColor);
-      this.someProducts = this.products.filter(prod => prod.color.toLowerCase().includes(this.currentColor.toLowerCase()));
-    }
-    // 8
-    else if (this.currentStone == 'всі' && this.currentColor == 'всі' && this.currentZodiac == 'всі') {
-      console.log(this.currentStone);
-      console.log(this.currentColor);
-      console.log(this.currentZodiac);
-      this.someProducts = this.products;
-      // const categoryName = this.actRoute.snapshot.paramMap.get('category');
-      // this.getFireCloudProducts(categoryName);
-    }
 
-  }
-  // ------------------------------------------------------
-  // startAt: number = 0;
-  // endAt: number;
-  // prodCount: number = 2;
-  // prevPage() {
-    // this.products = this.products.slice(, 2)
-  // }
-  // nextPage() {
-    // this.endAt = this.startAt + this.prodCount;
-    // console.log(this.startAt);
-    // console.log(this.endAt);
-    // this.products = this.products.slice(this.startAt, this.endAt)
-    // this.startAt = this.startAt + this.prodCount;
-  // }
+
+
+
+
+
+
 
 
 }

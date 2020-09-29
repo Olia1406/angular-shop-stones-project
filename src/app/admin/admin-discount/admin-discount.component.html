@@ -35,9 +35,9 @@
     </thead>
     <tbody>
         <tr *ngFor="let d of adminDiscount ">
-            <td scope="row" style=" line-break: strict; word-break: break-all;">{{ d.id }}</td>
-            <td>{{ d.title }}</td>
-            <td style=" line-break: strict; word-break: break-all; overflow: hidden;">{{ d.text }}</td>
+            <td style="word-break: break-all;">{{ d.id | slice:0:3}}</td>
+            <td style="word-break: break-all;">{{ d.title }}</td>
+            <td style="word-break: break-all;">{{ d.text }}</td>
             <td><img [src]="d.image" alt="" style="width: 60px; height: 60px;"></td>
             <td>
                 <input type="button" value="edit" class="btn bt" (click)="editDiscount(d)">

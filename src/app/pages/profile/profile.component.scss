@@ -1,0 +1,57 @@
+@import '../../common_scss/mixins';
+@import '../../common_scss/variables';
+
+ // @include flexbox(row, wrap, space-around,flex-start);
+ // @include dimentions(150px,150px);
+ // @include fonts($mainFont, 25px);
+
+.first-line{
+   @include flexbox(row, wrap, space-between,flex-start);
+   color: $secondColor;
+}
+h6{
+    @include fonts('Roboto,400', 18px);
+    color: $secondColor;
+  }
+p{
+    line-height: 10px;
+    margin-top: 7px;
+}
+.prev-order{
+    color: $secondColor;
+
+    @include flexbox(column, wrap, flex-start, flex-start);
+    background-color: white;
+    margin: 10px 0 20px;
+    padding: 10px;
+    box-shadow: 3px 3px 3px $secondColor;
+    .product-details{
+        border: 1px solid transparent;
+        border-top-color: rgb(224, 224, 224);
+        border-radius: 3px;
+        margin-top: 10px;
+        @include flexbox(row, wrap, flex-start, flex-start);
+        .image{
+            img{
+            @include dimentions(150px,150px); 
+            margin: 10px;
+            box-shadow: 3px 3px 3px rgb(192, 192, 192);
+            border-radius: 3px;
+            // border: 1px solid rgb(116, 115, 115);
+            }
+        }
+        .details{
+            margin-top: 10px;
+            margin-left: 20px;
+            width: 500px;
+            @include flexbox(column, wrap, flex-start, flex-start);
+            span{
+                margin-right: 30px;
+            }
+        }
+    }
+    .line{
+        width: 100%;
+        border: 1px solid $mainColor;
+    }
+}

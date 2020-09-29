@@ -7,63 +7,37 @@
 }
 .new-products{
     @include flexbox(row, wrap, center, flex-start);
-    // background-color: white;
     margin-bottom: 15px;
     width: 70vw;
     .product{
        margin: 20px;
-       @include dimentions(220px,340px);
+       @include dimentions(220px,325px);
        @include flexbox(column, wrap, flex-start, center);
-       @include fonts($mainFontF,15px);
+       @include fonts($mainFont,17px);
        background-color: white;
        border-radius: 5px;
        box-shadow: 0 0 5px 0 gray;
        .p-image{
         @include dimentions(220px,200px);
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
         }
         p{
           color:$secondColor;
           text-align: center;
+          margin: 5px;
         }
         h6{
+          margin-top: 5px;
+          margin-bottom: 10px;
           color: $mainColor;
         }
-        .button{
-        @include dimentions(90px,30px);
-        background-color: $mainColor;
-        color: white;
-        text-align: center;
-        line-height: 30px;
-        border-radius: 10px;
-        &:hover{
-          // color: $secondColor;
-          box-shadow: 0 0 3px 1px $mainColor;
-        }
-        // @include fonts()
+        .add-btn{
+         font-size: 14px;
+         font-family: 'Montserrat,500';
         }
     }
-}
-
-.switch{
-  margin-bottom: 20px;
-  height: 60px;
-  @include flexbox(row, nowrap, center, center);
-  background-color: white;
-  a{
-      @include dimentions(8px, 8px);
-      border: 1px solid $mainColor;
-      border-radius: 50%;
-      margin: 5px;
-      &:active{
-      background-color: $mainColor;
-      }
-      &:hover{
-        background-color: $mainColor;
-        }
-  }
 }
 
 .price-title{
@@ -102,6 +76,9 @@
   @include dimentions(160px, 180px); 
   overflow-y: scroll;
   // z-index: 4;
+  // &:first-child{
+    // color:$mainColor;
+  // }
 
   }
 .stone-name, .stone-color, .zodiac{
@@ -115,4 +92,54 @@
 .stone-color:hover,
 .zodiac:hover{
   color:$mainColor;
+  }
+.stone-name:first-child,
+.stone-color:first-child,
+.zodiac:first-child{
+  // color:$mainColor;
+  text-decoration: underline;
+
+}
+.chosen{
+  text-align: center;
+  @include fonts($mainFont, 15px);
+  color: $mainColor; 
+  height: 15px;
+  line-height: 15px;
+  margin-left: 30px;
+}
+.sortDirection{
+  @include fonts($mainFont, 15px);
+ color: $secondColor; 
+ height: 20px;
+//  line-height: 18px;
+ margin-left: 10px; 
+}
+  .switch{
+    margin-bottom: 20px;
+    height: 60px;
+    @include flexbox(row, nowrap, center, center);
+    background-color: white;
+    b{
+      color:$secondColor;
+    }
+    // a{
+        // @include dimentions(8px, 8px);
+        // border: 1px solid $mainColor;
+        // border-radius: 50%;
+        // margin: 5px;
+        // &:active{
+        // background-color: $mainColor;
+        // }
+        // &:hover{
+          // background-color: $mainColor;
+          // }
+    // }
+  }
+  .no-data{
+    @include flexbox(row, nowrap, center, center);
+    height: 60px;
+    color: $mainColor;
+    font-family: 'Roboto,400';
+    font-size: 15px;
   }

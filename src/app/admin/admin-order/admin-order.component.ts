@@ -38,6 +38,7 @@ export class AdminOrderComponent implements OnInit {
           const id = document.payload.doc.id;
           return { id, ...data };
         });
+        // this.adminOrders.sort( (a, b) => b.dateOrder.getSeconds()-a.dateOrder.getSeconds())
         // this.adminOrders.sort(function (a, b) {
         // return Date.parse(b.dateOrder.toString()) - Date.parse(a.dateOrder.toString());
         //  })
@@ -65,7 +66,7 @@ export class AdminOrderComponent implements OnInit {
   openDetailsModal(template: TemplateRef<any>, order: IOrder): void {
     this.currAdmOrder = order;
     this.statusOption = 'В обробці';
-    this.modalRef = this.modalService.show(template, { class: 'modal-dialog-centered' });
+    this.modalRef = this.modalService.show(template, { class: 'modal-lg' });
     this.getTotal();
   }
 
@@ -92,5 +93,16 @@ export class AdminOrderComponent implements OnInit {
     }
   }
 
-  
+//Date formate
+readableDate(time) {
+  var d = new Date(time);
+  let dd = d.getDate();
+  let mm = +d.getMonth() +1;
+  let yy = d.getFullYear();
+  let hh = d.getHours();
+  let mmn = d.getMinutes();
+  return dd + "/" + mm + "/" + yy + " " + hh + ":" + mmn;
+}
+
+
 }

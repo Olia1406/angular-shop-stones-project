@@ -12,7 +12,8 @@ export class Order implements IOrder {
         public userPaymentType: string,
         public totalPayment: number,
         public productOrder: Array<IProduct>,
-        public dateOrder: Date,
+        public dateOrder: any,
         public statusOrder: string = 'в обробці',
+        public userOrderEmail?: string
     ) {}
 }

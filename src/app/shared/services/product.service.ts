@@ -41,7 +41,14 @@ export class ProductService {
   
   getFireCloudProduct(): Observable<DocumentChangeAction<unknown>[]> {
     return this.firecloud.collection('products').snapshotChanges();
+    // return this.firecloud.collection('products', ref => ref.orderBy('dateOrder', 'desc')).snapshotChanges();
   }
+
+  getLastFireCloudProduct(): Observable<DocumentChangeAction<unknown>[]> {
+    return this.firecloud.collection('products', ref => ref.limit(13)).snapshotChanges();
+  }
+    
+
   
   postFireCloudProduct(product: IProduct): Promise<DocumentReference> {
     return this.firecloud.collection('products').add(product);
