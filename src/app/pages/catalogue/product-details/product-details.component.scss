@@ -22,9 +22,9 @@
     }
     .info-box{
         padding: 30px 50px;
-        // max-width: 600px;
-        // height: 440px;
-        @include dimentions(600px,440px);
+        width: 600px;
+        min-height: 440px;
+        // @include dimentions(600px,440px);
         // background: rgb(214, 167, 167);
         // .info-details{
           h2{
@@ -40,7 +40,10 @@
             @include fonts($mainFont, 22px);
             color: $secondColor;
           }
-        
+          .more{
+            @include fonts('Roboto,400', 16px);
+
+          }
         
         
         // }

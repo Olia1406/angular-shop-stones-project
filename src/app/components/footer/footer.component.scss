@@ -44,10 +44,15 @@ footer{
     }
     .foot_right{
         width: 60%;
-        @include flexbox(row, wrap, space-around, center);
+        @include flexbox(row, wrap, flex-start, center);
         margin-right: 20px;
         color: $secondColor;   
         @include fonts($mainFont, 15px);
+        // border: 1px solid #000;
+        .f1,.f2{
+            margin-left: 20px;
+            // border: 1px solid #000;
+        }
         li:hover{
             color: $mainColor;
         }
@@ -55,6 +60,12 @@ footer{
 }
 }
 
+
+@media screen and (max-width: 768px){
+    .foot_right{
+        // @include flexbox(column, wrap, space-around, center);
+    }
+}
 
 
 

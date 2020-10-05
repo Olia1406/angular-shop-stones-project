@@ -33,18 +33,31 @@
           <p>natural stones</p>
         </div>
       </div>
-      <div class="pages">
-        <!-- <p>головна</p> -->
-        <div class="part1">
-          <a [routerLink]="[ '/catalogue' ]" routerLinkActive="active">каталог</a>
-          <a [routerLink]="[ '/more' ]" routerLinkActive="active">про камені</a>
-          <a [routerLink]="[ '/discount' ]" routerLinkActive="active">акції</a>
-        </div>
-        <div class="part2">
-          <a [routerLink]="[ '/contacts' ]" routerLinkActive="active">контакти</a>
-          <a [routerLink]="[ '/payment' ]" routerLinkActive="active">оплата і доставка</a>
+      <div class="burger-menu">
+        <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu" (click)="showMenu()" [checked]="menuStatus">
+        <label for="openSidebarMenu" class="sidebarIconToggle">
+          <div class="spinner diagonal part-1"></div>
+          <div class="spinner horizontal"></div>
+          <div class="spinner diagonal part-2"></div>
+        </label>
+        <div id="sidebarMenu">
+          <div class="main-content-wrapper" *ngIf="menuStatus">
+            <a (click)="hideMenu()" [routerLink]="[ '/home' ]" routerLinkActive="active">головна</a>
+            <a (click)="hideMenu()" [routerLink]="[ '/catalogue' ]" routerLinkActive="active">каталог</a>
+            <a (click)="hideMenu()" [routerLink]="[ '/more' ]" routerLinkActive="active">про камені</a>
+            <a (click)="hideMenu()" [routerLink]="[ '/discount' ]" routerLinkActive="active">акції</a>
+            <a (click)="hideMenu()" [routerLink]="[ '/contacts' ]" routerLinkActive="active">контакти</a>
+            <a (click)="hideMenu()" [routerLink]="[ '/payment' ]" routerLinkActive="active">оплата і доставка</a>
+          </div>
         </div>
       </div>
+      <nav class="pages">
+        <a [routerLink]="[ '/catalogue' ]" routerLinkActive="active">каталог</a>
+        <a [routerLink]="[ '/more' ]" routerLinkActive="active">про камені</a>
+        <a [routerLink]="[ '/discount' ]" routerLinkActive="active">акції</a>
+        <a [routerLink]="[ '/contacts' ]" routerLinkActive="active">контакти</a>
+        <a [routerLink]="[ '/payment' ]" routerLinkActive="active">оплата і доставка</a>
+      </nav>
     </div>
     <div class="hdr_right row">
       <div class="basket">
@@ -68,44 +81,165 @@
   </div>
   <div class="modal-body">
     <div class="loginBlock" *ngIf="!switch">
-      <form (ngSubmit)="loginUser()">
+      <form #loginForm="ngForm" (ngSubmit)="loginUser()" novalidate>
         <div class="form-group">
-          <label for="userEmail">Електронна адреса</label>
-          <input type="email" class="form-control" id="userEmail" [(ngModel)]="userEmail" name="userEmail">
+          <label for="userEmail">Електронна адреса*:</label>
+          <input type="email" #inpEmail="ngModel" class="form-control" id="userEmail" [(ngModel)]="userEmail"
+            name="userEmail"
+            pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b"
+            required>
         </div>
+
+        <div class="text-danger" *ngIf="inpEmail.invalid && (inpEmail.dirty || inpEmail.touched)">
+          <div *ngIf="inpEmail.errors.required">
+            Заповніть поле
+          </div>
+          <div *ngIf="inpEmail.errors.pattern">
+            Невірний формат
+          </div>
+        </div>
+
         <div class="form-group">
-          <label for="userPassword">Пароль</label>
-          <input type="text" class="form-control" id="userPassword" [(ngModel)]="userPassword" name="userPassword">
+          <label for="userPassword">Пароль*:</label>
+          <input type="password" #inpPassword="ngModel" class="form-control" id="userPassword"
+            [(ngModel)]="userPassword" name="userPassword" pattern="(?=.*[A-Za-zа-яА-Я])(?=.*\d)[A-Za-zа-яА-Я\d]{8,}" required>
         </div>
-        <button type="submit" class="btn bt">Увійти</button>
+
+        <div class="text-danger" *ngIf="inpPassword.invalid && (inpPassword.dirty || inpPassword.touched)">
+          <div *ngIf="inpPassword.errors.required">
+            Заповніть поле
+          </div>
+          <div *ngIf="inpPassword.errors.pattern">
+            Невірний формат
+          </div>
+        </div>
+        <div>
+          <p style="margin-top: 20px; margin-bottom: 8px; font-size: 13px;">* поля обов'язкові для заповнення
+          </p>
+          <button [disabled]="loginForm.invalid" type="submit" class="btn bt">Увійти</button>
+        </div>
         <div class="form-group mt-3 h6">
           <a (click)="switchForm()">Зареєструватись</a>
         </div>
       </form>
     </div>
+    <!-- ------------------------------------------------------------------------------------------------------- -->
     <div class="registerBlock" *ngIf="switch">
-      <form (ngSubmit)="registerUser()">
+      <form #registerForm="ngForm" (ngSubmit)="registerUser()">
         <div class="row">
-          <div class="form-group col-6">
-            <label for="firstName">Ім'я</label>
-            <input type="text" class="form-control" id="firstName" [(ngModel)]="firstName" name="firstName">
+          <div class="col-6">
+            <div class="form-group ">
+              <label for="firstName">Ім'я*:</label>
+              <input type="text" #uName="ngModel" class="form-control" id="firstName" [(ngModel)]="firstName"
+                name="firstName" pattern="[a-zA-Zа-яА-Я]{2,}" required>
+            </div>
+
+            <div class="text-danger" style="margin-top: -10px; margin-bottom: 15px;"
+              *ngIf="uName.invalid && (uName.dirty || uName.touched)">
+              <div *ngIf="uName.errors.required">
+                Заповніть поле
+              </div>
+              <div *ngIf="uName.errors.pattern">
+                Невірний формат
+              </div>
+            </div>
           </div>
-          <div class="form-group col-6">
-            <label for="lastName">Прізвище</label>
-            <input type="text" class="form-control" id="lastName" [(ngModel)]="lastName" name="lastName">
+
+          <div class="col-6">
+            <div class="form-group">
+              <label for="lastName">Прізвище:</label>
+              <input type="text" #uLastName="ngModel" class="form-control" id="lastName" [(ngModel)]="lastName" name="lastName"
+              pattern="[a-zA-Zа-яА-Я]{2,}" >
+            </div>
+
+            <div class="text-danger" style="margin-top: -10px; margin-bottom: 15px;"
+              *ngIf="uLastName.invalid">
+              <div *ngIf="uLastName.errors.pattern">
+                Невірний формат
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="userEmail">Електронна адреса*:</label>
+              <input type="email" #uEmail="ngModel" class="form-control" id="userEmail" [(ngModel)]="userEmail"
+                name="userEmail"
+                pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b"
+                required>
+            </div>
+
+            <div class="text-danger" style="margin-top: -10px; margin-bottom: 15px;"
+              *ngIf="uEmail.invalid && (uEmail.dirty || uEmail.touched)">
+              <div *ngIf="uEmail.errors.required">
+                Заповніть поле
+              </div>
+              <div *ngIf="uEmail.errors.pattern">
+                Невірний формат
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="form-group">
+              <label for="userPassword">Пароль*:</label>
+              <input type="password" #uPassword="ngModel" class="form-control" id="userPassword"
+                [(ngModel)]="userPassword" name="userPassword" pattern="(?=.*[A-Za-zа-яА-Я])(?=.*\d)[A-Za-zа-яА-Я\d]{8,}" required>
+            </div>
+
+            <div class="text-danger" style="margin-top: -10px; margin-bottom: 15px;"
+              *ngIf="uPassword.invalid && (uPassword.dirty || uPassword.touched)">
+              <div *ngIf="uPassword.errors.required">
+                Заповніть поле
+              </div>
+              <div *ngIf="uPassword.errors.pattern">
+                Невірний формат
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group ">
+              <label for="userCity">Ваше місто:</label>
+              <input type="text" #uCity="ngModel" class="form-control" id="userCity" [(ngModel)]="usCity"
+                name="usCity" pattern="[a-zA-Zа-яА-Я]{3,}">
+            </div>
+
+            <div class="text-danger" style="margin-top: -10px; margin-bottom: 15px;"
+              *ngIf="uCity.invalid">
+              <div *ngIf="uCity.errors.pattern">
+                Невірний формат
+              </div>
+            </div>
+
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="userTel">Номер телефону:</label>
+              <input type="text" #uTel="ngModel" class="form-control" id="userTel" [(ngModel)]="usTel" name="usTel"
+              pattern="[0,9,5,6,7,8,3]{3}[ ,-]{0,1}[0-9]{3}[ ,-]{0,1}[0-9]{2}[ ,-]{0,1}[0-9]{2}[ ,-]{0,}">
+            </div>
+            <div class="text-danger" style="margin-top: -10px; margin-bottom: 15px;"
+              *ngIf="uTel.invalid">
+              <div *ngIf="uTel.errors.pattern">
+                Невірний формат
+              </div>
+            </div>
           </div>
         </div>
-        <div class="row">
-          <div class="form-group col-6">
-            <label for="userEmail">Електронна адреса</label>
-            <input type="email" class="form-control" id="userEmail" [(ngModel)]="userEmail" name="userEmail">
-          </div>
-          <div class="form-group col-6">
-            <label for="userPassword">Пароль</label>
-            <input type="text" class="form-control" id="userPassword" [(ngModel)]="userPassword" name="userPassword">
-          </div>
+
+        <div>
+          <p style="margin-top: 20px; margin-bottom: 8px; font-size: 13px;">* поля обов'язкові для заповнення
+          </p>
+          <button [disabled]="registerForm.invalid" type="submit" class="btn bt">Зареєстуватись</button>
         </div>
-        <button type="submit" class="btn bt">Зареєстуватись</button>
+
         <div class="form-group mt-3 h6">
           <a (click)="switchForm()">Ви вже зареєстровані? Увійдіть</a>
         </div>

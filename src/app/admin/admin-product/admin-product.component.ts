@@ -37,7 +37,12 @@ export class AdminProductComponent implements OnInit {
   uploadProgress: Observable<number>;
 
   modalRef: BsModalRef;
+  modalRefconfig = {
+    backdrop: true,
+    ignoreBackdropClick: true
+  };
 
+  searchParam: string;
   constructor(private catService: CategoryService,
     private prodService: ProductService,
     private afStorage: AngularFireStorage,
@@ -86,6 +91,17 @@ export class AdminProductComponent implements OnInit {
     );
   } 
 
+  addProdBtn(template: TemplateRef<any>): void {
+    this.openModal(template);
+    this.editStatus = false;
+  }
+  openModal(template: TemplateRef<any>): void {
+    this.modalRef = this.modalService.show(template, this.modalRefconfig);
+  }
+  closeModalCross() {
+    this.modalRef.hide();
+    this.resetForm();
+  }
   setCategory(): void {
     this.productCategory = this.categories.filter(cat => cat.nameEN === this.categoryName)[0];
   }
@@ -121,6 +137,7 @@ export class AdminProductComponent implements OnInit {
       .then(message => console.log(message))
       .catch(err => console.log(err));
     }
+    this.modalRef.hide();
     this.resetForm();
   }
 
@@ -186,7 +203,8 @@ export class AdminProductComponent implements OnInit {
     this.modalRef.hide();
   }
 
-  editProduct(prod: IProduct): void {
+  editProduct(template: TemplateRef<any>,prod: IProduct): void {
+    this.modalRef = this.modalService.show(template, this.modalRefconfig);
     this.editStatus = true;
     this.productID = prod.id;
     this.productCategory = this.categories.filter(cat => cat.nameEN === prod.category.nameEN)[0];

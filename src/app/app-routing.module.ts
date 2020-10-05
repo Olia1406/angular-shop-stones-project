@@ -6,12 +6,13 @@ import { PaymentComponent } from './pages/payment/payment.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 // import { FeedbackComponent } from './pages/feedback/feedback.component';
 import { MoreAboutStonesComponent } from './pages/more-about-stones/more-about-stones.component';
+import { UserDiscountComponent } from './pages/user-discount/user-discount.component';
 
 import { CatalogueComponent } from './pages/catalogue/catalogue.component';
 // import { NecklaceComponent } from './pages/catalogue/necklace/necklace.component';
 // import { BraceletComponent } from './pages/catalogue/bracelet/bracelet.component';
 // import { EarringComponent } from './pages/catalogue/earring/earring.component';
-import { DiscountComponent } from './pages/catalogue/discount/discount.component';
+// import { DiscountComponent } from './pages/catalogue/discount/discount.component';
 import { ProductComponent } from './pages/catalogue/product/product.component';
 import { ProductDetailsComponent } from './pages/catalogue/product-details/product-details.component';
 // import { CounterComponent } from './components/counter/counter.component';
@@ -30,7 +31,7 @@ import { ProfileGuard } from './shared/guards/profile.guard';
 const routes: Routes = [
   {path: '', redirectTo:'home', pathMatch:'full'},
   {path: 'home', component: HomeComponent},
-  {path: 'discount', component: DiscountComponent},
+  {path: 'discount', component: UserDiscountComponent},
   {path: 'contacts', component: ContactsComponent},
   // {path: 'feedback', component: FeedbackComponent},
   {path: 'basket', component: BasketComponent},

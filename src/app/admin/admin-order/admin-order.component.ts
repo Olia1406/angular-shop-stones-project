@@ -82,7 +82,7 @@ export class AdminOrderComponent implements OnInit {
   // }
   // }
   deleteUserOrder(order: IOrder): void {
-    if (order.statusOrder == 'Виконано' || order.statusOrder == 'Скасовано') {
+    if (order.statusOrder == 'Скасовано') {
       if (confirm('Are you sure?')) {
         this.ordersService.deleteFireCloudOrder(order)
           .then(() => {

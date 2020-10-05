@@ -18,6 +18,8 @@
                 <div class="details">
                     <h4>{{prod?.nameUA}}</h4>
                     <p>Опис: {{prod?.description}}</p>
+                    <span>Довжина намиста: {{prod?.length}} см</span>
+                    <span>Ширина каменя: {{prod?.width}} мм</span>
                     <div>
                         <span>Ціна: {{prod?.price}} грн</span>
                         <span>Кількість: {{prod?.count}} </span>
@@ -27,8 +29,9 @@
             </div>
             <div class="line"></div>
             <!-- <hr> -->
-            <p>Спосіб доставки: {{order.userDelivery}}, {{order.deliveryDepartment}} </p>
+            <p>Спосіб доставки: {{order.userDelivery}}, № {{order.deliveryDepartment}} </p>
             <p>Спосіб оплати: {{order.userPaymentType}}</p>
+            <p>Статус замовлення: {{order.statusOrder}}</p>
         </div>
     </div>
 

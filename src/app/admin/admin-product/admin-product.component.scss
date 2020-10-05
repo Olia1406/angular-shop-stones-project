@@ -11,11 +11,13 @@
         height: 100%;
         margin-right: 20px;
     }
+    span{
+        width: 40px;
+        height: 40px;
+    }
     span:hover{
         cursor: pointer;
-    }
-    span:hover svg{
-        color: $mainColor;
+        box-shadow: 0 0 3px 0 gray;
     }
 }
 .progress-bg{

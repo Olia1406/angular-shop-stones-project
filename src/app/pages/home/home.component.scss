@@ -9,36 +9,27 @@
     background-size: cover;
     @include flexbox(column, nowrap, center, flex-start);
     padding: 0 150px;
-
-    // opacity: 0.3;
     }
 
-// .main-text{
-    // position: relative;
-    // top: -130px;
-    // left: 0px;
-    // padding-left: 100px;
     h1{
         color: $mainColor;
         @include fonts($mainFont, 40px);
       }
     p{
-        // color: $secondColor;
         color: white;
         @include fonts($mainFont, 20px);
     }
-// }
-.title{
-    margin: 40px 15px 20px;
-    @include flexbox(row, nowrap, center, center);
-    @include fonts($mainFont, 30px);
-    h3{
-        margin-right: 10px;
-    }
-    h4{
-        margin-right: 15px;
-        // font-family: $mainFont;
-    }    
+
+   .title{
+       margin: 40px 15px 20px;
+       @include flexbox(row, nowrap, center, center);
+       @include fonts($mainFont, 30px);
+       h3{
+           margin-right: 10px;
+       }
+       h4{
+           margin-right: 15px;
+       }    
 }
 .orange{
     color: $mainColor;
@@ -54,7 +45,7 @@
        margin: 20px;
        @include dimentions(220px,300px);
        @include flexbox(column, wrap, flex-start, center);
-       @include fonts($mainFontF,15px);
+       @include fonts($mainFont,17px);
        background-color: white;
        border-radius: 5px;
        box-shadow: 0 0 5px 0 gray;
@@ -64,11 +55,14 @@
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
         }
-        p{
-          color:$secondColor;
-          text-align: center;
-        }
+        // p{
+        //   @include fonts($mainFont,17px);
+        //   color:$secondColor;
+        //   text-align: center;
+        // }
         h6{
+          margin-top: 10px;
+          margin-bottom: 10px;
           color: $mainColor;
         }
     }
@@ -81,7 +75,7 @@
        margin: 20px;
        @include dimentions(200px,280px);
        @include flexbox(column, wrap, flex-start, center);
-       @include fonts($mainFontF,15px);
+       @include fonts($mainFont,15px);
        background-color: white;
        border-radius: 5px;
        box-shadow: 0 0 5px 0 gray;
@@ -91,11 +85,13 @@
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
         }
-        p{
-          color:$secondColor;
-          text-align: center;
-        }
+        // p{
+        //   color:$secondColor;
+        //   text-align: center;
+        // }
         h6{
+          margin-top: 10px;
+          margin-bottom: 10px;
           color: $mainColor;
         }
     }
@@ -109,10 +105,6 @@
         border: 1px solid $mainColor;
         border-radius: 50%;
         margin: 5px;
-        // background-color: $mainColor;
-        // &:active{
-            // background-color: $mainColor;
-            // }
         &:hover{
             background-color: $mainColor;
             }

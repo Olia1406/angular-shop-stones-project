@@ -20,12 +20,11 @@
       <div class="info-details">
         <h2>{{ product?.nameUA }}</h2>
         <p>Опис: {{ product?.description }}</p>
+        <p>Hазва каменя: {{ product?.stone }}</p>
         <p>Колір: {{ product?.color}}</p>
         <p>Довжина: {{ product?.length }} см</p>
         <p>Розмір каменя: {{ product?.width }} мм</p>
-        <!-- <p>stone</p> -->
-        <!-- <p>zodiac</p> -->
-        <i><a [routerLink]="[ '/more' ]" routerLinkActive="active">Більше про властивості каменя {{product?.stone}}</a></i>
+        <p class="more"><a [routerLink]="[ '/more' ]" routerLinkActive="active">Більше про властивості каменя <i> {{product?.stone}}</i></a></p>
       </div>
       <hr>
       <div class="row-info">

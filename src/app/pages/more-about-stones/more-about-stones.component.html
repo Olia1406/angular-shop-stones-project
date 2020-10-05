@@ -1,4 +1,5 @@
 <div class="container">
+    <div class="arrow-up" (click)="scrollToElement(top)"></div>
     <!-- <h3>Як вибрати свій камінь</h3> -->
     <!-- <div class="title-st"> -->
     <!-- <img class="title-img" src="../../../assets/more/indigo.bmp" alt=""> -->
@@ -6,9 +7,7 @@
     <!-- <span>Існує</span> багато критеріїв: можна обирати камінь за знаком зодіаку, місяцем року, за планетoю, -->
     <!-- іменем, місячним календарем та ін. Проте тут ви знайдете -->
     <!-- співпадіння не завжди. Більшість літотерапевтів сходяться на одному - головне, щоб камінь вам подобався! -->
-    <!-- Здатність -->
-    <!-- відчувати певний об'єкт -->
-    <!-- називають емпатією. Кожен в певній мірі володіє нею. Якщо камінь вам підходить, то -->
+    <!--жен в певній мірі володіє нею. Якщо камінь вам підходить, то -->
     <!-- ви відчуваєте приплив сил та енергії, поліпшуються життєві позиції в різних сферах -->
     <!-- життя. У виборі вам також допоможе інформація про <i><a href="#prop"> лікувальні та магічні властивості -->
     <!-- каменів</a></i>. -->
@@ -23,71 +22,71 @@
     <!-- <p class="zodiac-list"></p> -->
     <!-- </div> -->
     <!-- </div> -->
-    <a name="a1"></a>
-    <h4>Лікувальні та магічні властивості каменів</h4>
+    <h4 #top>Лікувальні та магічні властивості каменів</h4>
     <hr>
     <!-- <div class="line"></div> -->
-    <div class="stones-list">
+    <div class="stones-list" #target>
         <div class="part1">
-            <a href="">Авантюрин</a>
-            <a href="">Aгат</a>
-            <a href="">Aквамарин</a>
-            <a href="">Aамазоніт</a>
-            <a href="">Aметист</a>
-            <a href="">Бірюза</a>
-            <a href="">Бурштин</a>
-            <a href="">Волове око</a>
-            <a href="">Варисцит</a>
-            <a href="">Гематит</a>
-            <a href="">Гірський кришталь</a>
-            <a href="">Гранат</a>
-            <a href="">Жадеїт</a>
+            <a (click)="scrollToElement(avanturyn)">Авантюрин</a>
+            <a (click)="scrollToElement(agat)">Aгат</a>
+            <a (click)="scrollToElement(akvamaryn)">Aквамарин</a>
+            <a (click)="scrollToElement(amazonit)">Aамазоніт</a>
+            <a (click)="scrollToElement(ametyst)">Aметист</a>
+            <a (click)="scrollToElement(biruza)">Бірюза</a>
+            <a (click)="scrollToElement(target)">Бурштин</a>
+            <a (click)="scrollToElement(target)">Волове око</a>
+            <a (click)="scrollToElement(target)">Варисцит</a>
+            <a (click)="scrollToElement(gematyt)">Гематит</a>
+            <a (click)="scrollToElement(girskyjKrystal)">Гірський кришталь</a>
+            <a (click)="scrollToElement(govlit)">Гoвліт</a>
+            <a (click)="scrollToElement(granat)">Гранат</a>
+            <a (click)="scrollToElement(target)">Жадеїт</a>
         </div>
         <div class="part2">
-            <a href="">Змієвик</a>
-            <a href="">Кахолонг</a>
-            <a href="">Кварц</a>
-            <a href="">Корал</a>
-            <a href="">Котяче око</a>
-            <a href="">Лабрадор</a>
-            <a href="">Лава вулканічна</a>
-            <a href="">Лазурит</a>
-            <!-- <a href="">Ларімар</a> -->
-            <a href="">Малахіт</a>
-            <a href="">Місячний камінь</a>
-            <a href="">Нефрит</a>
-            <a href="">Обсидіан</a>
-            <a href="">Онікс</a></div>
+            <a (click)="scrollToElement(target)">Змієвик</a>
+            <a (click)="scrollToElement(target)">Кахолонг</a>
+            <a (click)="scrollToElement(target)">Кварц</a>
+            <a (click)="scrollToElement(coral)">Корал</a>
+            <a (click)="scrollToElement(target)">Котяче око</a>
+            <a (click)="scrollToElement(target)">Лабрадор</a>
+            <a (click)="scrollToElement(target)">Лава вулканічна</a>
+            <a (click)="scrollToElement(target)">Лазурит</a>
+       <!-- <a (click)="scrollToElement(target)">Ларімар</a> -->
+            <a (click)="scrollToElement(target)">Малахіт</a>
+            <a (click)="scrollToElement(target)">Місячний камінь</a>
+            <a (click)="scrollToElement(target)">Нефрит</a>
+            <a (click)="scrollToElement(target)">Обсидіан</a>
+            <a (click)="scrollToElement(target)">Онікс</a></div>
         <div class="part3">
-            <a href="">Опал</a>
-            <a href="">Перламутр</a>
-            <a href="">Перли</a>
-            <!-- <a href="">Пірит</a> -->
-            <a href="">Раухтопаз</a>
-            <a href="">Родоніт</a>
-            <a href="">Рожевий кварц</a>
-            <a href="">Рубін</a>
-            <a href="">Рутиловий кварц</a>
-            <a href="">Сапфір</a>
-            <a href="">Сардрнікс</a>
-            <a href="">Сердолік</a>
-            <a href="">Содаліт</a>
-            <a href="">Соколине око</a>
+            <a (click)="scrollToElement(target)">Опал</a>
+            <a (click)="scrollToElement(target)">Перламутр</a>
+            <a (click)="scrollToElement(perls)">Перли</a>
+       <!-- <a (click)="scrollToElement(target)">Пірит</a> -->
+            <a (click)="scrollToElement(target)">Раухтопаз</a>
+            <a (click)="scrollToElement(target)">Родоніт</a>
+            <a (click)="scrollToElement(target)">Рожевий кварц</a>
+            <a (click)="scrollToElement(target)">Рубін</a>
+            <a (click)="scrollToElement(target)">Рутиловий кварц</a>
+            <a (click)="scrollToElement(target)">Сапфір</a>
+            <a (click)="scrollToElement(target)">Сардрнікс</a>
+            <a (click)="scrollToElement(target)">Сердолік</a>
+            <a (click)="scrollToElement(target)">Содаліт</a>
+            <a (click)="scrollToElement(target)">Соколине око</a>
         </div>
         <div class="part4">
-            <a href="">Тигрове око</a>
-            <a href="">Турмалін</a>
-            <a href="">Флюорит</a>
-            <a href="">Халцедон</a>
-            <a href="">Хризоколла</a>
-            <a href="">Хризопраз</a>
-            <a href="">Циркон</a>
-            <a href="">Цитрин</a>
-            <a href="">Цоизит</a>
-            <a href="">Чароїт</a>
-            <a href="">Шпінель</a>
-            <a href="">Шунгіт</a>
-            <a href="">Яшма</a>
+            <a (click)="scrollToElement(target)">Тигрове око</a>
+            <a (click)="scrollToElement(target)">Турмалін</a>
+            <a (click)="scrollToElement(target)">Флюорит</a>
+            <a (click)="scrollToElement(target)">Халцедон</a>
+            <a (click)="scrollToElement(target)">Хризоколла</a>
+            <a (click)="scrollToElement(target)">Хризопраз</a>
+            <a (click)="scrollToElement(target)">Циркон</a>
+            <a (click)="scrollToElement(target)">Цитрин</a>
+            <a (click)="scrollToElement(target)">Цоизит</a>
+            <a (click)="scrollToElement(target)">Чароїт</a>
+            <a (click)="scrollToElement(target)">Шпінель</a>
+            <a (click)="scrollToElement(target)">Шунгіт</a>
+            <a (click)="scrollToElement(target)">Яшма</a>
         </div>
     </div>
     <hr>
@@ -193,7 +192,7 @@
     <div class="stone-properies" id="prop">
         <hr>
         <h5 class="stone-name-properties">Авантюрин</h5>
-        <div class="about-st">
+        <div class="about-st" #avanturyn>
             <!-- <img src="../../../assets/more/avanturyn.bmp" class="stone-prop-img" alt=""> -->
             <p><img src="../../../assets/more/avanturyn.bmp" class="stone-prop-img" alt="">
                 Магические свойства авантюрина связаны с лунным циклом. Не рекомендуется носить
@@ -229,7 +228,7 @@
 
         <hr>
         <h5 class="stone-name-properties">Агат</h5>
-        <div class="about-st">
+        <div class="about-st" #agat>
             <p><img src="../../../assets/more/agat.bmp" class="stone-prop-img" alt="">
                 Считается, что агат приносит здоровье, счастье и долголетие. Агаты красных оттенков символизируют любовь
                 и преданность, раньше такими камнями обменивались влюбленные, если им предстояла длительная разлука.
@@ -250,7 +249,7 @@
 
         <hr>
         <h5 class="stone-name-properties">Аквамарин</h5>
-        <div class="about-st">
+        <div class="about-st" #akvamaryn>
             <p><img src="../../../assets/more/akvamaryn.jpg" class="stone-prop-img" alt="">
                 С древних времён аквамарин считался счастливым камнем мореходов. Легенды рассказывают о том, как сирены
                 хранили аквамарин в своих сокровищницах и предлагали самоцвет морякам, оказавшимся в открытом океане во
@@ -270,7 +269,7 @@
 
         <hr>
         <h5 class="stone-name-properties">Амазоніт</h5>
-        <div class="about-st">
+        <div class="about-st" #amazonit>
             <p><img src="../../../assets/more/amazonit.bmp" class="stone-prop-img" alt="">
                 Аравийцы носили амазонит для устранения головных болей, а также в качестве защиты от солнечных ударов.
                 Сегодня рекомендуется использовать минерал при заболеваниях позвоночника, варикозном расширении вен,
@@ -290,8 +289,8 @@
         </div>
 
         <hr>
-        <h5 class="stone-name-properties">Авантюрин</h5>
-        <div class="about-st">
+        <h5 class="stone-name-properties">Аметист</h5>
+        <div class="about-st" #ametyst>
             <p><img src="../../../assets/more/ametyst.jpg" class="stone-prop-img" alt="">
                 Камню с древних времен приписывается множество лечебных и магических свойств. Считается, что аметист
                 способен исцелить от головной боли (если его положить на голову), от простуды (если выпить воду, в
@@ -316,7 +315,7 @@
 
         <hr>
         <h5 class="stone-name-properties">Бірюза</h5>
-        <div class="about-st">
+        <div class="about-st" #biruza>
             <p><img src="../../../assets/more/biruza.bmp" class="stone-prop-img" alt="">
                 Бирюза считается счастливым и добрым камнем. Она несет в себе сильную защитную силу, матери часто делали
                 обереги из бирюзы для своих детей, чтобы отогнать злых духов, болезни и дурные сны.
@@ -340,7 +339,7 @@
 
         <hr>
         <h5 class="stone-name-properties">Гематит</h5>
-        <div class="about-st">
+        <div class="about-st" #gematyt>
             <p><img src="../../../assets/more/gematyt.bmp" class="stone-prop-img" alt="">
                 Упоминания о гематите как о сильнейшем магическом камне встречаются в книгах и писаниях многих древних
                 народов.Люди верили в защитные свойства камня. Его носили, чтобы уберечься от сглаза,
@@ -359,7 +358,7 @@
 
         <hr>
         <h5 class="stone-name-properties">Говлит</h5>
-        <div class="about-st">
+        <div class="about-st" #govlit>
             <p><img src="../../../assets/more/govlit.bmp" class="stone-prop-img" alt="">
                 Основной элемент хаулита – боросиликат кальция. Бусы из говлита помогут восполнить баланс кальция в
                 организме, а также укрепить
@@ -389,7 +388,7 @@
 
         <hr>
         <h5 class="stone-name-properties">Гірський кришталь</h5>
-        <div class="about-st">
+        <div class="about-st" #girskyjKrystal>
             <p><img src="../../../assets/more/girskyjKhryshtal.bmp" class="stone-prop-img" alt="">
                 Горный хрусталь во все времена был магическими камнем: считалось, что он может впитывать энергию
                 потусторонних миров и передавать ее, поэтому кристаллы горного хрусталя часто использовались в
@@ -413,7 +412,7 @@
 
         <hr>
         <h5 class="stone-name-properties">Гранат</h5>
-        <div class="about-st">
+        <div class="about-st" #granat>
             <p><img src="../../../assets/more/granat.bmp" class="stone-prop-img" alt="">
                 Гранат, известный в первую очередь как камень яркого насыщенного красного цвета, считается камнем
                 страстей, эмоций, желаний. Он активизирует жизненную энергию человека, дарит вдохновение и силы на
@@ -433,7 +432,7 @@
 
         <hr>
         <h5 class="stone-name-properties">Корал</h5>
-        <div class="about-st">
+        <div class="about-st" #coral>
             <p><img src="../../../assets/more/koral.bmp" class="stone-prop-img" alt="">
                 Кораллы обладают сильными защитными свойствами, причем чтобы отогнать колдовские чары, носить их нужно
                 непременно на виду. Мода на коралловые бусы пришла к нам еще от индейцев майя, которые носили их в
@@ -459,7 +458,7 @@
 
         <hr>
         <h5 class="stone-name-properties">Перли</h5>
-        <div class="about-st">
+        <div class="about-st" #perls>
             <p><img src="../../../assets/more/perls.bmp" class="stone-prop-img" alt="">
                 Натуральный морской жемчуг — кладезь ценных микроэлементов, и именно это его свойство чаще всего
                 использовалось в лечебных целях. Иногда на камне выдерживали воду, иногда растирали до состояния

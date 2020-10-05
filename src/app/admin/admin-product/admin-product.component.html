@@ -1,82 +1,108 @@
-<form>
-    <div class="row">
-        <div class="form-group col-4">
-            <label for="categoryChoose">Choose category</label>
-            <select [(ngModel)]="categoryName" name="categoryName" (change)="setCategory()" class="custom-select"
-                id="categoryChoose">
-                <option *ngFor="let category of categories">
-                    {{ category.nameEN }}
-                </option>
-            </select>
-        </div>
-        <div class="form-group col-4">
-            <label for="nameEN">Name EN</label>
-            <input [(ngModel)]="productNameEN" #inpNameEN="ngModel" name="productNameEN" type="text" id="nameEN" class="form-control" required>
-        </div>
-        <div class="form-group col-4">
-            <label for="nameUA">Name UA</label>
-            <input [(ngModel)]="productNameUA" #inpNameUA="ngModel" name="productNameUA" type="text" id="nameUA" class="form-control" required>
-        </div>
+<hr>
+<form class="form-inline">
+    <div class="form-group col-8">
+        <input type="search" class="form-control w-100" placeholder="search here.." [(ngModel)]="searchParam"
+            name="searchParam">
     </div>
-    <div class="form-group">
-        <label for="description">Description</label>
-        <textarea [(ngModel)]="productDescription" #txtArea="ngModel" name="productDescription" class="form-control" id="description"
-            rows="2" required></textarea>
+    <div class="col-4">
+        <button type="button" class="btn bt btn-block" (click)="addProdBtn(addOrEditProduct)">Add
+            Product</button>
     </div>
-    <div class="row">
-        <div class="form-group col-2">
-            <label for="length">Length</label>
-            <input [(ngModel)]="productLength" #inpLength="ngModel" name="productLength" type="text" id="length" class="form-control" required>
-        </div>
-        <div class="form-group col-2">
-            <label for="width">Width</label>
-            <input [(ngModel)]="productWidth" #inpWidth="ngModel" name="productWidth" type="text" id="width" class="form-control" required>
-        </div>
-        <div class="form-group col-2">
-            <label for="price">Price</label>
-            <input [(ngModel)]="productPrice" #inpPrice="ngModel" name="productPrice" type="number" id="price" class="form-control" required>
-        </div>
-        <div class="form-group col-3">
-            <label for="color">Color</label>
-            <input [(ngModel)]="productColor" #inpColor="ngModel" name="productColor" type="text" id="color" class="form-control" required>
-        </div>
-        <div class="form-group col-3">
-            <label for="stone">Stone</label>
-            <input [(ngModel)]="productStone" #inpStone="ngModel" name="productStone" type="text" id="stone" class="form-control" required>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="zodiac">Zodiac</label>
-        <textarea [(ngModel)]="productZodiac" #inpZodiac="ngModel" name="productZodiac" type="text" id="zodiac"
-            class="form-control" required></textarea>
-    </div>
-    <div class="custom-file">
-        <input type="file" (change)="uploadFile($event)" class="custom-file-input" id="image" required>
-        <label class="custom-file-label" for="image">Choose file...</label>
-    </div>
-    <div class="progress mb-3 mt-3" *ngIf="!imageStatus">
-        <div [style.width]="(uploadProgress | async) + '%'" class="progress-bar progress-bg" role="progressbar"
-            aria-valuemin="0" aria-valuemax="100"></div>
-    </div>
-    <!-- <div class="row"> -->
-        <div class="productImage mb-3 mt-3" *ngIf="imageStatus">
-            <img [src]="productImage" alt="">
-            <span (click)="deleteImage(deleteImageConfirm)">
-                <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
-                    <path fill-rule="evenodd"
-                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
-                </svg>
-            </span>
-        </div>
-        <button [disabled]="inpNameEN.invalid || inpNameUA.invalid || txtArea.invalid || inpLength.invalid || inpWidth.invalid || inpPrice.invalid|| inpColor.invalid || inpStone.invalid || inpZodiac.invalid" 
-        class="btn bt" (click)="addProduct()" [textContent]="!editStatus ? 'Add' : 'Update'"></button>
-    <!-- </div> -->
 </form>
+<hr>
+<ng-template #addOrEditProduct>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left" [textContent]="!editStatus ? 'Add product' : 'Update product'"></h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="closeModalCross()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="row">
+                <div class="form-group col-4">
+                    <label for="categoryChoose">Choose category</label>
+                    <select [(ngModel)]="categoryName" name="categoryName" (change)="setCategory()"
+                        class="custom-select" id="categoryChoose">
+                        <option *ngFor="let category of categories">
+                            {{ category.nameEN }}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group col-4">
+                    <label for="nameEN">Name EN</label>
+                    <input [(ngModel)]="productNameEN" #inpNameEN="ngModel" name="productNameEN" type="text" id="nameEN"
+                        class="form-control" required>
+                </div>
+                <div class="form-group col-4">
+                    <label for="nameUA">Name UA</label>
+                    <input [(ngModel)]="productNameUA" #inpNameUA="ngModel" name="productNameUA" type="text" id="nameUA"
+                        class="form-control" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea [(ngModel)]="productDescription" #txtArea="ngModel" name="productDescription"
+                    class="form-control" id="description" rows="2" required></textarea>
+            </div>
+            <div class="row">
+                <div class="form-group col-2">
+                    <label for="length">Length</label>
+                    <input [(ngModel)]="productLength" #inpLength="ngModel" name="productLength" type="text" id="length"
+                        class="form-control" required>
+                </div>
+                <div class="form-group col-2">
+                    <label for="width">Width</label>
+                    <input [(ngModel)]="productWidth" #inpWidth="ngModel" name="productWidth" type="text" id="width"
+                        class="form-control" required>
+                </div>
+                <div class="form-group col-2">
+                    <label for="price">Price</label>
+                    <input [(ngModel)]="productPrice" #inpPrice="ngModel" name="productPrice" type="number" id="price"
+                        class="form-control" required>
+                </div>
+                <div class="form-group col-3">
+                    <label for="color">Color</label>
+                    <input [(ngModel)]="productColor" #inpColor="ngModel" name="productColor" type="text" id="color"
+                        class="form-control" required>
+                </div>
+                <div class="form-group col-3">
+                    <label for="stone">Stone</label>
+                    <input [(ngModel)]="productStone" #inpStone="ngModel" name="productStone" type="text" id="stone"
+                        class="form-control" required>
+                </div>
+            </div>
 
+            <div class="form-group">
+                <label for="zodiac">Zodiac</label>
+                <textarea [(ngModel)]="productZodiac" #inpZodiac="ngModel" name="productZodiac" type="text" id="zodiac"
+                    class="form-control" required></textarea>
+            </div>
+            <div class="custom-file">
+                <input type="file" (change)="uploadFile($event)" class="custom-file-input" id="image" required>
+                <label class="custom-file-label" for="image">Choose file...</label>
+            </div>
+            <div class="progress mb-3 mt-3" *ngIf="!imageStatus">
+                <div [style.width]="(uploadProgress | async) + '%'" class="progress-bar progress-bg" role="progressbar"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <div class="productImage mb-3 mt-3" *ngIf="imageStatus">
+                <img [src]="productImage" alt="">
+                <span (click)="deleteImage(deleteImageConfirm)">
+                    <img width="2em" height="2em" viewBox="0 0 16 16" src="../../../assets/icons/trash-alt-regular.svg"
+                        alt="">
+                </span>
+            </div>
+            <!-- <div class="row"> -->
+                <button
+                    [disabled]="inpNameEN.invalid || inpNameUA.invalid || txtArea.invalid || inpLength.invalid || inpWidth.invalid || inpPrice.invalid|| inpColor.invalid || inpStone.invalid || inpZodiac.invalid"
+                    class="btn bt" (click)="addProduct()" [textContent]="!editStatus ? 'Add' : 'Update'">
+                </button>
+                <!-- <button class="btn btn-secondary" (click)="closeModalCross()">Close</button> -->
+            <!-- </div> -->
+        </form>
+    </div>
+</ng-template>
 <table class="table mt-3">
     <thead>
         <tr>
@@ -97,7 +123,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let prod of adminProducts">
+        <tr *ngFor="let prod of adminProducts | searchProduct: searchParam ; let i=index">
             <td>{{ prod.id | slice:0:3 }}</td>
             <td style=" word-break: break-all;">{{ prod.category.nameUA }}</td>
             <!-- <td style=" word-break: break-all;">{{ prod.nameEN }}</td> -->
@@ -113,10 +139,11 @@
                 <img [src]="prod.image" style="width: 70px; height: 70px;" alt="">
             </td>
             <td>
-                <input type="button" (click)="editProduct(prod)" value="edit" class="btn bt">
+                <input type="button" (click)="editProduct(addOrEditProduct,prod)" value="edit" class="btn bt">
             </td>
             <td>
-                <input type="button" (click)="deleteProduct(prod, deleteProductConfirm)" value="delete" class="btn btn-dark">
+                <input type="button" (click)="deleteProduct(prod, deleteProductConfirm)" value="delete"
+                    class="btn btn-dark">
             </td>
         </tr>
     </tbody>
@@ -132,8 +159,8 @@
 
 <ng-template #deleteProductConfirm>
     <div class="modal-body text-center">
-      <!-- <p>Do you want to confirm?</p> -->
-      <button type="button" class="btn bt col-5 m-2" (click)="decline()">dismiss</button>
-      <button type="button" class="btn btn-dark col-5 m-2" (click)="confirmDeleteProduct(prod)">delete</button>
+        <!-- <p>Do you want to confirm?</p> -->
+        <button type="button" class="btn bt col-5 m-2" (click)="decline()">dismiss</button>
+        <button type="button" class="btn btn-dark col-5 m-2" (click)="confirmDeleteProduct(prod)">delete</button>
     </div>
-  </ng-template>
+</ng-template>

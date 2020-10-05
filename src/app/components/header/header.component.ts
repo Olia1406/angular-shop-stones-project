@@ -22,9 +22,14 @@ export class HeaderComponent implements OnInit {
   userEmail: string;
   userPassword: string;
   firstName: string;
-  lastName: string;
+  lastName: string='';
+  usCity:string='';
+  usTel:string='';
 
-  products:Array<IProduct>;
+  products: Array<IProduct>;
+
+  menuStatus: boolean = false;
+
   constructor(private ordersService: OrdersService,
     private modalService: BsModalService,
     private authService: AuthService) { }
@@ -70,7 +75,7 @@ export class HeaderComponent implements OnInit {
     this.modalRef.hide();
   }
   registerUser(): void {
-    this.authService.signUp(this.userEmail, this.userPassword, this.firstName, this.lastName);
+    this.authService.signUp(this.userEmail, this.userPassword, this.firstName, this.lastName, this.usCity, this.usTel);
     this.resetForm();
     this.switch = !this.switch;
     this.modalRef.hide();
@@ -81,6 +86,8 @@ export class HeaderComponent implements OnInit {
     this.userPassword = '';
     this.firstName = '';
     this.lastName = '';
+    this.usCity = '';
+    this.usTel = '';
   }
 
   private updateCheckLogin(): void {
@@ -110,9 +117,13 @@ export class HeaderComponent implements OnInit {
       this.loginUrl = '';
     }
   }
-
-
-
+  
+  hideMenu() {
+    this.menuStatus = false;
+  }
+  showMenu() {
+    this.menuStatus = true;
+  }
 
 
 }

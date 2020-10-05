@@ -14,12 +14,13 @@ h6{
     color: $secondColor;
   }
 p{
+    @include fonts('Roboto,400', 16px);
     line-height: 10px;
     margin-top: 7px;
 }
 .prev-order{
     color: $secondColor;
-
+    @include fonts('Roboto,400', 16px);
     @include flexbox(column, wrap, flex-start, flex-start);
     background-color: white;
     margin: 10px 0 20px;
@@ -43,10 +44,13 @@ p{
         .details{
             margin-top: 10px;
             margin-left: 20px;
-            width: 500px;
+            width: 70vw;
             @include flexbox(column, wrap, flex-start, flex-start);
             span{
                 margin-right: 30px;
+            }
+            P{
+                line-height: 18px;
             }
         }
     }
@@ -55,3 +59,32 @@ p{
         border: 1px solid $mainColor;
     }
 }
+
+@media screen and (max-width: 1200px){
+    .prev-order{
+        .product-details{
+            .details{
+            width: 60vw;
+            }
+        }
+    }
+  }  
+  
+  @media screen and (max-width:970px){
+    .prev-order{
+        .product-details{
+            .details{
+            width: 50vw;
+            }
+        }
+    }
+  }
+//   @media screen and (max-width: 730px){
+    // .prev-order{
+        // .product-details{
+            // .details{
+            // width: 47vw;
+            // }
+        // }
+    // }
+//   }

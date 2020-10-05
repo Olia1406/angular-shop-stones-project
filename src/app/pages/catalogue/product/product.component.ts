@@ -24,7 +24,7 @@ export class ProductComponent implements OnInit {
     'тигрове око', 'турмалін', 'флюорит', 'халцедон', 'хризоколла', 'хризопраз', 'циркон', 'цитрин', 'цоізіт', 'чароїт', 'шпінель', 'шунгіт', 'яшма',
     'янтар'];
   // .sort();
-  stoneColors: Array<string> = ['всі', 'фіолетовий', 'білий', 'коричневий', 'жовтий', 'рожевий', 'зелений', 'чорний', 'синій', 'кораловий', 'оранжевий'];
+  stoneColors: Array<string> = ['всі', 'чорний','фіолетовий', 'білий', 'коричневий', 'жовтий', 'рожевий', 'зелений', 'чорний', 'синій', 'кораловий', 'оранжевий'];
   zodiacs: Array<string> = ['всі', 'козеріг', 'водолій', 'риби', 'овен', 'телець', 'близнюки', 'рак', 'лев', 'діва', 'терези', 'скорпіон', 'стрілець'];
   categoryName: string;
   paginationStatus: boolean = true;
@@ -77,10 +77,10 @@ export class ProductComponent implements OnInit {
   // this.category = this.products[0].category.nameUA;
   // });
   // }
-
+  
   private getFireCloudProducts(categoryName: string = 'necklace'): void {
     // this.products = [];
-    this.firecloud.collection('products', ref => ref.limit(5).where('category.nameEN', '==', categoryName))
+    this.firecloud.collection('products', ref => ref.limit(6).where('category.nameEN', '==', categoryName))
       .snapshotChanges()
       .subscribe(response => {
         if (!response.length) {
@@ -114,7 +114,7 @@ export class ProductComponent implements OnInit {
       .where('category.nameEN', '==', this.categoryName)
       .startAt(this.get_prev_startAt())
       .endBefore(this.firstInResponse)
-      .limit(5)
+      .limit(6)
     ).get()
       .subscribe(response => {
         this.firstInResponse = response.docs[0];
@@ -143,12 +143,13 @@ export class ProductComponent implements OnInit {
     this.disable_next = true;
     this.firecloud.collection('products', ref => ref
       .where('category.nameEN', '==', this.categoryName)
-      .limit(5)
+      .limit(6)
       .startAfter(this.lastInResponse)
     ).get()
       .subscribe(response => {
 
-        if (!response.docs.length) {
+        // if (!response.docs.length && response.docs.length<6 ) {
+          if (!response.docs.length && response.docs.length<6 ) {
           this.disable_next = true;
           return;
         }
@@ -163,8 +164,10 @@ export class ProductComponent implements OnInit {
         this.pagination_clicked_count++;
 
         this.push_prev_startAt(this.firstInResponse);
-
-        this.disable_next = false;
+         if(this.products.length<6){
+        this.disable_next = true;
+         }
+         else {this.disable_next = false;}
       }, error => {
         this.disable_next = false;
       });
@@ -198,21 +201,6 @@ export class ProductComponent implements OnInit {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   // =====================================================================
   addToBasket(product: IProduct): void {
     this.ordersService.addBasket(product);
@@ -240,34 +228,22 @@ export class ProductComponent implements OnInit {
     if (this.currentStone == 'всі') {
       this.getFireCloudProducts(this.categoryName);
       this.paginationStatus = true;
-      // this.products = [];
-      // this.firecloud.collection('products').ref.where('category.nameEN', '==', this.categoryName)
-        // .onSnapshot(
-          // collection => {
-            // collection.forEach(document => {
-              // const data = document.data();
-              // const id = document.id;
-              // this.products.push({ id, ...data });
-            // });
-            // this.category = this.products[0].category.nameUA;
-          // }
-        // );
     }
     else {
       this.products = [];
-      this.firecloud.collection('products').ref.where('category.nameEN', '==', this.categoryName)
-        .where('stone', '==', stone)
-        .onSnapshot(
-          collection => {
-            collection.forEach(document => {
-              const data = document.data();
-              const id = document.id;
-              this.products.push({ id, ...data });
-            });
-            this.category = this.products[0].category.nameUA;
+      this.firecloud.collection('products', ref => ref.where('category.nameEN', '==', this.categoryName).where('stone', '==', stone))
+        .snapshotChanges()
+        .subscribe(response => {
+          if (!response.length) {
+            console.log("No Data Available");
+            return false;
           }
-        );
-      // this.someProducts = this.products;
+          this.products = [];
+          for (let item of response) {
+            this.products.push(item.payload.doc.data());
+          }
+        }, error => {
+        });
     }
   }
 
@@ -280,34 +256,22 @@ export class ProductComponent implements OnInit {
     if (this.currentColor == 'всі') {
       this.paginationStatus = true;
       this.getFireCloudProducts(this.categoryName);
-      // this.products = [];
-      // this.firecloud.collection('products').ref.where('category.nameEN', '==', this.categoryName)
-        // .onSnapshot(
-          // collection => {
-            // collection.forEach(document => {
-              // const data = document.data();
-              // const id = document.id;
-              // this.products.push({ id, ...data });
-            // });
-            // this.category = this.products[0].category.nameUA;
-          // }
-        // );
     }
     else {
       this.products = [];
-      this.firecloud.collection('products').ref.where('category.nameEN', '==', this.categoryName)
-        .where('color', '==', color)
-        .onSnapshot(
-          collection => {
-            collection.forEach(document => {
-              const data = document.data();
-              const id = document.id;
-              this.products.push({ id, ...data });
-            });
-            this.category = this.products[0].category.nameUA;
+      this.firecloud.collection('products', ref => ref.where('category.nameEN', '==', this.categoryName).where('color', '==', color))
+        .snapshotChanges()
+        .subscribe(response => {
+          if (!response.length) {
+            console.log("No Data Available");
+            return false;
           }
-        );
-      // this.someProducts = this.products;
+          this.products = [];
+          for (let item of response) {
+            this.products.push(item.payload.doc.data());
+          }
+        }, error => {
+        });
     }
   }
 
@@ -320,34 +284,22 @@ export class ProductComponent implements OnInit {
     if (this.currentZodiac == 'всі') {
       this.paginationStatus = true;
       this.getFireCloudProducts(this.categoryName);
-      // this.products = [];
-      // this.firecloud.collection('products').ref.where('category.nameEN', '==', this.categoryName)
-        // .onSnapshot(
-          // collection => {
-            // collection.forEach(document => {
-              // const data = document.data();
-              // const id = document.id;
-              // this.products.push({ id, ...data });
-            // });
-            // this.category = this.products[0].category.nameUA;
-          // }
-        // );
     }
     else {
       this.products = [];
-      this.firecloud.collection('products').ref.where('category.nameEN', '==', this.categoryName)
-        .where('zodiac', 'array-contains', zodiac)
-        .onSnapshot(
-          collection => {
-            collection.forEach(document => {
-              const data = document.data();
-              const id = document.id;
-              this.products.push({ id, ...data });
-            });
-            this.category = this.products[0].category.nameUA;
+      this.firecloud.collection('products', ref => ref.where('category.nameEN', '==', this.categoryName).where('zodiac', 'array-contains', zodiac))
+        .snapshotChanges()
+        .subscribe(response => {
+          if (!response.length) {
+            console.log("No Data Available");
+            return false;
           }
-        );
-      // this.someProducts = this.products;
+          this.products = [];
+          for (let item of response) {
+            this.products.push(item.payload.doc.data());
+          }
+        }, error => {
+        });
     }
   }
 

@@ -1,0 +1,19 @@
+<div class="container">
+    <h4>Акції  місяця</h4>
+    <hr>
+    <div class="disc-cont">
+        <div class="disc-info" *ngFor="let d of discounts">
+            <div class="info">
+                <div class="bg-image" [ngStyle]="{'background-image': 'url(' + d.image + ')'}">
+                    <div class="disc-title">
+                        <p>{{d.title}}</p>
+                    </div>
+                </div>
+                <div class="descr">
+                    <p [innerHtml]="d.text"></p>
+                </div>
+            </div>
+            <a [routerLink]="[ '/catalogue' ]" class="btn bt mb-4">Перейти до покупок</a>
+        </div>
+    </div>
+</div>

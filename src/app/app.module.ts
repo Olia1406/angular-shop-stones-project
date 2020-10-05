@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 
+import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 
@@ -14,12 +14,13 @@ import { ContactsComponent } from './pages/contacts/contacts.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { MoreAboutStonesComponent } from './pages/more-about-stones/more-about-stones.component';
+import { UserDiscountComponent } from './pages/user-discount/user-discount.component';
 
 import { CatalogueComponent } from './pages/catalogue/catalogue.component';
 // import { NecklaceComponent } from './pages/catalogue/necklace/necklace.component';
 // import { BraceletComponent } from './pages/catalogue/bracelet/bracelet.component';
 // import { EarringComponent } from './pages/catalogue/earring/earring.component';
-import { DiscountComponent } from './pages/catalogue/discount/discount.component';
+// import { DiscountComponent } from './pages/catalogue/discount/discount.component';
 import { ProductComponent } from './pages/catalogue/product/product.component';
 import { ProductDetailsComponent } from './pages/catalogue/product-details/product-details.component';
 import { CounterComponent } from './components/counter/counter.component';
@@ -48,6 +49,13 @@ import { PriceOrderPipe } from './shared/pipes/price-order.pipe';
 import { CarouselComponent } from './components/carousel/carousel.component';
 // import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { SearchProductPipe } from './shared/pipes/search-product.pipe';
+
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
+import { ToastrModule} from 'ngx-toastr';
+ 
 
 @NgModule({
   declarations: [
@@ -64,7 +72,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     // NecklaceComponent,
     // BraceletComponent,
     // EarringComponent,
-    DiscountComponent,
+    // DiscountComponent,
     AdminComponent,
     AdminCategoryComponent,
     AdminProductComponent,
@@ -77,7 +85,9 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     // LoginComponent,
     ProfileComponent,
     PriceOrderPipe,
-    CarouselComponent
+    CarouselComponent,
+    UserDiscountComponent,
+    SearchProductPipe
   ],
   imports: [
     BrowserModule,
@@ -93,7 +103,19 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     NgxUiLoaderModule.forRoot(loaderConfig),
     NgxUiLoaderRouterModule,
     // PaginationModule.forRoot(),
-    CarouselModule.forRoot()
+    CarouselModule.forRoot(),
+    // ToastNoAnimationModule.forRoot(),
+    CommonModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(
+      {
+        timeOut: 8000,
+        // positionClass: 'toast-bottom-right',
+        // preventDuplicates: true,
+        // closeButton: true,
+        progressBar: true
+      }
+    ),
   ],
   providers: [],
   bootstrap: [AppComponent]

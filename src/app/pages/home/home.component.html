@@ -1,12 +1,6 @@
-<!-- <p>home works!</p> -->
 <main>
     <div class="bg-im"><h1>ПРИКРАСИ З НАТУРАЛЬНОГО КАМІННЯ</h1>
-        <p>Класичні та авторські вироби.</p></div>
-    <div class="main-text">
-    <!-- <h1>ПРИКРАСИ З НАТУРАЛЬНОГО КАМІННЯ</h1> -->
-    <!-- <p>Класичні та авторські прикраси.</p> -->
-    </div>
-
+        <p>Класичні та авторські прикраси.</p></div>
     <!-- <div class="title" style="margin: 10px 0 0 0;"> -->
         <!-- <h4 class="orange" >КОЛЕКЦІЇ</h4> -->
         <!-- <h4 class="gray">ПРИКРАС</h4> -->
@@ -19,7 +13,7 @@
     <div class="new-products">
         <div class="product" *ngFor="let prod of fourProd">
             <img [routerLink]="[ '/menu/'+prod.category.nameEN, prod.id ]" class="p-image" [src]="prod?.image" alt="">
-            <p>{{prod?.nameUA}}</p>
+            <a [routerLink]="[ '/menu/'+prod.category.nameEN, prod.id ]">{{prod?.nameUA}}</a>
             <h6>{{prod?.price}} <i>грн</i></h6>
         </div>
     </div>
@@ -34,20 +28,10 @@
         <h3 class="gray">ПРОДАЖ</h3>
     </div>
     <div class="best-salers">
-        <div class="product">
-            <img class="p-image" src="../../../assets/images/b-green.jpg" alt="">
-            <p>Браслет з агату</p>
-            <h6>111 <i>грн</i></h6>
-        </div>
-        <div class="product">
-            <img class="p-image" src="../../../assets/images/perl.jpg" alt="">
-            <p>Набір з перлин</p>
-            <h6>222 <i>грн</i></h6>
-        </div>
-        <div class="product">
-            <img class="p-image" src="../../../assets/images/koral.jpg" alt="">
-            <p>Намисто з коралу</p>
-            <h6>333 <i>грн</i></h6>
+        <div class="product" *ngFor="let prod of newProd">
+            <img [routerLink]="[ '/menu/'+prod.category.nameEN, prod.id ]" class="p-image" [src]="prod?.image" alt="">
+            <a [routerLink]="[ '/menu/'+prod.category.nameEN, prod.id ]">{{prod?.nameUA}}</a>
+            <h6>{{prod?.price}} <i>грн</i></h6>
         </div>
     </div>
 </main>

@@ -12,10 +12,12 @@ export class HomeComponent implements OnInit {
   products: Array<IProduct>;
   lastProducts: Array<IProduct>;
   fourProd: Array<IProduct>;
+  newProd: Array<IProduct>;
   constructor(private prodService: ProductService) { }
 
   ngOnInit(): void {
     this.getFireClProducts();
+    this.getNewFcProducts();
   }
 
   private getFireClProducts() {
@@ -42,6 +44,20 @@ export class HomeComponent implements OnInit {
   }
   third(): void {
     this.fourProd = this.lastProducts.slice(8, 12)
+  }
+
+  private getNewFcProducts(){
+    this.prodService.getNewFireCloudProduct()
+    .subscribe(
+      collection => {
+        this.newProd = collection.map(document => {
+          const data = document.payload.doc.data() as IProduct;
+          const id = document.payload.doc.id;
+          return { id, ...data };
+        })
+        // this.newProd = this.products;
+      }
+    )
   }
 
 

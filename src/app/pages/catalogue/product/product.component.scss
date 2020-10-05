@@ -8,7 +8,7 @@
 .new-products{
     @include flexbox(row, wrap, center, flex-start);
     margin-bottom: 15px;
-    width: 70vw;
+    width: 80vw;
     .product{
        margin: 20px;
        @include dimentions(220px,325px);
@@ -16,18 +16,19 @@
        @include fonts($mainFont,17px);
        background-color: white;
        border-radius: 5px;
-       box-shadow: 0 0 5px 0 gray;
+       box-shadow: 0 0 5px 2px gray;
        .p-image{
-        @include dimentions(220px,200px);
+        @include dimentions(210px,200px);
         margin-bottom: 10px;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
+        margin-top: 5px;
+        // border-top-left-radius: 5px;
+        // border-top-right-radius: 5px;
         }
-        p{
-          color:$secondColor;
-          text-align: center;
-          margin: 5px;
-        }
+        // p{
+          // color:$secondColor;
+          // text-align: center;
+          // margin: 5px;
+        // }
         h6{
           margin-top: 5px;
           margin-bottom: 10px;
@@ -143,3 +144,20 @@
     font-family: 'Roboto,400';
     font-size: 15px;
   }
+
+@media screen and (max-width: 1200px){
+  .new-products{
+    width: 75vw;
+  }
+}  
+
+@media screen and (max-width:970px){
+  .new-products{
+    width: 70vw;
+  }
+}
+@media screen and (max-width: 730px){
+  .new-products{
+    width: 55vw;
+  }
+}

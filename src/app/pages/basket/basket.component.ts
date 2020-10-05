@@ -25,11 +25,11 @@ export class BasketComponent implements OnInit {
   deliveryDepartment: string;
   paymentType = 'на карту';
   totalPrice = 0;
-  status = 'in progress';
+  status = 'в обробці';
   userOrdEm = '';
 
   userOrders: Array<IOrder> = [];
-  previousOrder: IOrder;
+  // previousOrder: IOrder;
   currentProd: IProduct;
   modalRef: BsModalRef;
 
@@ -42,7 +42,7 @@ export class BasketComponent implements OnInit {
   ngOnInit(): void {
     this.getBasket();
     this.getLogUser();
-    this.getLogUserOrderData();
+    // this.getLogUserOrderData();
   }
 
   private getBasket(): void {
@@ -76,12 +76,6 @@ export class BasketComponent implements OnInit {
     this.paymentType = payment;
   }
 
-  getLogUser(): void {
-    if (localStorage.getItem('user')) {
-      const user = JSON.parse(localStorage.getItem('user'));
-      this.userOrdEm = user.userEmail;
-    }
-  }
 
   addOrder(): void {
     const order = new Order(
@@ -136,29 +130,41 @@ export class BasketComponent implements OnInit {
     this.updateBasket();
   }
   // --------------------------------------------------
+
+  getLogUser(): void {
+    if (localStorage.getItem('user')) {
+      const user = JSON.parse(localStorage.getItem('user'));
+      this.userCity = user.userCity;
+      this.userName = user.userFirstName;
+      this.userPhone = user.userTel;
+      this.userOrdEm = user.userEmail;
+      
+    }
+  }
+
+
   // дістаю дані по станньому замовленню юзера, якщо він залогований,
   // щоб відобразити в полях форми
-  private getLogUserOrderData(): void {
-    this.userOrders=[];
-    if (this.userOrdEm != '') {
-      this.firecloud.collection('orders').ref.where('userOrderEmail', '==', this.userOrdEm)
-        .onSnapshot(
-          collection => {
-            collection.forEach(document => {
-              const data = document.data() as IOrder;
-              const id = document.id;
-              this.userOrders.push({ id, ...data });
-              this.previousOrder = this.userOrders.slice(-1)[0];
-              this.userCity = this.previousOrder.userCity;
-              this.deliveryDepartment = this.previousOrder.deliveryDepartment;
-              this.userName = this.previousOrder.userName;
-              this.userPhone = this.previousOrder.userPhone;
-            });
-          }
-        )
-    }
-    // console.log(this.userOrders)
-  }
+  // private getLogUserOrderData(): void {
+    // this.userOrders=[];
+    // if (this.userOrdEm != '') {
+      // this.firecloud.collection('orders').ref.where('userOrderEmail', '==', this.userOrdEm)
+        // .onSnapshot(
+          // collection => {
+            // collection.forEach(document => {
+              // const data = document.data() as IOrder;
+              // const id = document.id;
+              // this.userOrders.push({ id, ...data });
+              // this.previousOrder = this.userOrders.slice(-1)[0];
+              // this.userCity = this.previousOrder.userCity;
+              // this.deliveryDepartment = this.previousOrder.deliveryDepartment;
+              // this.userName = this.previousOrder.userName;
+              // this.userPhone = this.previousOrder.userPhone;
+            // });
+          // }
+        // )
+    // }
+  // }
 
 
 

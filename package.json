@@ -11,7 +11,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~10.0.3",
+    "@angular/animations": "^10.0.14",
     "@angular/common": "~10.0.3",
     "@angular/compiler": "~10.0.3",
     "@angular/core": "~10.0.3",
@@ -23,6 +23,7 @@
     "firebase": "^7.19.1",
     "ngx-bootstrap": "^5.6.1",
     "ngx-order-pipe": "^2.1.0",
+    "ngx-toastr": "^13.0.1",
     "ngx-ui-loader": "^9.1.1",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
