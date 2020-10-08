@@ -17,7 +17,8 @@ export class AdminProductComponent implements OnInit {
   categories: Array<ICategory> = [];
   categoryName: string;
   adminProducts: Array<IProduct> = [];
-  productID = 1;
+  productID:any;
+  // productID = 1;
   productCategory: ICategory = { id: 1, nameEN: 'necklace', nameUA: 'намиста' };
   productNameEN: string;
   productNameUA: string;
@@ -83,8 +84,8 @@ export class AdminProductComponent implements OnInit {
     this.prodService.getFireCloudProduct().subscribe(
       collection => {
         this.adminProducts = collection.map(document => {
-          const data = document.payload.doc.data() as IProduct;
           const id = document.payload.doc.id;
+          const data = document.payload.doc.data() as IProduct;
           return { id, ...data };
         });
       }
@@ -123,6 +124,7 @@ export class AdminProductComponent implements OnInit {
       // this.prodService.updateJSONProduct(newProd).subscribe(() => {
         // this.getProducts();
       // })
+      // delete newProd.id;
       this.prodService.updateFireCloudProduct({ ...newProd })
       .then(message => console.log(message))
       .catch(err => console.log(err));

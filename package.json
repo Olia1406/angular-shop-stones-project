@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~10.0.3",
     "@angular/router": "~10.0.3",
     "firebase": "^7.19.1",
+    "ng-magnizoom": "^0.9.1",
     "ngx-bootstrap": "^5.6.1",
     "ngx-order-pipe": "^2.1.0",
     "ngx-toastr": "^13.0.1",

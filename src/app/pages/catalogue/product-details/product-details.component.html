@@ -7,9 +7,24 @@
   </div>
   <div class="prod-details">
     <div class="images-box">
+      <!-- <ng-magnizoom zoomMode="LENS"  -->
+      <!-- [imageSrc]=" product?.image  " -->
+      <!-- [imageClass]="{ 'big-image': true }" -->
+      <!-- [imageStyle]="{ 'width': '100px', 'height': '100px' }" -->
+      <!-- ></ng-magnizoom> -->
+      <!-- -------------------------------------------- -->
+      <!-- 'url(' + product?.image + ')' -->
+      <!-- imageSrc=" '+ product?.image +'" -->
+      <!-- [imageSrc]="product?.image"  -->
+      <!-- [imageStyle]="{ 'width': '100%', 'height': '100%' }" -->
+      <!-- [imageClass]="{ 'custom-class': true }"> -->
+      <!-- imageClass="big-image" [ngClass]="{'big-image': true}" -->
+      <!-- imageSrc="https://www.w3schools.com/html/pic_trulli.jpg" -->
+   <!-- ---------------------------------------------------------- -->
       <div>
         <img class="big-image" [src]="product?.image" alt="">
       </div>
+
       <!-- <div class="small-images"> -->
       <!-- <div class="sm-im"></div> -->
       <!-- <div class="sm-im"></div> -->
@@ -24,7 +39,8 @@
         <p>Колір: {{ product?.color}}</p>
         <p>Довжина: {{ product?.length }} см</p>
         <p>Розмір каменя: {{ product?.width }} мм</p>
-        <p class="more"><a [routerLink]="[ '/more' ]" routerLinkActive="active">Більше про властивості каменя <i> {{product?.stone}}</i></a></p>
+        <p class="more"><a [routerLink]="[ '/more' ]" routerLinkActive="active">Більше про властивості каменя <i>
+              {{product?.stone}}</i></a></p>
       </div>
       <hr>
       <div class="row-info">

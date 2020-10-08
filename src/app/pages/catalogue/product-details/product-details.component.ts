@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/shared/interfaces/product.interface';
 import { ProductService } from 'src/app/shared/services/product.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, Event, NavigationEnd  } from '@angular/router';
 import { OrdersService } from 'src/app/shared/services/orders.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 
@@ -16,7 +16,14 @@ export class ProductDetailsComponent implements OnInit {
   constructor(private prodService: ProductService,
               private ordersService: OrdersService,
               private actRoute: ActivatedRoute,
-              private firecloud: AngularFirestore) { }
+              private router: Router,
+              private firecloud: AngularFirestore) { 
+                // this.router.events.subscribe((event: Event) => {
+                  // if (event instanceof NavigationEnd) {
+                      // this.getViewProduct();
+                  // }
+                // });
+              }
 
   ngOnInit(): void {
     this.getViewProduct();

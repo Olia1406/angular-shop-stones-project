@@ -55,7 +55,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
 import { ToastrModule} from 'ngx-toastr';
- 
+import { NgMagnizoomModule } from 'ng-magnizoom';
 
 @NgModule({
   declarations: [
@@ -109,13 +109,14 @@ import { ToastrModule} from 'ngx-toastr';
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(
       {
-        timeOut: 8000,
+        timeOut: 5000,
         // positionClass: 'toast-bottom-right',
         // preventDuplicates: true,
         // closeButton: true,
         progressBar: true
       }
     ),
+    NgMagnizoomModule
   ],
   providers: [],
   bootstrap: [AppComponent]

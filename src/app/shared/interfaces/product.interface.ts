@@ -1,6 +1,6 @@
 import { ICategory } from './category.interface';
 export interface IProduct {
-    id: number;
+    id: any;
     category: ICategory;
     nameEN: string;
     nameUA: string;

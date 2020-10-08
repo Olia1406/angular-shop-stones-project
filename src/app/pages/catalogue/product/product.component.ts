@@ -24,7 +24,7 @@ export class ProductComponent implements OnInit {
     'тигрове око', 'турмалін', 'флюорит', 'халцедон', 'хризоколла', 'хризопраз', 'циркон', 'цитрин', 'цоізіт', 'чароїт', 'шпінель', 'шунгіт', 'яшма',
     'янтар'];
   // .sort();
-  stoneColors: Array<string> = ['всі', 'чорний','фіолетовий', 'білий', 'коричневий', 'жовтий', 'рожевий', 'зелений', 'чорний', 'синій', 'кораловий', 'оранжевий'];
+  stoneColors: Array<string> = ['всі', 'чорний','фіолетовий','білий','бордовий', 'коричневий', 'жовтий', 'рожевий', 'зелений', 'чорний','червоний', 'синій','сірий', 'кораловий', 'оранжевий'];
   zodiacs: Array<string> = ['всі', 'козеріг', 'водолій', 'риби', 'овен', 'телець', 'близнюки', 'рак', 'лев', 'діва', 'терези', 'скорпіон', 'стрілець'];
   categoryName: string;
   paginationStatus: boolean = true;
@@ -80,7 +80,8 @@ export class ProductComponent implements OnInit {
   
   private getFireCloudProducts(categoryName: string = 'necklace'): void {
     // this.products = [];
-    this.firecloud.collection('products', ref => ref.limit(6).where('category.nameEN', '==', categoryName))
+    this.firecloud.collection('products', ref => ref.where('category.nameEN', '==', categoryName).limit(12))
+    // .orderBy('nameEN')
       .snapshotChanges()
       .subscribe(response => {
         if (!response.length) {
@@ -114,7 +115,7 @@ export class ProductComponent implements OnInit {
       .where('category.nameEN', '==', this.categoryName)
       .startAt(this.get_prev_startAt())
       .endBefore(this.firstInResponse)
-      .limit(6)
+      .limit(12)
     ).get()
       .subscribe(response => {
         this.firstInResponse = response.docs[0];
@@ -143,13 +144,13 @@ export class ProductComponent implements OnInit {
     this.disable_next = true;
     this.firecloud.collection('products', ref => ref
       .where('category.nameEN', '==', this.categoryName)
-      .limit(6)
+      .limit(12)
       .startAfter(this.lastInResponse)
     ).get()
       .subscribe(response => {
 
-        // if (!response.docs.length && response.docs.length<6 ) {
-          if (!response.docs.length && response.docs.length<6 ) {
+        // if (!response.docs.length && response.docs.length<12 ) {
+          if (!response.docs.length && response.docs.length<12 ) {
           this.disable_next = true;
           return;
         }
@@ -164,7 +165,7 @@ export class ProductComponent implements OnInit {
         this.pagination_clicked_count++;
 
         this.push_prev_startAt(this.firstInResponse);
-         if(this.products.length<6){
+         if(this.products.length<12){
         this.disable_next = true;
          }
          else {this.disable_next = false;}
