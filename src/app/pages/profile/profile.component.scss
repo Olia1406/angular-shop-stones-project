@@ -18,6 +18,9 @@ p{
     line-height: 10px;
     margin-top: 7px;
 }
+.order-status{
+    color:$mainColor;
+}
 .prev-order{
     color: $secondColor;
     @include fonts('Roboto,400', 16px);

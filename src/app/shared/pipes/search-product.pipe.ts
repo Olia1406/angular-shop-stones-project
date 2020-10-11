@@ -14,21 +14,16 @@ export class SearchProductPipe implements PipeTransform {
     }
     else
       return value.filter(
-
-        prod => prod.id.toString().toLowerCase().includes(seacrhParam) ||
-          prod.description.toLowerCase().includes(seacrhParam.toLowerCase()) 
-          // ||
-          // prod.zodiac.toLowerCase().includes(seacrhParam.toLowerCase())
-          // prod.category.nameUA.toLowerCase().includes(seacrhParam.toLowerCase()) ||
-          // prod.nameUA.toLowerCase().includes(seacrhParam.toLowerCase()) ||
-          // prod.color.toLowerCase().includes(seacrhParam.toLowerCase()) ||
-          // prod.stone.toLowerCase().includes(seacrhParam.toLowerCase()) ||
-
-
-        // prod.price.toString().includes(seacrhParam)
-        // prod.length.toLowerCase().includes(seacrhParam.toLowerCase()) ||
-        // prod.width.toLowerCase().includes(seacrhParam.toLowerCase()) ||
-
+          prod => prod.id.toString().toLowerCase().includes(seacrhParam) ||
+          prod.description.toLowerCase().includes(seacrhParam.toLowerCase()) ||
+          prod.zodiac.toString().includes(seacrhParam.toLowerCase()) ||
+          prod.category.nameUA.toLowerCase().includes(seacrhParam.toLowerCase()) ||
+          prod.nameUA.toLowerCase().includes(seacrhParam.toLowerCase()) ||
+          prod.color.toString().includes(seacrhParam.toLowerCase()) ||
+          prod.stone.toString().includes(seacrhParam.toLowerCase()) ||
+          prod.price.toString().includes(seacrhParam) ||
+          prod.length.toString().includes(seacrhParam.toLowerCase()) ||
+          prod.width.toString().includes(seacrhParam.toLowerCase())
       );
   }
 

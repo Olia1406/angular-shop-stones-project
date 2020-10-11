@@ -40,5 +40,8 @@ export class CounterComponent implements OnInit {
     }
     this.changeCount.emit(true);
   }
+  // getCount(): number {
+    // return this.product.count
+  // }
 
 }

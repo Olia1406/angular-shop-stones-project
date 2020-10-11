@@ -9,9 +9,9 @@ export interface IProduct {
     width: string;
     price: number;
     image: string;
-    color: string;
+    color: any;
     zodiac: any;
     // zodiac: string;
-    stone: string;
+    stone: any;
     count: number;
 }

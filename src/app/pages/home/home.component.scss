@@ -14,10 +14,13 @@
     h1{
         color: $mainColor;
         @include fonts($mainFont, 40px);
+        text-shadow: 1px 1px rgb(65, 64, 64);
       }
     p{
         color: white;
-        @include fonts($mainFont, 20px);
+        @include fonts('Roboto,500', 18px);
+        letter-spacing: 1px;
+        text-shadow: 1px 1px rgb(65, 64, 64);
     }
 
    .title{

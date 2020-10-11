@@ -92,7 +92,7 @@ export class AdminOrderComponent implements OnInit {
       }
     }
   }
-
+  
 //Date formate
 readableDate(time) {
   var d = new Date(time);
@@ -101,8 +101,11 @@ readableDate(time) {
   let yy = d.getFullYear();
   let hh = d.getHours();
   let mmn = d.getMinutes();
+  if(mmn>=0 && mmn<10){
+  return dd + "/" + mm + "/" + yy + " " + hh + ":0" + mmn;
+  }
+  else
   return dd + "/" + mm + "/" + yy + " " + hh + ":" + mmn;
 }
-
 
 }

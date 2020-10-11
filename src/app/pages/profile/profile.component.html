@@ -12,6 +12,7 @@
     <div class="prev-orders-container">
         <div class="prev-order" *ngFor="let order of userOrders">
             <div class="date">Дата замовлення: {{readableDate(order.dateOrder)}} </div>
+            <h6 class="mt-2 order-status">Статус замовлення: {{order.statusOrder}}</h6>
             <!-- <div class="date">Дата замовлення: {{order.dateOrder.seconds}} </div> -->
             <div class="product-details" *ngFor="let prod of order.productOrder">
                 <div class="image"><img [src]="prod?.image" alt=""></div>
@@ -31,7 +32,6 @@
             <!-- <hr> -->
             <p>Спосіб доставки: {{order.userDelivery}}, № {{order.deliveryDepartment}} </p>
             <p>Спосіб оплати: {{order.userPaymentType}}</p>
-            <p>Статус замовлення: {{order.statusOrder}}</p>
         </div>
     </div>
 

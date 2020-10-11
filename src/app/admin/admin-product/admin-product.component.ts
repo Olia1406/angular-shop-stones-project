@@ -117,9 +117,9 @@ export class AdminProductComponent implements OnInit {
       this.productWidth,
       this.productPrice,
       this.productImage,
-      this.productColor,
+      this.productColor.split(','),
       this.productZodiac.split(','),
-      this.productStone);
+      this.productStone.split(','));
     if (this.editStatus == true) {
       // this.prodService.updateJSONProduct(newProd).subscribe(() => {
         // this.getProducts();
@@ -218,9 +218,9 @@ export class AdminProductComponent implements OnInit {
     this.productWidth = prod.width;
     this.productPrice = prod.price;
     this.productImage = prod.image;
-    this.productColor = prod.color;
+    this.productColor = prod.color.toString();
     this.productZodiac = prod.zodiac.toString();
-    this.productStone = prod.stone;
+    this.productStone = prod.stone.toString();
     this.imageStatus = false;
   }
 

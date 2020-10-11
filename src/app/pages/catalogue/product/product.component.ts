@@ -18,13 +18,12 @@ export class ProductComponent implements OnInit {
   category: string;
 
   stoneNames: Array<string> = ['всі', 'авантюрин', 'агат', 'аквамарин', 'амазоніт', 'аметист', 'бірюза', 'бурштин', 'биче око',
-    'варисцит', 'гематит', 'гірський кришталь', 'гранат', 'жадеїт', 'змієвик', 'кахолонг', 'кварц', 'корал', 'котяче око', 'лабрадор',
+    'варисцит','волове око', 'гематит', 'гірський кришталь', 'гранат', 'жадеїт', 'змієвик', 'кахолонг', 'кварц', 'корал', 'котяче око', 'лабрадор',
     'лава вулканічна', 'лазурит', 'ларімар', 'малахіт', 'місячний камінь', 'нефрит', 'обсидіан', 'онікс', 'опал', 'перламутр', 'перли', 'пірит',
     'раухтопаз', 'родоніт', 'рожевий кварц', 'рубін', 'рутиловий кварц', 'сапфір', 'сардрнікс', 'сердолік', 'смарагд', 'содаліт', 'соколине око',
     'тигрове око', 'турмалін', 'флюорит', 'халцедон', 'хризоколла', 'хризопраз', 'циркон', 'цитрин', 'цоізіт', 'чароїт', 'шпінель', 'шунгіт', 'яшма',
     'янтар'];
-  // .sort();
-  stoneColors: Array<string> = ['всі', 'чорний','фіолетовий','білий','бордовий', 'коричневий', 'жовтий', 'рожевий', 'зелений', 'чорний','червоний', 'синій','сірий', 'кораловий', 'оранжевий'];
+  stoneColors: Array<string> = ['всі','бежевий','білий','бірюзовий','бордовий','голубий','жовтий','зелений','коричневий','оранжевий','прозорий','рожевий','синій','сірий','таракотовий','фіолетовий','червоний','чорний'];
   zodiacs: Array<string> = ['всі', 'козеріг', 'водолій', 'риби', 'овен', 'телець', 'близнюки', 'рак', 'лев', 'діва', 'терези', 'скорпіон', 'стрілець'];
   categoryName: string;
   paginationStatus: boolean = true;
@@ -52,6 +51,10 @@ export class ProductComponent implements OnInit {
   //Disable next and prev buttons
   disable_next: boolean = false;
   disable_prev: boolean = false;
+
+  currentStone = 'всі';
+  currentColor = 'всі';
+  currentZodiac = 'всі';
   // ------------------------------------------
 
   constructor(private prodService: ProductService,
@@ -63,7 +66,11 @@ export class ProductComponent implements OnInit {
       if (event instanceof NavigationEnd) {
         this.categoryName = this.actRoute.snapshot.paramMap.get('category');
         // this.getProducts(categoryName);
+        this.currentStone = 'всі';
+        this.currentColor = 'всі';
+        this.currentZodiac = 'всі';
         this.getFireCloudProducts(this.categoryName);
+
       }
     });
   }
@@ -77,11 +84,14 @@ export class ProductComponent implements OnInit {
   // this.category = this.products[0].category.nameUA;
   // });
   // }
-  
+
   private getFireCloudProducts(categoryName: string = 'necklace'): void {
+    this.currentStone = 'всі';
+    this.currentColor = 'всі';
+    this.currentZodiac = 'всі';
     // this.products = [];
     this.firecloud.collection('products', ref => ref.where('category.nameEN', '==', categoryName).limit(12))
-    // .orderBy('nameEN')
+      // .orderBy('nameEN')
       .snapshotChanges()
       .subscribe(response => {
         if (!response.length) {
@@ -99,9 +109,13 @@ export class ProductComponent implements OnInit {
         //Initialize values
         this.prev_strt_at = [];
         this.pagination_clicked_count = 0;
-        this.disable_next = false;
+        if (response.length < 12) {
+          this.disable_next = true;
+        }
+        else {
+          this.disable_next = false;
+        }
         this.disable_prev = false;
-
         //Push first item to use for Previous action
         this.push_prev_startAt(this.firstInResponse);
       }, error => {
@@ -110,6 +124,9 @@ export class ProductComponent implements OnInit {
 
   //Show previous set 
   prevPage() {
+    this.currentStone = 'всі';
+    this.currentColor = 'всі';
+    this.currentZodiac = 'всі';
     this.disable_prev = true;
     this.firecloud.collection('products', ref => ref
       .where('category.nameEN', '==', this.categoryName)
@@ -141,6 +158,9 @@ export class ProductComponent implements OnInit {
   }
 
   nextPage() {
+    this.currentStone = 'всі';
+    this.currentColor = 'всі';
+    this.currentZodiac = 'всі';
     this.disable_next = true;
     this.firecloud.collection('products', ref => ref
       .where('category.nameEN', '==', this.categoryName)
@@ -150,10 +170,11 @@ export class ProductComponent implements OnInit {
       .subscribe(response => {
 
         // if (!response.docs.length && response.docs.length<12 ) {
-          if (!response.docs.length && response.docs.length<12 ) {
-          this.disable_next = true;
-          return;
-        }
+        // if (!response.docs.length && response.docs.length<12 ) {
+        // console.log(response.docs.length);
+        // this.disable_next = true;
+        // return;
+        // }
         this.firstInResponse = response.docs[0];
 
         this.lastInResponse = response.docs[response.docs.length - 1];
@@ -165,10 +186,10 @@ export class ProductComponent implements OnInit {
         this.pagination_clicked_count++;
 
         this.push_prev_startAt(this.firstInResponse);
-         if(this.products.length<12){
-        this.disable_next = true;
-         }
-         else {this.disable_next = false;}
+        if (this.products.length < 12) {
+          this.disable_next = true;
+        }
+        else { this.disable_next = false; }
       }, error => {
         this.disable_next = false;
       });
@@ -216,9 +237,6 @@ export class ProductComponent implements OnInit {
     return this.products.sort((a, b) => b.price - a.price)
   }
   // --------------------------filters----------------------------------
-  currentStone = 'всі';
-  currentColor = 'всі';
-  currentZodiac = 'всі';
   // ------------------by stone---------------------------
 
   filterByStone(stone): void {
@@ -232,7 +250,7 @@ export class ProductComponent implements OnInit {
     }
     else {
       this.products = [];
-      this.firecloud.collection('products', ref => ref.where('category.nameEN', '==', this.categoryName).where('stone', '==', stone))
+      this.firecloud.collection('products', ref => ref.where('category.nameEN', '==', this.categoryName).where('stone', 'array-contains', stone))
         .snapshotChanges()
         .subscribe(response => {
           if (!response.length) {
@@ -260,7 +278,7 @@ export class ProductComponent implements OnInit {
     }
     else {
       this.products = [];
-      this.firecloud.collection('products', ref => ref.where('category.nameEN', '==', this.categoryName).where('color', '==', color))
+      this.firecloud.collection('products', ref => ref.where('category.nameEN', '==', this.categoryName).where('color', 'array-contains', color))
         .snapshotChanges()
         .subscribe(response => {
           if (!response.length) {
