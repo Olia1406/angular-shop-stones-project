@@ -6,7 +6,6 @@ import { Order } from '../../shared/models/order.model';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { IOrder } from '../../shared/interfaces/order.interface';
 import { AngularFirestore } from '@angular/fire/firestore';
-// import { ActivatedRoute, Router, Event, NavigationEnd } from '@angular/router';
 
 
 @Component({
@@ -29,20 +28,17 @@ export class BasketComponent implements OnInit {
   userOrdEm = '';
 
   userOrders: Array<IOrder> = [];
-  // previousOrder: IOrder;
   currentProd: IProduct;
   modalRef: BsModalRef;
 
   constructor(private ordersService: OrdersService,
     private modalService: BsModalService,
     private firecloud: AngularFirestore,
-    // private router: Router
     ) {}
 
   ngOnInit(): void {
     this.getBasket();
     this.getLogUser();
-    // this.getLogUserOrderData();
   }
 
   private getBasket(): void {
@@ -94,11 +90,6 @@ export class BasketComponent implements OnInit {
       this.userOrdEm
     );
     delete order.id;
-    // this.ordersService.addOrder(order).subscribe(
-    // () => {
-    // this.resetOrder();
-    // }
-    // );
     this.ordersService.postFireCloudOrder({ ...order })
       .then(() => this.resetOrder())
       .catch(err => console.log(err));
@@ -143,34 +134,8 @@ export class BasketComponent implements OnInit {
   }
 
 
-  // дістаю дані по станньому замовленню юзера, якщо він залогований,
-  // щоб відобразити в полях форми
-  // private getLogUserOrderData(): void {
-    // this.userOrders=[];
-    // if (this.userOrdEm != '') {
-      // this.firecloud.collection('orders').ref.where('userOrderEmail', '==', this.userOrdEm)
-        // .onSnapshot(
-          // collection => {
-            // collection.forEach(document => {
-              // const data = document.data() as IOrder;
-              // const id = document.id;
-              // this.userOrders.push({ id, ...data });
-              // this.previousOrder = this.userOrders.slice(-1)[0];
-              // this.userCity = this.previousOrder.userCity;
-              // this.deliveryDepartment = this.previousOrder.deliveryDepartment;
-              // this.userName = this.previousOrder.userName;
-              // this.userPhone = this.previousOrder.userPhone;
-            // });
-          // }
-        // )
-    // }
-  // }
-
-
 
 
 }
 
 
-
-// }

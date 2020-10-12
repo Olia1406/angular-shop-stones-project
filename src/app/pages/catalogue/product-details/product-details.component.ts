@@ -18,23 +18,12 @@ export class ProductDetailsComponent implements OnInit {
               private actRoute: ActivatedRoute,
               private router: Router,
               private firecloud: AngularFirestore) { 
-                // this.router.events.subscribe((event: Event) => {
-                  // if (event instanceof NavigationEnd) {
-                      // this.getViewProduct();
-                  // }
-                // });
               }
 
   ngOnInit(): void {
     this.getViewProduct();
   }
 
-  // private getViewProduct(): void {
-    // const id = +this.actRoute.snapshot.paramMap.get('id');
-    // this.prodService.getOneProduct(id).subscribe(data => {
-      // this.product = data;
-    // });
-  // }
 
   private getViewProduct(): void {
     const id = this.actRoute.snapshot.paramMap.get('id');

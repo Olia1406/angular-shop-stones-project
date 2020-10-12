@@ -12,10 +12,7 @@
     width: $w;
     height: $h;  
 }
-// @include flexbox(column, nowrap, center, center);
 @mixin fonts($font_family, $font_size) {
     font-family: $font_family;
-    // font-weight: $font_weight;
     font-size: $font_size;
-    // line-height: $line_height;
 }

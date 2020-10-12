@@ -1,20 +1,11 @@
 @import '../../common_scss/mixins';
 @import '../../common_scss/variables';
 
-// @include flexbox(row, nowrap, space-between, center);
-// @include dimentions(16px,16px);
-// @include fonts($mainFont, 12px);
-
-// .basket-container{
-// @include flexbox(column, wrap, space-between, center);
-// }
-
 .table {
     display: table;
     width: 100%;
     background-color: white;
     padding: 20px 10px;
-    // border-collapse: collapse;
   }
 .line{
   width: 100%;
@@ -31,20 +22,13 @@
   margin: 15px 0;
   .td{
   color:$mainColor;
-  // margin-right: 20px;
   }
-  // border: 1px solid #000;
 }
 .tbody{
-  // border: 1px solid #000;
   font-family: 'Roboto,400';
   height: 40px;
   margin: 5px 0;
-  // .td{
-    // margin-right: 20px;
-    // }
   span{
-    // font-weight: 900;
     font-family: $mainFont;
     font-size: 22px;
     &:hover{
@@ -83,10 +67,8 @@
       width: 350px;
       margin: 10px 30px;
       padding: 20px;
-      // border: 1px solid #000;
       h5{
       @include fonts($mainFont, 17px);
-      // color: $mainColor;
       }
     }
   }
@@ -96,8 +78,6 @@
     font-family: 'Roboto,400';
   }
 .buy{
-  // width: 500px;
-  // border: 1px solid #000;
   color: $secondColor;
   margin: 0 15px 20px;
   padding-bottom: 20px;
@@ -111,28 +91,20 @@
     border: 1px solid rgb(199, 197, 197);
     border-radius: 3px;
     color: $secondColor;
-    // @include fonts($mainFont, 15px);
     &:focus{
-      // border: none;
       box-shadow: 0 0 1px 2px $secondColorLt;
     }
   }
   .comment{
     width: 720px;
-    // width: 100%;
-    // height: 35px;
     padding: 5px;
     border: 1px solid rgb(199, 197, 197);
     border-radius: 3px;
     color: $secondColor;
     outline: none;
-
-    // @include fonts($mainFont, 15px);
     &:focus{
       outline: none;
-      // border: none;
       border: 2px solid $secondColor;
-      // box-shadow: 0 0 1px 2px $secondColorLt;
     }
   }
 

@@ -11,7 +11,6 @@ export interface IProduct {
     image: string;
     color: any;
     zodiac: any;
-    // zodiac: string;
     stone: any;
     count: number;
 }

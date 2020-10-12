@@ -3,7 +3,6 @@
 
 
 .container{
-    // @include flexbox(column, wrap, flex-start, center);
     .arrow-up{
         position: fixed;
         right: 15px;
@@ -22,7 +21,6 @@ h3{
     margin-top: 35px;
     @include fonts($mainFont, 25px);
     color: $secondColor;
-    // text-align: center;
 }
 .title-st{
     min-height: 370px;
@@ -31,21 +29,13 @@ h3{
     @include flexbox(column, wrap, flex-start, flex-start);
     .title-img{
         @include dimentions(350px,350px);
-        // float: left;
         margin-right: 10px;
     }
     .title-text{
-        // @include flexbox(row, wrap, flex-end, flex-start);
         color: $secondColor;
-        // margin-bottom: 30px;
-        // margin-top: 20px;
         line-break: loose;
         line-height: 30px;
-        // width: 600px;
-        span{
-            // margin-left: 30px;
     
-        }
     }
 }
 h4{
@@ -60,7 +50,6 @@ h4{
 }
 .zodiac-containerM{
     @include flexbox(column, wrap, flex-start, flex-start);
-    // background-color: white;
     .zodiac-item{
         margin-top: 15px;
         background-color: white;
@@ -69,12 +58,9 @@ h4{
        @include flexbox(row, wrap, flex-start, flex-start);
         .zodiac-icon{
             @include dimentions(65px,65px);
-            // background-image: url('../../../assets/zodiacs/Aquarius.jpg');
             background-size: cover;
             margin-right: 15px;
             border: 1px solid rgb(226, 226, 226);
-            // border-bottom-color: $mainColor;
-            // border-bottom-width: 2px;
          }
          .icon1{background-image: url('../../../assets/zodiacs/Capricorn.jpg');}
          .icon2{background-image: url('../../../assets/zodiacs/Aquarius.jpg');}
@@ -156,13 +142,9 @@ h4{
 
 @media screen and (max-width: 768px){
     .title-st{
-        // min-height: 370px;
-        // background-color: white;
         padding:15px;
     }
     .title-img{
         @include dimentions(420px,420px);
-        // float: left;
-        // margin: 20px auto;
-    }   
+    }  
 }

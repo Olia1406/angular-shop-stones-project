@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { IDiscount } from '../interfaces/discount.interface';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AngularFirestore, DocumentChangeAction, DocumentReference } from '@angular/fire/firestore';
 
@@ -9,9 +8,8 @@ import { AngularFirestore, DocumentChangeAction, DocumentReference } from '@angu
 })
 export class DiscountService {
   private url: string;
-  constructor(private http: HttpClient,
+  constructor(
     private firecloud: AngularFirestore) {
-    // this.url = 'http://localhost:3000/discounts';
   }
   
   getFireCloudDiscount(): Observable<DocumentChangeAction<unknown>[]> {
@@ -27,20 +25,4 @@ export class DiscountService {
     return this.firecloud.collection('discounts').doc(discount.id.toString()).delete();
   }
 
-  // getJSONDiscount(): Observable<Array<IDiscount>> {
-    // return this.http.get<Array<IDiscount>>(this.url);
-  // }
-
-  // postJSONDiscount(discount: IDiscount): Observable<IDiscount> {
-    // return this.http.post<IDiscount>(this.url, discount);
-  // }
-
-  // deleteJSONDiscount(id: number): Observable<IDiscount> {
-    // return this.http.delete<IDiscount>(`${this.url}/${id}`);
-  // }
-
-  // updateJSONDiscount(discount: IDiscount): Observable<IDiscount>{
-    // return this.http.put<IDiscount>(`${this.url}/${discount.id}`, discount);
-  // }
-  
 }

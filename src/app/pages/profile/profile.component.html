@@ -3,7 +3,6 @@
         <div>
             <h6>Доброго дня, {{ firstName | titlecase }}!</h6>
             <h6>Вітаємо у вашому кабінеті.</h6>
-            <!-- <p>Email: {{ email }}</p> -->
         </div>
         <button class="btn btn-outline-secondary mt-3" (click)="signOut()">вийти</button>
     </div>
@@ -13,7 +12,6 @@
         <div class="prev-order" *ngFor="let order of userOrders">
             <div class="date">Дата замовлення: {{readableDate(order.dateOrder)}} </div>
             <h6 class="mt-2 order-status">Статус замовлення: {{order.statusOrder}}</h6>
-            <!-- <div class="date">Дата замовлення: {{order.dateOrder.seconds}} </div> -->
             <div class="product-details" *ngFor="let prod of order.productOrder">
                 <div class="image"><img [src]="prod?.image" alt=""></div>
                 <div class="details">
@@ -29,15 +27,10 @@
                 </div>
             </div>
             <div class="line"></div>
-            <!-- <hr> -->
             <p>Спосіб доставки: {{order.userDelivery}}, № {{order.deliveryDepartment}} </p>
             <p>Спосіб оплати: {{order.userPaymentType}}</p>
         </div>
     </div>
-
-
-
-
 
 
 </div>

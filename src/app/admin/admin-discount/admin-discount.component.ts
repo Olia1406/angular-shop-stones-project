@@ -43,7 +43,6 @@ export class AdminDiscountComponent implements OnInit {
 
   private getAdminDiscount(): void {
     this.dService.getFireCloudDiscount().subscribe(collection => {
-      // console.log(collection);
       this.adminDiscount = collection.map(document => {
         const data = document.payload.doc.data() as IDiscount;
         const id = document.payload.doc.id;
@@ -53,7 +52,6 @@ export class AdminDiscountComponent implements OnInit {
   }
 
   uploadFile(event): void {
-    // this.imageStatus =true;
     const file = event.target.files[0];
     const type = file.type.slice(file.type.indexOf('/') + 1);
     const name = file.name.slice(0, file.name.lastIndexOf('.')).toLowerCase();
@@ -68,12 +66,8 @@ export class AdminDiscountComponent implements OnInit {
   }
 
   addDiscount(): void {
-    // this.imageStatus = false;
     const newDiscount = new Discount(this.dID, this.dTitle, this.dText, this.dImage);
     if (this.editStatus == true) {
-      // this.dService.updateJSONDiscount(newDiscount).subscribe(() => {
-      // this.getAdminDiscount();
-      // })
       this.dService.updateFireCloudDiscount({ ...newDiscount })
         .then(() => this.getAdminDiscount())
         .catch(error => console.log(error));
@@ -81,9 +75,6 @@ export class AdminDiscountComponent implements OnInit {
     }
     else {
       delete newDiscount.id;
-      // this.dService.postJSONDiscount(newDiscount).subscribe(() => {
-      // this.getAdminDiscount();
-      // });
       this.dService.postFireCloudDiscount({ ...newDiscount })
         .then(() => this.getAdminDiscount())
         .catch(error => console.log(error));
@@ -108,9 +99,6 @@ export class AdminDiscountComponent implements OnInit {
   }
   confirmDeleteDiscount(discount: IDiscount): void {
     discount = this.currDiscount;
-    // this.dService.deleteJSONDiscount(discount.id).subscribe(() => {
-    // this.getAdminDiscount();
-    // });
     this.dService.deleteFireCloudDiscount(discount)
       .then(() => this.getAdminDiscount())
       .catch(error => console.log(error));

@@ -11,7 +11,6 @@
     .images-box{
         padding: 30px 0;
         @include dimentions(440px,440px);
-        // background: rgb(214, 167, 167);
         margin-right: 10px;
         @include flexbox(row, wrap,center,flex-start);
         .big-image{
@@ -24,9 +23,6 @@
         padding: 30px 50px;
         width: 600px;
         min-height: 440px;
-        // @include dimentions(600px,440px);
-        // background: rgb(214, 167, 167);
-        // .info-details{
           h2{
             @include fonts($mainFont, 40px);
             color: $mainColor;
@@ -45,8 +41,6 @@
 
           }
         
-        
-        // }
         .count{
           width: 170px;
           @include flexbox(row, wrap,space-between,flex-start);
@@ -69,7 +63,3 @@
 
     }
 }
-
-// ::ng-deep .custom-class {
-  // filter: invert()
-// }

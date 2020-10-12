@@ -1,9 +1,6 @@
 @import '../../common_scss/mixins';
 @import '../../common_scss/variables';
 
- // @include flexbox(row, wrap, space-around,flex-start);
- // @include dimentions(150px,150px);
- // @include fonts($mainFont, 25px);
 
 .first-line{
    @include flexbox(row, wrap, space-between,flex-start);
@@ -41,7 +38,6 @@ p{
             margin: 10px;
             box-shadow: 3px 3px 3px rgb(192, 192, 192);
             border-radius: 3px;
-            // border: 1px solid rgb(116, 115, 115);
             }
         }
         .details{
@@ -82,12 +78,3 @@ p{
         }
     }
   }
-//   @media screen and (max-width: 730px){
-    // .prev-order{
-        // .product-details{
-            // .details{
-            // width: 47vw;
-            // }
-        // }
-    // }
-//   }

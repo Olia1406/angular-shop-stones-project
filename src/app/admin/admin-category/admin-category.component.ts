@@ -22,15 +22,9 @@ export class AdminCategoryComponent implements OnInit {
               private modalService: BsModalService) { }
 
   ngOnInit(): void {
-    // this.adminJSONCategories();
     this.adminFireCloudCategories();
   }
 
-  private adminJSONCategories(): void {
-    this.catService.getJSONCategory().subscribe(data => {
-      this.adminCategory = data;
-    });
-  }
 
   private adminFireCloudCategories(): void {
     this.catService.getFireCloudCategory().subscribe(
@@ -43,15 +37,6 @@ export class AdminCategoryComponent implements OnInit {
       }
     );
   }
-
-  // addCategory(): void {
-    // const newC = new Category(this.categoryID, this.nameEN, this.nameUA);
-    // delete newC.id;
-    // this.catService.postJSONCategory(newC).subscribe(() => {
-      // this.adminJSONCategories();
-    // });
-    // this.resetForm();
-  // }
 
   addCategory(): void {
     const newC = new Category(this.categoryID, this.nameEN, this.nameUA);
@@ -75,23 +60,10 @@ export class AdminCategoryComponent implements OnInit {
     this.nameUA = '';
   }
 
-
-  // confirmDeleteCategory(c): void {
-    // this.modalRef.hide();
-    // c = this.cat;
-    // this.catService.deleteJSONCategory(c.id).subscribe(() => {
-    // this.adminJSONCategories();
-    // });
-  // }
-
   confirmDeleteCategory(c): void {
     this.modalRef.hide();
     c = this.cat;
-    // this.catService.deleteJSONCategory(c.id).subscribe(() => {
-    // this.adminFireCloudCategories();
-    // });
     this.catService.deleteFireCloudCategory(c.id)
-      // .then(() => this.adminFireCloudCategories())
       .then(data => console.log(data))
       .catch(error => console.log(error));
   }

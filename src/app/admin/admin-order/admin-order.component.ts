@@ -22,13 +22,6 @@ export class AdminOrderComponent implements OnInit {
   ngOnInit(): void {
     this.getOrders();
   }
-  // private getOrders(): void {
-  // this.ordersService.getOrder().subscribe(
-  // data => {
-  // this.adminOrders = data;
-  // }
-  // );
-  // }
 
   private getOrders(): void {
     this.ordersService.getFireCloudOrder().subscribe(
@@ -38,21 +31,9 @@ export class AdminOrderComponent implements OnInit {
           const id = document.payload.doc.id;
           return { id, ...data };
         });
-        // this.adminOrders.sort( (a, b) => b.dateOrder.getSeconds()-a.dateOrder.getSeconds())
-        // this.adminOrders.sort(function (a, b) {
-        // return Date.parse(b.dateOrder.toString()) - Date.parse(a.dateOrder.toString());
-        //  })
       }
     );
   }
-
-  // changeStatus(): void {
-  // this.currAdmOrder.statusOrder = this.statusOption;
-  // this.ordersService.updateOrder(this.currAdmOrder)
-  // .subscribe(() => {
-  // this.getOrders();
-  // })
-  // }
 
   changeStatus(): void {
     this.currAdmOrder.statusOrder = this.statusOption;
@@ -74,13 +55,6 @@ export class AdminOrderComponent implements OnInit {
     this.totalPrice = this.currAdmOrder.productOrder.reduce((total, prod) => total + (prod.price * prod.count), 0);
   }
 
-  // deleteUserOrder(order: IOrder): void {
-  // if (order.statusOrder == 'Виконано' || order.statusOrder == 'Скасовано') {
-  // this.ordersService.deleteOrder(order).subscribe(() => {
-  // this.getOrders();
-  // })
-  // }
-  // }
   deleteUserOrder(order: IOrder): void {
     if (order.statusOrder == 'Скасовано') {
       if (confirm('Are you sure?')) {

@@ -13,8 +13,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class ProductComponent implements OnInit {
   products: Array<any> = [];
-  // products: Array<IProduct> = [];
-  // someProducts: Array<any>;
   category: string;
 
   stoneNames: Array<string> = ['всі', 'авантюрин', 'агат', 'аквамарин', 'амазоніт', 'аметист', 'бірюза', 'бурштин', 'биче око',
@@ -29,13 +27,6 @@ export class ProductComponent implements OnInit {
   paginationStatus: boolean = true;
 
   // --------------------
-  //Models for Input fields
-  //  nameValue: string;
-  //  placeValue: string;
-
-  //Data object for listing items
-  //  tableData: any[] = [];
-
   //Save first document in snapshot of items received
   firstInResponse: any = [];
 
@@ -77,21 +68,12 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  // 
-  // private getProducts(categoryName: string = 'necklace'): void {
-  // this.prodService.getCategoryProduct(categoryName).subscribe(data => {
-  // this.products = data;
-  // this.category = this.products[0].category.nameUA;
-  // });
-  // }
 
   private getFireCloudProducts(categoryName: string = 'necklace'): void {
     this.currentStone = 'всі';
     this.currentColor = 'всі';
     this.currentZodiac = 'всі';
-    // this.products = [];
     this.firecloud.collection('products', ref => ref.where('category.nameEN', '==', categoryName).limit(12))
-      // .orderBy('nameEN')
       .snapshotChanges()
       .subscribe(response => {
         if (!response.length) {
@@ -100,12 +82,10 @@ export class ProductComponent implements OnInit {
         }
         this.firstInResponse = response[0].payload.doc;
         this.lastInResponse = response[response.length - 1].payload.doc;
-        // this.tableData = [];
         this.products = [];
         for (let item of response) {
           this.products.push(item.payload.doc.data());
         }
-
         //Initialize values
         this.prev_strt_at = [];
         this.pagination_clicked_count = 0;
@@ -168,13 +148,6 @@ export class ProductComponent implements OnInit {
       .startAfter(this.lastInResponse)
     ).get()
       .subscribe(response => {
-
-        // if (!response.docs.length && response.docs.length<12 ) {
-        // if (!response.docs.length && response.docs.length<12 ) {
-        // console.log(response.docs.length);
-        // this.disable_next = true;
-        // return;
-        // }
         this.firstInResponse = response.docs[0];
 
         this.lastInResponse = response.docs[response.docs.length - 1];
@@ -193,14 +166,7 @@ export class ProductComponent implements OnInit {
       }, error => {
         this.disable_next = false;
       });
-
-
-
-
   }
-
-
-
   //Add document
   push_prev_startAt(prev_first_doc) {
     this.prev_strt_at.push(prev_first_doc);

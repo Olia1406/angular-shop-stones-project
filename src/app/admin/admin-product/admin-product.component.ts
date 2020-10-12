@@ -18,7 +18,6 @@ export class AdminProductComponent implements OnInit {
   categoryName: string;
   adminProducts: Array<IProduct> = [];
   productID:any;
-  // productID = 1;
   productCategory: ICategory = { id: 1, nameEN: 'necklace', nameUA: 'намиста' };
   productNameEN: string;
   productNameUA: string;
@@ -26,7 +25,6 @@ export class AdminProductComponent implements OnInit {
   productLength: string;
   productWidth: string;
   productPrice: number;
-  // productImage = 'https://probapera.org/content/publication/PH19623_2.JPG';
   productImage: string = 'https://firebasestorage.googleapis.com/v0/b/my-project-d612f.appspot.com/o/images%2F-.jpg_220x220.jpeg?alt=media&token=f76c638b-53d5-45ae-b180-78214604ff60';
   productColor: string;
   productZodiac: string;
@@ -50,17 +48,9 @@ export class AdminProductComponent implements OnInit {
     private modalService: BsModalService) { }
 
   ngOnInit(): void {
-    // this.adminJSONCategories();
     this.adminFireCloudCategories();
-    // this.getProducts();
     this.adminFireCloudProducts();
   }
-
-  // private adminJSONCategories(): void {
-    // this.catService.getJSONCategory().subscribe(data => {
-      // this.categories = data;
-    // });
-  // }
 
   private adminFireCloudCategories(): void {
     this.catService.getFireCloudCategory().subscribe(
@@ -73,12 +63,6 @@ export class AdminProductComponent implements OnInit {
       }
     );
   } 
-
-  // private getProducts(): void {
-    // this.prodService.getJSONProduct().subscribe(data => {
-      // this.adminProducts = data;
-    // });
-  // }
 
   private adminFireCloudProducts(): void {
     this.prodService.getFireCloudProduct().subscribe(
@@ -121,10 +105,6 @@ export class AdminProductComponent implements OnInit {
       this.productZodiac.split(','),
       this.productStone.split(','));
     if (this.editStatus == true) {
-      // this.prodService.updateJSONProduct(newProd).subscribe(() => {
-        // this.getProducts();
-      // })
-      // delete newProd.id;
       this.prodService.updateFireCloudProduct({ ...newProd })
       .then(message => console.log(message))
       .catch(err => console.log(err));
@@ -132,9 +112,6 @@ export class AdminProductComponent implements OnInit {
     }
     else {
       delete newProd.id;
-      // this.prodService.postJSONProduct(newProd).subscribe(() => {
-        // this.getProducts();
-      // });
       this.prodService.postFireCloudProduct({ ...newProd })
       .then(message => console.log(message))
       .catch(err => console.log(err));
@@ -192,13 +169,6 @@ export class AdminProductComponent implements OnInit {
   
   confirmDeleteProduct(product: IProduct): void {
     product = this.currProduct;
-    // if (product.image !== 'https://probapera.org/content/publication/PH19623_2.JPG') {
-    // this.afStorage.storage.refFromURL(product.image).delete();
-    // }
-    // this.prodService.deleteJSONProduct(product.id).subscribe(() => {
-      // this.getProducts();
-      // this.adminFireCloudProducts();
-    // });
     this.prodService.deleteFireCloudProduct(product.id.toString())
     .then(data => console.log(data))
     .catch(error => console.log(error))

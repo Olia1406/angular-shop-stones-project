@@ -2,12 +2,9 @@
 @import '../../common_scss/variables';
 
 .main-container{
-    // min-height: 800px;
     margin-bottom: 20px;
 }
 .img-size{
-    // max-height: 300px;
-    // width: 800px;
     width: 80vw;
     height: 35vw;
 
@@ -23,22 +20,3 @@ p{
     margin-top: -10px;
     margin-bottom: -7px;
 }
-// h3{
-    // color:$secondColor;
-    // font-family: $mainFont;
-    // @include fonts('Roboto,600', 30px);
-    // letter-spacing: 2px;
-    // text-shadow: 0 0 5px 0 $secondColor;
-    // background-color: $mainColor;
-// }
-
-// button{
-    // width: 200px;
-    // height: 50px;
-    // border-radius: 10px;
-    // background-color: $mainColor;
-    // @include fonts($mainFont, 20px);
-    // border: none;
-    // outline: none;
-// 
-// }

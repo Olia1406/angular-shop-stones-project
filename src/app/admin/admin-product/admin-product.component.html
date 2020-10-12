@@ -93,13 +93,10 @@
                         alt="">
                 </span>
             </div>
-            <!-- <div class="row"> -->
                 <button
                     [disabled]="inpNameEN.invalid || inpNameUA.invalid || txtArea.invalid || inpLength.invalid || inpWidth.invalid || inpPrice.invalid|| inpColor.invalid || inpStone.invalid || inpZodiac.invalid"
                     class="btn bt" (click)="addProduct()" [textContent]="!editStatus ? 'Add' : 'Update'">
                 </button>
-                <!-- <button class="btn btn-secondary" (click)="closeModalCross()">Close</button> -->
-            <!-- </div> -->
         </form>
     </div>
 </ng-template>
@@ -108,7 +105,6 @@
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Cat</th>
-            <!-- <th scope="col">nEN</th> -->
             <th scope="col">nUA</th>
             <th scope="col">Descr</th>
             <th scope="col">Lg</th>
@@ -126,7 +122,6 @@
         <tr *ngFor="let prod of adminProducts | searchProduct: searchParam ; let i=index">
             <td>{{ prod.id | slice:0:3 }}</td>
             <td style=" word-break: break-all;">{{ prod.category.nameUA }}</td>
-            <!-- <td style=" word-break: break-all;">{{ prod.nameEN }}</td> -->
             <td style=" word-break: break-all;">{{ prod.nameUA }}</td>
             <td style=" word-break: break-all;">{{ prod.description | slice:0:20 }}</td>
             <td>{{ prod.length }}</td>
@@ -159,7 +154,6 @@
 
 <ng-template #deleteProductConfirm>
     <div class="modal-body text-center">
-        <!-- <p>Do you want to confirm?</p> -->
         <button type="button" class="btn bt col-5 m-2" (click)="decline()">dismiss</button>
         <button type="button" class="btn btn-dark col-5 m-2" (click)="confirmDeleteProduct(prod)">delete</button>
     </div>

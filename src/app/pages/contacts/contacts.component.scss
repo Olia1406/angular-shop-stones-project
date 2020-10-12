@@ -12,51 +12,25 @@ h4{
   text-align: center;
 }
 
-// .contacts-container{
-    // @include flexbox(column, wrap, flex-start, center);
-    // background-color: white;
-    // @include dimentions(150px,150px);
-    // @include fonts($mainFont, 25px);
-    // font-family: $mainFont;
-    // color:$secondColor;
-    // .contacts-title{
-        // margin: 30px auto;
-        // color:$mainColor;
-
-    // }
-    // .contacts-type{
-      //  @include flexbox(column, nowrap, flex-start, flex-start);
-      //  font-family: $mainFont;
-      // color:$secondColor;
-      // width: 100%;
-      .write-on-messanger,.call,.write-on-email{
-          // margin: 20px;
-          padding:15px;
-          font-family: $mainFont;
-          color:$secondColor;
-          background-color: white;
-          // @include dimentions(100%,180px);
-          min-height: 100px;
-        //   border: 1px solid rgb(216, 213, 213);
-        //   letter-spacing: 2px;
-          // box-shadow: 3px 3px 3px rgb(179, 178, 178);
-          h5{
-              font-size: 18px;
-              color:$secondColor;
-              margin-bottom: 20px;
-          }
-          p{
-              line-height: 15px;
-              // @include fonts('Roboto,700',16px);
-              img{
-                @include dimentions(18px,18px);
-                margin-top: -2px;
-                margin-right: 5px;
-              }
-          }
-
-      // }
-    // }
+.write-on-messanger,.call,.write-on-email{
+    padding:15px;
+    font-family: $mainFont;
+    color:$secondColor;
+    background-color: white;
+    min-height: 100px;
+    h5{
+        font-size: 18px;
+        color:$secondColor;
+        margin-bottom: 20px;
+    }
+    p{
+        line-height: 15px;
+        img{
+          @include dimentions(18px,18px);
+          margin-top: -2px;
+          margin-right: 5px;
+        }
+    }
 
 
 }

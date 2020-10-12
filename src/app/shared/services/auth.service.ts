@@ -42,7 +42,6 @@ export class AuthService {
       })
       .catch(err => {console.log(err);
         this.toastr.error(`Не вдалось увійти:${err}`)
-                    //  alert('Не вдалось увійти,спершу зареєструйтесь або вкажіть вірні емейл та пароль')
                     });
   }
 
@@ -70,16 +69,13 @@ export class AuthService {
         this.afFirestore.collection('users').add(user)
           .then(() => {
             this.toastr.success('Реєстрація пройшла успішно!');
-            // alert('Good register');
           })
           .catch(err => {console.log(err);
-                        //  alert(`Не вдалось зареєструватись: ${err}`)
                         this.toastr.error(`Не вдалось зареєструватись:${err}`)
                         });
       })
       .catch(err => {console.log(err);
         this.toastr.error(`${err}`)
-        // alert(`Не вдалось зареєструватись: ${err}`)
       });
   }
 

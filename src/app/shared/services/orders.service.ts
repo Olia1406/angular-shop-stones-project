@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from '../interfaces/product.interface';
 import { Subject, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { IOrder } from '../interfaces/order.interface';
 import { AngularFirestore, DocumentChangeAction, DocumentReference } from '@angular/fire/firestore';
 
@@ -10,9 +9,7 @@ import { AngularFirestore, DocumentChangeAction, DocumentReference } from '@angu
 })
 export class OrdersService {
   basket: Subject<any> = new Subject<any>();
-  private url: string;
-  constructor(private http: HttpClient,private firecloud: AngularFirestore) {
-    this.url = 'http://localhost:3000/orders';
+  constructor(private firecloud: AngularFirestore) {
   }
 
   addBasket(product: IProduct): void {
@@ -34,17 +31,7 @@ export class OrdersService {
     this.basket.next('Додано в кошик')
   }
 
-  addOrder(order: IOrder): Observable<IOrder> {
-    return this.http.post<IOrder>(this.url, order);
-  }
-  getOrder(): Observable<Array<IOrder>> {
-    return this.http.get<Array<IOrder>>(this.url);
-  }
-  updateOrder(order: IOrder): Observable<IOrder> {
-    return this.http.put<IOrder>(`${this.url}/${order.id}`, order);
-  }
 
-  // ------------------------------- firecloud ------------------------------------
   getFireCloudOrder(): Observable<DocumentChangeAction<unknown>[]> {
     return this.firecloud.collection('orders', ref => ref.orderBy('dateOrder', 'desc')).snapshotChanges();
   }
@@ -57,10 +44,6 @@ export class OrdersService {
   deleteFireCloudOrder(order: IOrder): Promise<void> {
     return this.firecloud.collection('orders').doc(order.id.toString()).delete();
   }
-
-// getFClPrevOrder(email): Observable<DocumentChangeAction<unknown>[]>{
-  // return this.firecloud.collection('orders').ref.where('userOrderEmail','==',email)
-// }
 
 
 }

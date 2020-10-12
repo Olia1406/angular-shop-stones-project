@@ -13,15 +13,12 @@ export class ProfileComponent implements OnInit {
   firstName: string;
   lastName: string;
 
-  // userOrdEm:string;
-  // userOrders:Array<any>=[];
   userOrders:Array<IOrder>=[];
 
   constructor(private authService: AuthService,
     private firecloud: AngularFirestore) { }
 
   ngOnInit(): void {
-    // this.getLogUser();
     this.getUserData();
     this.getLogUserOrderData();
   }
@@ -37,32 +34,10 @@ export class ProfileComponent implements OnInit {
     this.authService.SignOut();
   }
 
-  // getLogUser(): void {
-    // if (localStorage.getItem('user')) {
-      // const user = JSON.parse(localStorage.getItem('user'));
-      // this.userOrdEm = user.userEmail;
-    // }
-  // }
-
   private getLogUserOrderData(): void {
     this.userOrders=[];
     if (this.email!= '') {
-      // this.firecloud.collection('orders', ref => ref.where('userOrderEmail', '==', this.email).orderBy('dateOrder', 'desc'))
-      // .snapshotChanges()
-      // .subscribe(response => {
-        // if (!response.length) {
-          // console.log("No Data Available");
-          // return false;
-        // }
-        // this.userOrders=[];
-        // for (let item of response) {
-          // this.userOrders.push(item.payload.doc.data());
-        // }
-      // }, error => {
-      // });
-
       this.firecloud.collection('orders').ref.where('userOrderEmail', '==', this.email)
-      // .orderBy('dateOrder', 'desc')
         .onSnapshot(
           collection => {
             collection.forEach(document => {

@@ -21,14 +21,7 @@
         @include dimentions(210px,200px);
         margin-bottom: 10px;
         margin-top: 5px;
-        // border-top-left-radius: 5px;
-        // border-top-right-radius: 5px;
         }
-        // p{
-          // color:$secondColor;
-          // text-align: center;
-          // margin: 5px;
-        // }
         h6{
           margin-top: 5px;
           margin-bottom: 10px;
@@ -51,8 +44,7 @@
   width: 200px;
 }
 .price-filter{
-  @include flexbox(column, wrap, flex-start, flex-start);
-  // @include dimentions(250px, 300px); 
+  @include flexbox(column, wrap, flex-start, flex-start); 
   width: 180px;
   margin: 20px;  
   padding: 20px;
@@ -60,12 +52,10 @@
 }   
 .stone-name-filter,.stone-color-filter,.zodiak-filter{
   @include flexbox(column, wrap, flex-start, flex-start);
-  // @include dimentions(250px, 300px); 
   width: 180px;
   margin: 20px;  
   padding: 20px;
   background-color: white;
-  // z-index: 3;
 }
 
 .sel-title{
@@ -76,12 +66,8 @@
 .stone-list, .color-list, .zodiac-list{
   @include dimentions(160px, 180px); 
   overflow-y: scroll;
-  // z-index: 4;
-  // &:first-child{
-    // color:$mainColor;
-  // }
-
   }
+
 .stone-name, .stone-color, .zodiac{
   @include fonts($mainFont, 15px);
   color: $secondColor; 
@@ -113,7 +99,6 @@
   @include fonts($mainFont, 15px);
  color: $secondColor; 
  height: 20px;
-//  line-height: 18px;
  margin-left: 10px; 
 }
   .switch{
@@ -124,18 +109,6 @@
     b{
       color:$secondColor;
     }
-    // a{
-        // @include dimentions(8px, 8px);
-        // border: 1px solid $mainColor;
-        // border-radius: 50%;
-        // margin: 5px;
-        // &:active{
-        // background-color: $mainColor;
-        // }
-        // &:hover{
-          // background-color: $mainColor;
-          // }
-    // }
   }
   .no-data{
     @include flexbox(row, nowrap, center, center);

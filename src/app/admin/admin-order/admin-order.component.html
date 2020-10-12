@@ -19,7 +19,6 @@
       <td style="word-break: break-all;">{{ order.userPhone }}</td>
       <td style="word-break: break-all;">{{ order.totalPayment }} грн</td>
       <td style="word-break: break-all;">{{ readableDate(order.dateOrder) }}</td>
-      <!-- <td>{{ order.dateOrder.seconds }}</td> -->
       <td style="word-break: break-all;">{{ order.statusOrder }}</td>
       <td>
         <input type="button" value="details" class="btn btn-secondary" (click)="openDetailsModal(detailsForm,order)">
@@ -28,19 +27,6 @@
   </tbody>
 </table>
 
-
-<!-- <ng-template #detailsForm> -->
-<!-- <div class="modal-header"> -->
-<!-- <h4 class="modal-title pull-left">Modal</h4> -->
-<!-- <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()"> -->
-<!-- <span aria-hidden="true">&times;</span> -->
-<!-- </button> -->
-<!-- </div> -->
-<!-- <div class="modal-body"> -->
-<!-- This is a modal. -->
-<!-- </div> -->
-<!-- </ng-template> -->
-<!--    -->
 <ng-template #detailsForm>
   <div class="modal-header">
     <h6 class="modal-title pull-left">Detils: user <span style="color: brown;">{{currAdmOrder.userName}}</span></h6>
@@ -49,11 +35,9 @@
     </button>
   </div>
   <div class="modal-body">
-    <!-- This is a modal. -->
     <table class="table" style="padding: 15px; ">
       <thead>
         <tr>
-          <!-- <td>Видалити</td> -->
           <th>Фото</th>
           <th>Назва</th>
           <th>Ксть</th>
@@ -63,14 +47,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let admProdOrder of currAdmOrder.productOrder; let i = index">
-          <!-- <td (click)="deleteProduct(admOrder)"><span> &times; </span></td> -->
           <td> <img style="width: 50px; height:50px" [src]="admProdOrder.image" alt=""></td>
           <td>{{admProdOrder.nameUA}} </td>
           <td>{{admProdOrder.count}} </td>
-
-          <!-- <td> -->
-          <!-- <app-counter [product]="prodOrder"></app-counter> -->
-          <!-- </td> -->
           <td>{{admProdOrder.price}}</td>
           <td>{{admProdOrder.count * admProdOrder.price}}</td>
         </tr>
@@ -79,7 +58,6 @@
     <div style="float: right; font-size: 18px; font-weight: 600;">
       Загальна сума: {{totalPrice}} грн
     </div>
-    <!-- <hr style="margin-top: -10px;"> -->
   </div>
   <div *ngIf="currAdmOrder.userComment!==''" style="margin-top: -30px;">
     <span class="ml-3 mb-1">Коментар клієнта:</span>
