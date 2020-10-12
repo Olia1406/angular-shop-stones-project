@@ -8,13 +8,11 @@ header{
   right: 0;
   width: 100%;
   z-index: 110;
-  background-image: url('../../../assets/images/footerBL.jpg');
   background-size: cover;
 .inform{
  height: 40px;
  border: 1px solid transparent;
  border-bottom-color:rgb(231, 229, 229);
-//  background-color:$mainColor;
  background-color: white;
  @include flexbox(row, nowrap, space-between, center);
  padding: 5px;
@@ -36,9 +34,6 @@ header{
     img{
       margin: 4px;
       @include dimentions(16px,16px);
-      // padding:3px;
-      // background-color :white;
-      // border-radius: 3px;
       }
     img:hover{
       @include dimentions(19px,19px);
@@ -47,7 +42,6 @@ header{
 }
 .hdr{
     height: 100px;
-    // padding: 5px;
     background-color: white;
     border: 2px solid transparent;
     border-bottom-color: rgb(231, 229, 229);
@@ -60,7 +54,6 @@ header{
          padding: 5px;
          img{
             @include dimentions(45px,45px);
-            // opacity: 0.9;
             margin-right: 3px;
             margin-bottom: 10px;
             }
@@ -94,7 +87,6 @@ header{
           margin-top: 25px;
           width: 70px;
           img{
-            // margin: 4px;
             @include dimentions(24px,24px);
            }
           .sum{
@@ -131,13 +123,12 @@ left: 170px;
 }
 
 #sidebarMenu {
-    height: 200px; /*change here related your menu height*/
+    height: 200px; 
     position: fixed;
     overflow: none;
     width: 100%;
-    // width: 160px;
     z-index: 100;
-    transform: translateY(-350px); /*change here related your menu height*/
+    transform: translateY(-350px); 
 }
 .main-content-wrapper a{
     width: 100%;
@@ -164,7 +155,7 @@ left: 170px;
 }
 input[type="checkbox"]:checked ~ #sidebarMenu {
     transform: translatey(0);
-    top: 120px ;/*change here related your top menu height*/
+    top: 120px ;
     left: 0px
   }
 input[type=checkbox] {
@@ -196,8 +187,6 @@ input[type=checkbox] {
     height: 3px;
     width: 100%;
     background-color:$secondColor;
-    // border: 1px solid transparent;
-    // border-radius: 2px;
 }
 .horizontal {
     transition: all 0.3s;
@@ -232,22 +221,8 @@ input[type=checkbox] {
       &_left{
         .pages{
           display: none;
-          // width: 400px;
         }
       }
     }
   }
-}
-// ======================================
-@media screen and (max-width: 768px){
-  // header{
-    // .hdr{
-      // &_left{
-        // .pages{
-          // display: none;
-        // }
-      // }
-    // }
-  // }
-
 }
