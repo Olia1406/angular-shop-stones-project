@@ -17,7 +17,7 @@ export class AdminProductComponent implements OnInit {
   categories: Array<ICategory> = [];
   categoryName: string;
   adminProducts: Array<IProduct> = [];
-  productID:any;
+  productID: any;
   productCategory: ICategory = { id: 1, nameEN: 'necklace', nameUA: 'намиста' };
   productNameEN: string;
   productNameUA: string;
@@ -62,7 +62,7 @@ export class AdminProductComponent implements OnInit {
         });
       }
     );
-  } 
+  }
 
   private adminFireCloudProducts(): void {
     this.prodService.getFireCloudProduct().subscribe(
@@ -74,7 +74,7 @@ export class AdminProductComponent implements OnInit {
         });
       }
     );
-  } 
+  }
 
   addProdBtn(template: TemplateRef<any>): void {
     this.openModal(template);
@@ -104,17 +104,19 @@ export class AdminProductComponent implements OnInit {
       this.productColor.split(','),
       this.productZodiac.split(','),
       this.productStone.split(','));
-    if (this.editStatus == true) {
-      this.prodService.updateFireCloudProduct({ ...newProd })
-      .then(message => console.log(message))
-      .catch(err => console.log(err));
-      this.editStatus = false;
-    }
-    else {
+    if (!this.editStatus) {
       delete newProd.id;
       this.prodService.postFireCloudProduct({ ...newProd })
-      .then(message => console.log(message))
-      .catch(err => console.log(err));
+        .then(message => {
+          console.log()
+        })
+        .catch(err => console.log(err));
+    }
+    else {
+      this.prodService.updateFireCloudProduct({ ...newProd })
+        .then(message => console.log())
+        .catch(err => console.log(err));
+      this.editStatus = false;
     }
     this.modalRef.hide();
     this.resetForm();
@@ -160,22 +162,23 @@ export class AdminProductComponent implements OnInit {
     this.productZodiac = '';
     this.productStone = '';
     this.imageStatus = false;
+    this.editStatus = false;
   }
 
   deleteProduct(product: IProduct, template: TemplateRef<any>): void {
     this.modalRef = this.modalService.show(template, { class: 'modal-md' });
     this.currProduct = product;
   }
-  
+
   confirmDeleteProduct(product: IProduct): void {
     product = this.currProduct;
     this.prodService.deleteFireCloudProduct(product.id.toString())
-    .then(data => console.log(data))
-    .catch(error => console.log(error))
+      .then(data => console.log(data))
+      .catch(error => console.log(error))
     this.modalRef.hide();
   }
 
-  editProduct(template: TemplateRef<any>,prod: IProduct): void {
+  editProduct(template: TemplateRef<any>, prod: IProduct): void {
     this.modalRef = this.modalService.show(template, this.modalRefconfig);
     this.editStatus = true;
     this.productID = prod.id;

@@ -8,12 +8,8 @@ import { ProductService } from '../../shared/services/product.service';
   styleUrls: ['./catalogue.component.scss']
 })
 export class CatalogueComponent implements OnInit {
-  checkedStatus=false;
 
   constructor(private prodService: ProductService) { }
-  products: Array<IProduct>;
-  currentName: string;
-  filteredProducts:Array<IProduct>;
 
   ngOnInit(): void {
   }

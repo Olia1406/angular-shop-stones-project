@@ -36,16 +36,19 @@
     <div class="product" *ngFor="let prod of products">
       <img [src]="prod?.image" alt="" class="p-image" [routerLink]="[ '/menu/'+prod.category.nameEN, prod.id ]">
       <a [routerLink]="[ '/menu/'+prod.category.nameEN, prod.id ]">{{prod?.nameUA}}</a>
-      <h6>{{prod?.price}} <i>грн</i></h6>
+      <div class="row mb-2">
+        <h6 class="mr-4 mt-2" >{{prod?.price}} <i>грн</i></h6>
+        <app-counter [product]="prod"></app-counter>
+      </div>
       <button class="btn bt add-btn" (click)="addToBasket(prod)">додати в кошик</button>
     </div>
   </div>
-  
+
 </div>
 
 <div class="switch" *ngIf="paginationStatus">
   <button class="btn bt  mr-3" style="width: 120px;" (click)="prevPage()"
-  [disabled]="disable_prev || !(pagination_clicked_count>0)">Попередня</button> <b>сторінка:
-  {{pagination_clicked_count+1}}</b>
-<button class="btn bt ml-3" style="width: 120px;" (click)="nextPage()" [disabled]="disable_next">Наступна </button>
+    [disabled]="disable_prev || !(pagination_clicked_count>0)">Попередня</button> <b>сторінка:
+    {{pagination_clicked_count+1}}</b>
+  <button class="btn bt ml-3" style="width: 120px;" (click)="nextPage()" [disabled]="disable_next">Наступна </button>
 </div>

@@ -56,7 +56,6 @@ export class ProductComponent implements OnInit {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         this.categoryName = this.actRoute.snapshot.paramMap.get('category');
-        // this.getProducts(categoryName);
         this.currentStone = 'всі';
         this.currentColor = 'всі';
         this.currentZodiac = 'всі';
@@ -84,7 +83,9 @@ export class ProductComponent implements OnInit {
         this.lastInResponse = response[response.length - 1].payload.doc;
         this.products = [];
         for (let item of response) {
-          this.products.push(item.payload.doc.data());
+          const id = item.payload.doc.id;
+          const data = item.payload.doc.data() as IProduct;
+          this.products.push({id, ...data});
         }
         //Initialize values
         this.prev_strt_at = [];
@@ -119,7 +120,9 @@ export class ProductComponent implements OnInit {
         this.lastInResponse = response.docs[response.docs.length - 1];
         this.products = [];
         for (let item of response.docs) {
-          this.products.push(item.data());
+          const id = item.id
+          const data = item.data() as IProduct;
+          this.products.push({id, ...data});
         }
         //Maintaing page no.
         this.pagination_clicked_count--;
@@ -153,7 +156,9 @@ export class ProductComponent implements OnInit {
         this.lastInResponse = response.docs[response.docs.length - 1];
         this.products = [];
         for (let item of response.docs) {
-          this.products.push(item.data());
+          const id = item.id
+          const data = item.data() as IProduct;
+          this.products.push({id, ...data});
         }
 
         this.pagination_clicked_count++;

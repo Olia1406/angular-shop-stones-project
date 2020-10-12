@@ -11,7 +11,7 @@
     width: 80vw;
     .product{
        margin: 20px;
-       @include dimentions(220px,325px);
+       @include dimentions(220px,330px);
        @include flexbox(column, wrap, flex-start, center);
        @include fonts($mainFont,17px);
        background-color: white;
