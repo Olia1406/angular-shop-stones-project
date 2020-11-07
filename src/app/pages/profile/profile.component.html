@@ -1,10 +1,10 @@
-<div class="ml-5 mr-5 mt-3 mb-3">
+<div class="user-ord-container">
+    <button class="btn btn-outline-secondary mt-3" (click)="signOut()">вийти</button>
     <div class="first-line">
         <div>
             <h6>Доброго дня, {{ firstName | titlecase }}!</h6>
             <h6>Вітаємо у вашому кабінеті.</h6>
         </div>
-        <button class="btn btn-outline-secondary mt-3" (click)="signOut()">вийти</button>
     </div>
     <h6 *ngIf="userOrders.length">Ваші попередні замовлення:</h6>
     <p *ngIf="!userOrders.length">У вас ще не було замовлень.</p>
@@ -17,18 +17,16 @@
                 <div class="details">
                     <h4>{{prod?.nameUA}}</h4>
                     <p>Опис: {{prod?.description}}</p>
-                    <span>Довжина намиста: {{prod?.length}} см</span>
-                    <span>Ширина каменя: {{prod?.width}} мм</span>
-                    <div>
-                        <span>Ціна: {{prod?.price}} грн</span>
+                    <span>Довжина намиста: {{prod?.length}}см</span>
+                    <span>Ширина каменя: {{prod?.width}}мм</span>
+                        <span>Ціна: {{prod?.price}}грн</span>
                         <span>Кількість: {{prod?.count}} </span>
-                    </div>
-                    <p>Загальна вартість: {{prod?.price*prod?.count}} грн</p>
+                    <p>Загальна вартість: {{prod?.price*prod?.count}}грн</p>
                 </div>
             </div>
             <div class="line"></div>
-            <p>Спосіб доставки: {{order.userDelivery}}, № {{order.deliveryDepartment}} </p>
-            <p>Спосіб оплати: {{order.userPaymentType}}</p>
+            <p class="ord-type">Спосіб доставки: {{order.userDelivery}}, № {{order.deliveryDepartment}} </p>
+            <p class="ord-type">Спосіб оплати: {{order.userPaymentType}}</p>
         </div>
     </div>
 

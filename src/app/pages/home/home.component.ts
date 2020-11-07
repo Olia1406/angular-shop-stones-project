@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit {
 
   private getFireClProducts() {
     this.prodService.getLastFireCloudProduct()
-      // this.prodService.getFireCloudProduct()
       .subscribe(
         collection => {
           this.products = collection.map(document => {
@@ -55,7 +54,6 @@ export class HomeComponent implements OnInit {
           const id = document.payload.doc.id;
           return { id, ...data };
         })
-        // this.newProd = this.products;
       }
     )
   }

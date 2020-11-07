@@ -2,7 +2,7 @@
 @import '../../common_scss/variables';
 
 .bg-im{
-    height: 30vw;
+    height: 35vw;
     background-image: url('../../../assets/images/ggg.jpg');
     background-repeat: no-repeat;
     background-position: bottom;
@@ -36,6 +36,8 @@
 }
 .orange{
     color: $mainColor;
+    margin-left: 20px;
+
 }
 .gray{
     color: $secondColor;
@@ -58,11 +60,6 @@
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
         }
-        // p{
-        //   @include fonts($mainFont,17px);
-        //   color:$secondColor;
-        //   text-align: center;
-        // }
         h6{
           margin-top: 10px;
           margin-bottom: 10px;
@@ -88,10 +85,6 @@
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
         }
-        // p{
-        //   color:$secondColor;
-        //   text-align: center;
-        // }
         h6{
           margin-top: 10px;
           margin-bottom: 10px;
@@ -114,15 +107,71 @@
     }
 }
 
-
-
 @media screen and (max-width: 970px){
-
-.bg-im{
-    height: 45vw;
-    h1{
-        @include fonts($mainFont, 30px);
+    .bg-im{
+        height: 45vw;
+        padding: 0 100px;
+        h1{
+            @include fonts($mainFont, 40px);
+        }
+    }
+}
+@media screen and (max-width: 750px){
+    .bg-im{
+        height: 55vw;
+        padding: 0 100px;
+        h1{
+            @include fonts($mainFont, 35px);
+        }
     }
 }
 
+@media screen and (max-width: 570px){
+
+    .bg-im{
+        height: 55vw;
+        padding: 0 70px;
+        h1{
+            @include fonts($mainFont, 25px);
+        }
+        p{
+            @include fonts('Roboto,400', 15px);
+        }
+    }    
+}
+
+@media screen and (max-width: 400px){
+    .bg-im{
+        height: 75vw;
+        padding: 0 0 0 30px ;
+        h1{
+            @include fonts($mainFont, 25px);
+        }
+        p{
+            @include fonts('Roboto,400', 15px);
+        }
+    }
+    .title{
+        h3{
+            font-size: 24px;
+        }
+    }
+}
+
+@media screen and (max-width: 300px){
+    .bg-im{
+        height: 75vw;
+        padding: 0 30px;
+        h1{
+            @include fonts($mainFont, 25px);
+        }
+        p{
+            @include fonts('Roboto,400', 15px);
+        }
+    }
+    .title{
+        h3{
+            font-size: 20px;
+        }
+    }
 }

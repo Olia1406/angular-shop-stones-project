@@ -12,6 +12,8 @@ export class CatalogueComponent implements OnInit {
   constructor(private prodService: ProductService) { }
 
   ngOnInit(): void {
+
   }
+
 
 }

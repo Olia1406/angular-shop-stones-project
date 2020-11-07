@@ -1,5 +1,5 @@
 <header>
-  <div class="inform">
+  <div *ngIf="hdrTopStatus" class="inform">
     <div class="inform_left">
       <div class="inform_left_mail">
         <img src="../../../assets/icons/envelope-alt.svg" alt="">
@@ -25,38 +25,40 @@
     </div>
   </div>
   <div class="hdr">
+    <div class="burger-menu">
+      <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu" (click)="showMenu()" [checked]="menuStatus">
+      <label for="openSidebarMenu" class="sidebarIconToggle">
+        <div class="spinner diagonal part-1"></div>
+        <div class="spinner horizontal"></div>
+        <div class="spinner diagonal part-2"></div>
+      </label>
+      <div id="sidebarMenu">
+        <div class="main-content-wrapper" *ngIf="menuStatus">
+          <a (click)="hideMenu()" [routerLink]="[ '/home' ]" routerLinkActive="active">головна</a>
+          <a (click)="hideTop()" [routerLink]="[ '/catalogue' ]" routerLinkActive="active">каталог</a>
+          <a (click)="hideMenu()" [routerLink]="[ '/more' ]" routerLinkActive="active">про камені</a>
+          <a (click)="hideMenu()" [routerLink]="[ '/discount' ]" routerLinkActive="active">акції</a>
+          <a (click)="hideMenu()" [routerLink]="[ '/contacts' ]" routerLinkActive="active">контакти</a>
+          <a (click)="hideMenu()" [routerLink]="[ '/payment' ]" routerLinkActive="active">оплата і доставка</a>
+          <a (click)="loginModal(loginForm)" *ngIf="!loginStatus" >увійти</a>
+          <a (click)="hideMenu()" [routerLink]="[ '/'+loginUrl ]" *ngIf="loginStatus">{{ loginName }}</a>     
+        </div>
+      </div>
+    </div>
     <div class="hdr_left">
-      <div class="logo" routerLink="home" routerLinkActive="active">
+      <div (click)="showTop()" class="logo" routerLink="home" routerLinkActive="active">
         <img src="../../../assets/icons/images.png" alt="">
         <div>
           <span class="logo_text">scharl</span>
           <p>natural stones</p>
         </div>
       </div>
-      <div class="burger-menu">
-        <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu" (click)="showMenu()" [checked]="menuStatus">
-        <label for="openSidebarMenu" class="sidebarIconToggle">
-          <div class="spinner diagonal part-1"></div>
-          <div class="spinner horizontal"></div>
-          <div class="spinner diagonal part-2"></div>
-        </label>
-        <div id="sidebarMenu">
-          <div class="main-content-wrapper" *ngIf="menuStatus">
-            <a (click)="hideMenu()" [routerLink]="[ '/home' ]" routerLinkActive="active">головна</a>
-            <a (click)="hideMenu()" [routerLink]="[ '/catalogue' ]" routerLinkActive="active">каталог</a>
-            <a (click)="hideMenu()" [routerLink]="[ '/more' ]" routerLinkActive="active">про камені</a>
-            <a (click)="hideMenu()" [routerLink]="[ '/discount' ]" routerLinkActive="active">акції</a>
-            <a (click)="hideMenu()" [routerLink]="[ '/contacts' ]" routerLinkActive="active">контакти</a>
-            <a (click)="hideMenu()" [routerLink]="[ '/payment' ]" routerLinkActive="active">оплата і доставка</a>
-          </div>
-        </div>
-      </div>
       <nav class="pages">
-        <a [routerLink]="[ '/catalogue' ]" routerLinkActive="active">каталог</a>
-        <a [routerLink]="[ '/more' ]" routerLinkActive="active">про камені</a>
-        <a [routerLink]="[ '/discount' ]" routerLinkActive="active">акції</a>
-        <a [routerLink]="[ '/contacts' ]" routerLinkActive="active">контакти</a>
-        <a [routerLink]="[ '/payment' ]" routerLinkActive="active">оплата і доставка</a>
+        <a (click)="hideTop()" [routerLink]="[ '/catalogue' ]" routerLinkActive="active">каталог</a>
+        <a (click)="showTop()" [routerLink]="[ '/more' ]" routerLinkActive="active">про камені</a>
+        <a (click)="showTop()" [routerLink]="[ '/discount' ]" routerLinkActive="active">акції</a>
+        <a (click)="showTop()" [routerLink]="[ '/contacts' ]" routerLinkActive="active">контакти</a>
+        <a (click)="showTop()" [routerLink]="[ '/payment' ]" routerLinkActive="active">оплата і доставка</a>
       </nav>
     </div>
     <div class="hdr_right row">
@@ -64,11 +66,14 @@
         <a [routerLink]="[ '/basket' ]" routerLinkActive="active" class="basket"><img
             src="../../../assets/icons/shopping-basket.svg" alt=""></a>
         <div class="sum">{{totalPrice}}</div>
-      </div><!-- <a class="sign" [routerLink]="[ '/admin' ]">адмін</a> -->
-      <a class="sign" (click)="loginModal(loginForm)" *ngIf="!loginStatus">
-        <img style="width: 29px; height: 29px; margin-right: 20px;" src="../../../assets/icons/user-circle-dark.svg" alt="">
-      </a>
-      <a [routerLink]="[ '/'+loginUrl ]" *ngIf="loginStatus">{{ loginName }}</a>
+      </div>
+      <div class="login-sign">
+        <a class="sign" (click)="loginModal(loginForm)" *ngIf="!loginStatus">
+          <img style="width: 29px; height: 29px; margin-right: 20px;" src="../../../assets/icons/user-circle-dark.svg"
+            alt="">
+        </a>
+        <a [routerLink]="[ '/'+loginUrl ]" *ngIf="loginStatus">{{ loginName }}</a>
+      </div>
     </div>
   </div>
 </header>

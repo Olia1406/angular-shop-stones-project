@@ -1,30 +1,30 @@
-<div class="container-fluid">
+<div class="cont-centered">
     <div class="col-lg-12 empty-basket" *ngIf="!orders.length">
         <p>Кошик порожній.</p>
         <a routerLink="/catalogue" style="color:#ff5912">Повернутись до покупок</a>
     </div>
 
 
-    <div class="col-lg-12 mt-5 smt-basket" *ngIf="orders.length">
+    <div class="smt-basket" *ngIf="orders.length">
         <div class="table">
             <div class="tr thead">
                 <div class="td"></div>
                 <div class="td">Фото</div>
-                <div class="td">Назва товару</div>
+                <div class="td">Назва</div>
                 <div class="td">Ціна</div>
                 <div class="td">Кількість</div>
-                <div class="td">Загалом</div>
+                <div class="td">Вартість</div>
             </div>
             <div class="tr tbody" *ngFor="let order of orders">
-                <div class="td del"><span style="margin-left: 15px;"
-                        (click)="deleteProduct(order,template)">&times;</span></div>
-                <div class="td"><img [src]="order?.image" alt=""></div>
+                <div class="td del"><span (click)="deleteProduct(order,template)">&times;</span></div>
+                <div class="td"><span class="second-cross" (click)="deleteProduct(order,template)">&times;</span><img [src]="order?.image"
+                        alt=""></div>
                 <div class="td">{{order?.nameUA}}</div>
-                <div class="td">{{order?.price}} грн</div>
+                <div class="td"><span class="table-item">Ціна: </span>{{order?.price}} грн</div>
                 <div class="td">
                     <app-counter [product]="order" (changeCount)="detectChangeCount($event)"></app-counter>
                 </div>
-                <div class="td">{{order?.count * order?.price}} грн</div>
+                <div class="td"><span class="table-item">Вартість: </span>{{order?.count * order?.price}} грн</div>
             </div>
             <div class="tr tfoot">
                 <div class="td"></div>
@@ -32,8 +32,7 @@
                 <div class="td"></div>
                 <div class="td"></div>
                 <div class="td"></div>
-                <div class="td">
-                    <hr>
+                <div class="td total">
                     Всього: {{totalPrice}} грн</div>
             </div>
         </div>
@@ -44,12 +43,12 @@
                 <div class="delivery">
                     <h5>Спосіб доставки:</h5>
                     <div class="deliveryCheckboxs">
-                        <label class="inpRadio radio">
+                        <label class="inpRadio radio mr-3">
                             <input (click)="getDelivery('нова пошта')" type="radio" name="delivery" value="Novaposhta"
                                 checked="checked"><span> Нова
                                 пошта</span>
                         </label>
-                        <label class="inpRadio radio ml-3">
+                        <label class="inpRadio radio">
                             <input (click)="getDelivery('укрпошта')" type="radio" name="delivery"
                                 value="Ukrposhta"><span> Укрпошта</span>
                         </label>
@@ -84,11 +83,11 @@
                 <div class="payment">
                     <h5>Спосіб оплати:</h5>
                     <div class="paymentCheckboxs">
-                        <label class="inpRadio radio">
+                        <label class="inpRadio radio mr-3">
                             <input (click)="getPayment('на карту')" type="radio" name="payment" value="card"
                                 checked="checked"><span> На карту</span>
                         </label>
-                        <label class="inpRadio radio ml-3">
+                        <label class="inpRadio radio">
                             <input (click)="getPayment('при доставці')" type="radio" name="payment" value="after"><span>
                                 Оплата при доставці</span>
                         </label>
@@ -106,8 +105,9 @@
                     </div>
 
                     <p>Ваш номер телефону*:</p>
-                    <input class="inp" #tel="ngModel" type="text" [(ngModel)]="userPhone" name="userPhone" placeholder="*** *** ** **" required 
-                    pattern="[0,9,5,6,7,8,3]{3}[ ,-]{0,1}[0-9]{3}[ ,-]{0,1}[0-9]{2}[ ,-]{0,1}[0-9]{2}[ ,-]{0,}">
+                    <input class="inp" #tel="ngModel" type="text" [(ngModel)]="userPhone" name="userPhone"
+                        placeholder="*** *** ** **" required
+                        pattern="[0,9,5,6,7,8,3]{3}[ ,-]{0,1}[0-9]{3}[ ,-]{0,1}[0-9]{2}[ ,-]{0,1}[0-9]{2}[ ,-]{0,}">
                     <div class="text-danger" *ngIf="tel.invalid && (tel.dirty || tel.touched)">
                         <div *ngIf="tel.errors.required">
                             Заповніть поле
@@ -126,9 +126,9 @@
                         rows="3"></textarea>
                 </div>
                 <div>
-                    <p style="margin-top: 20px; margin-bottom: 8px; font-size: 13px;">* поля обов'язкові для заповнення
+                    <p style="margin-top: 20px; margin-bottom: 8px; font-size: 13px; text-align: center;">* поля обов'язкові для заповнення
                     </p>
-                    <button [disabled]="orderForm.invalid" type="submit" style="width: 350px" class="btn bt ">оформити
+                    <button [disabled]="orderForm.invalid" type="submit" class="btn bt ">оформити
                         замовлення</button>
                 </div>
             </div>

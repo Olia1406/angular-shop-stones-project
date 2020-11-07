@@ -6,24 +6,31 @@ header{
   top: 0;
   left: 0;
   right: 0;
-  width: 100%;
   z-index: 110;
   background-size: cover;
-.inform{
- height: 40px;
- border: 1px solid transparent;
- border-bottom-color:rgb(231, 229, 229);
- background-color: white;
- @include flexbox(row, nowrap, space-between, center);
- padding: 5px;
+ .inform{
+  height: 40px;
+  border: 1px solid transparent;
+  border-bottom-color:rgb(231, 229, 229);
+  background-color: white;
+  @include flexbox(row, nowrap, space-between, center);
+  padding: 5px;
    &_left{
-    margin-left: 20px;   
-    width: 330px;
+    margin-left: 5px;
+    padding: 3px;
+    width: 300px;
     color: $secondColor;
     @include fonts($mainFont, 12px);
-    @include flexbox(row, nowrap, space-between, center);
+    @include flexbox(row, wrap, space-between, center);
+    &_mail{
+      width: 120px;
+      @include flexbox(row, nowrap, space-between, center);
+    }
+    &_tel{
+      width: 150px;
+      @include flexbox(row, nowrap, space-between, center); 
+    }
     img{
-      margin: 4px;
       @include dimentions(16px,16px);
       }
    }
@@ -45,13 +52,14 @@ header{
     background-color: white;
     border: 2px solid transparent;
     border-bottom-color: rgb(231, 229, 229);
-    @include flexbox(row, wrap, space-between, center);
+    @include flexbox(row, nowrap, space-between, center);
     &_left{
       margin-left: 20px;   
       @include flexbox(row, wrap, space-between, center);
       .logo{
-         @include flexbox(row, wrap, space-between, center);
+         @include flexbox(row, nowrap, space-between, center);
          padding: 5px;
+         margin-left: 30px;   
          img{
             @include dimentions(45px,45px);
             margin-right: 3px;
@@ -104,7 +112,10 @@ header{
         }
         .sign:hover{
           color: $mainColor;
-        }         
+        } 
+        .login-sign{
+          display: block;
+        }      
     }   
  }
 }
@@ -114,101 +125,113 @@ header{
 }
 
 .burger-menu{
-width: 100%;
+width: 1%;
 height: 100%;
 display:none;
 position: relative;
-top: -60px;
-left: 170px;
+top: 30px;
+left: 0px;
 }
-
-#sidebarMenu {
-    height: 200px; 
-    position: fixed;
-    overflow: none;
-    width: 100%;
-    z-index: 100;
-    transform: translateY(-350px); 
-}
-.main-content-wrapper a{
-    width: 100%;
-    height: 40px;
-    display: block;
-    background: $secondColor;
-    line-height: 22px;
-    font-family: 'Roboto,500';
-    font-size: 16px;
-    text-align: center;
-    padding-top: 10px;
-    border: 1px solid #4b4545;
-    color: white;
-    text-decoration: none;
-}
-
-.main-content-wrapper a:hover{
+  #sidebarMenu {
+      height: 190px;
+      position: fixed;
+      overflow: none;
+      width: 100%;
+      z-index: 100;
+      transform: translateY(-381px);
+  }
+  .main-content-wrapper a{
+      margin-left: -2px;
+      width: 100%;
+      height: 40px;
+      display: block;
+      background: $secondColor;
+      opacity: 0.95;
+      color: white;
+      line-height: 22px;
+      font-size: 16px;
+      text-align: center;
+      padding-top: 10px;
+      border: 1px solid #4b4545;
+      text-decoration: none;
+  }
+  .main-content-wrapper a:hover{
   background-color: $secondColorLt;
 }
-.sidebarMenuInner{
-    margin:0;
-    padding:0;
-    border-top: 1px solid rgba(255, 255, 255, 0.10);
-}
-input[type="checkbox"]:checked ~ #sidebarMenu {
-    transform: translatey(0);
-    top: 120px ;
-    left: 0px
+
+  .sidebarMenuInner{
+      margin:0;
+      padding:0;
+      border-top: 1px solid rgba(255, 255, 255, 0.10);
   }
-input[type=checkbox] {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    display: none;
-}
-.sidebarIconToggle {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    cursor: pointer;
-    position: absolute;
-    z-index: 99;
-    height: 22px;
-    width: 35px;
-    left:10px;
-    top:10px;
-    display: none;
-    &:hover .spinner{
-      background-color:$mainColor;
-   }
-
-
-}
-.spinner {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    position: absolute;
-    height: 3px;
-    width: 100%;
-    background-color:$secondColor;
-}
-.horizontal {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    position: relative;
-    float: left;
-    margin-top: 5px;
-}
-.diagonal.part-1 {
-    position: relative;
-    transition: all 0.3s;
-    box-sizing: border-box;
-    float: left;
-}
-.diagonal.part-2 {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    position: relative;
-    float: left;
-    margin-top: 5px;
-}
-@media screen and (max-width: 970px){
+  input[type="checkbox"]:checked ~ #sidebarMenu {
+      transform: translatey(0);
+      top:140px;
+  }
+  input[type=checkbox] {
+      transition: all 0.3s;
+      box-sizing: border-box;
+      display: none;
+  }
+  .sidebarIconToggle {
+      transition: all 0.3s;
+      box-sizing: border-box;
+      cursor: pointer;
+      position: absolute;
+      z-index: 99;
+      height: 22px;
+      width: 26px;
+      left:15px;
+      top:10px;
+      display: none
+  }
+  .spinner {
+      transition: all 0.3s;
+      box-sizing: border-box;
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      background-color: $secondColor;
+  }
+  .horizontal {
+      transition: all 0.3s;
+      box-sizing: border-box;
+      position: relative;
+      float: left;
+      margin-top: 3px;
+  }
+  .diagonal.part-1 {
+      position: relative;
+      transition: all 0.3s;
+      box-sizing: border-box;
+      float: left;
+  }
+  .diagonal.part-2 {
+      transition: all 0.3s;
+      box-sizing: border-box;
+      position: relative;
+      float: left;
+      margin-top: 3px;
+  }
+  input[type=checkbox]:checked ~ .sidebarIconToggle > .horizontal {
+      transition: all 0.3s;
+      box-sizing: border-box;
+      opacity: 0;
+  }
+  input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
+      transition: all 0.3s;
+      box-sizing: border-box;
+      transform: rotate(135deg);
+      margin-top: 8px;
+  }
+  input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
+      transition: all 0.3s;
+      box-sizing: border-box;
+      transform: rotate(-135deg);
+      margin-top: -9px;
+  }
+    
+@media screen and (max-width: 1000px){
   .sidebarIconToggle{
     display:block
  }
@@ -218,11 +241,44 @@ input[type=checkbox] {
  }
   header{
     .hdr{
+    @include flexbox(row, nowrap, space-between, center);
       &_left{
         .pages{
           display: none;
         }
       }
+      &_right{
+        width: 60px;
+        margin-right: 0px;
+        margin-left: 0px;
+        margin-top: -1px;
+        .login-sign{
+          display: none;
+        }      
+      }
     }
   }
+}
+
+@media screen and (max-width: 450px){
+  header{
+  .inform{
+    padding: 7px;
+        line-height: 12px;
+    &_left{
+      margin-left: 0px;
+      width: 170px;
+      height:30px;
+      @include flexbox(column, nowrap, space-around, flex-start);
+      &_mail{
+        padding-top: 3px;
+        line-height: 12px;
+      }
+      &_tel{
+        padding-bottom: 3px;
+        line-height: 12px;
+      }
+    }
+  }
+}
 }

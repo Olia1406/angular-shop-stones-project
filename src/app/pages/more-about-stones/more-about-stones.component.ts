@@ -13,7 +13,6 @@ export class MoreAboutStonesComponent implements OnInit {
   }
 
   scrollToElement($element): void {
-    console.log($element);
-    $element.scrollIntoView({behavior: "smooth", block:"end", inline: "nearest"});
+    $element.scrollIntoView({behavior: "smooth", block:"start", inline: "nearest"});
   }
 }

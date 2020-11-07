@@ -2,15 +2,26 @@
 @import '../../../common_scss/variables';
 
 .main-container{
-  margin-top: 90px;
-  @include flexbox(row, nowrap, space-between, flex-start);
+  margin-top: 80px;
+  padding-left: 15px;
+  @include flexbox(row, nowrap, space-around, flex-start);
+  position: relative;
+  min-height: 830px;
+}
+.gear-cont{
+  display: none;
+  @include fonts('Roboto,400',15px);
+  color: $secondColor;
+  img{
+    @include dimentions(25px,25px);
+    margin: 0 15px;
+  }
 }
 .new-products{
-    @include flexbox(row, wrap, center, flex-start);
+    @include flexbox(row, wrap, space-around, flex-start);
     margin-bottom: 15px;
-    width: 80vw;
     .product{
-       margin: 20px;
+       margin: 10px;
        @include dimentions(220px,330px);
        @include flexbox(column, wrap, flex-start, center);
        @include fonts($mainFont,17px);
@@ -34,26 +45,31 @@
     }
 }
 
-.price-title{
-  @include fonts($mainFont, 16px);
-  color: $secondColor;  
+.toggle-filters-container{
+  @include flexbox(column, wrap, flex-start, flex-start);
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 5;
+  border: 1px solid rgb(184, 183, 183);
+  padding: 15px;
+  background-color: whitesmoke;
 }
- 
 .filters-container{
   @include flexbox(column, wrap, flex-start, flex-start);
-  width: 200px;
 }
 .price-filter{
   @include flexbox(column, wrap, flex-start, flex-start); 
   width: 180px;
-  margin: 20px;  
+  margin-bottom: 20px;  
   padding: 20px;
   background-color: white;
 }   
 .stone-name-filter,.stone-color-filter,.zodiak-filter{
   @include flexbox(column, wrap, flex-start, flex-start);
   width: 180px;
-  margin: 20px;  
+  margin-bottom: 20px;  
   padding: 20px;
   background-color: white;
 }
@@ -83,9 +99,7 @@
 .stone-name:first-child,
 .stone-color:first-child,
 .zodiac:first-child{
-  // color:$mainColor;
   text-decoration: underline;
-
 }
 .chosen{
   text-align: center;
@@ -108,6 +122,11 @@
     background-color: white;
     b{
       color:$secondColor;
+      margin:5px;
+    }
+    .bt-width{
+      width: 120px;
+      padding: 5px;
     }
   }
   .no-data{
@@ -120,17 +139,81 @@
 
 @media screen and (max-width: 1200px){
   .new-products{
-    width: 75vw;
+    width: 870px;
   }
 }  
 
-@media screen and (max-width:970px){
+@media screen and (max-width:937px){
+  .main-container{
+    margin-top: 10px;
+    padding-left: 0;
+  }
   .new-products{
-    width: 70vw;
+    width: 760px;
+  }
+  .filters-container{
+    display: none;
+  }
+  .gear-cont{
+    display: flex;
+    align-self: flex-end;
+    margin-top: 70px;
   }
 }
-@media screen and (max-width: 730px){
+@media screen and (max-width: 740px){
   .new-products{
-    width: 55vw;
+    width: 600px;
+  }
+}
+
+@media screen and (max-width: 542px){
+  .new-products{
+    width: 370px;
+    @include flexbox(row, wrap, space-around, flex-start);
+    .product{
+      @include dimentions(290px,430px);
+      margin-bottom: 25px;
+      .p-image{
+        @include dimentions(280px,270px);
+      }
+    }
+  }
+}
+@media screen and (max-width: 400px){
+  .switch{
+    .bt-width{
+      height:40px;
+      width: 83px;
+      font-size: 12px;
+      font-family: 'Montserrat,600';
+      padding: 3px;
+    }
+    b{
+      font-size: 14px;
+      margin:4px;
+    }
+  }
+}
+@media screen and (max-width: 373px){
+  .new-products{
+    .product{
+      @include dimentions(230px,370px);
+      margin-bottom: 25px;
+      .p-image{
+        @include dimentions(220px,210px);
+      }
+    }
+  }
+}
+@media screen and (max-width: 335px){
+  .new-products{
+    width: 220px;
+    .product{
+      @include dimentions(200px,340px);
+      margin-bottom: 25px;
+      .p-image{
+        @include dimentions(190px,180px);
+      }
+    }
   }
 }

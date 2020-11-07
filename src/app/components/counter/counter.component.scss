@@ -1,0 +1,97 @@
+@import '../../common_scss/mixins';
+@import '../../common_scss/variables';
+// -------------------------------------------
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+  color: $mainColor;
+}
+// ------------------------------------
+.productCountWrapper {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0 24px;
+  } 
+  .productCount {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    transform: translateY(-50%);
+  } 
+  .productCount.lessProduct:before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 2px;
+    margin-top: -1px;
+    margin-left: -5px;
+    background: $secondColor;
+    content: '';
+  }  
+  .productCountWrapper input {
+    font-size: 17px;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    line-height: 38px;
+    font-weight: 500;
+    padding: 0 6px;
+    border: 1px solid #eaeaea;
+  }
+  .productCount.moreProduct {
+    left: auto;
+    right: 0;
+  }
+  .productCount.moreProduct:before, .productCount.moreProduct:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 2px;
+    margin-top: -1px;
+    margin-left: -5px;
+    background: $secondColor;
+    content: '';
+  }  
+  .productCount.moreProduct:after {
+    transform: rotate(-90deg);
+  }
+  .product-qty-single{
+      color: $mainColor;
+  }
+
+
+@media screen and (max-width: 600px){
+    .productCountWrapper{
+       padding: 0 15px;
+       margin: 0 7px;
+    }
+    .productCount{
+        width: 15px;
+        height: 15px;
+    }
+    .productCountWrapper input {
+        font-size: 15px;
+        width: 28px;
+        height: 28px;
+        padding: 0 5px;
+        margin: 0 3px;
+    }
+  }
+
+@media screen and (max-width: 500px){
+  .productCountWrapper{
+    margin: 0;
+ }
+}

@@ -25,6 +25,7 @@ export class ProductComponent implements OnInit {
   zodiacs: Array<string> = ['всі', 'козеріг', 'водолій', 'риби', 'овен', 'телець', 'близнюки', 'рак', 'лев', 'діва', 'терези', 'скорпіон', 'стрілець'];
   categoryName: string;
   paginationStatus: boolean = true;
+  filterStatus: boolean = true;
 
   // --------------------
   //Save first document in snapshot of items received
@@ -201,16 +202,20 @@ export class ProductComponent implements OnInit {
   }
   // ---------------------------sort by price----------------------------
   sortProdUp(): Array<IProduct> {
+    this.filterStatus = true;
     return this.products.sort((a, b) => a.price - b.price);
   }
 
   sortProdDown(): Array<IProduct> {
+    this.filterStatus = true;
     return this.products.sort((a, b) => b.price - a.price)
   }
   // --------------------------filters----------------------------------
   // ------------------by stone---------------------------
 
-  filterByStone(stone): void {
+  filterByStone(stone,$element): void {
+    $element.scrollIntoView({behavior: "smooth", block:"end", inline: "nearest"});
+    this.filterStatus = true;
     this.paginationStatus = false;
     this.currentStone = stone;
     this.currentColor = 'всі';
@@ -238,7 +243,9 @@ export class ProductComponent implements OnInit {
   }
 
   // -----------------by color---------------------------
-  filterByColor(color): void {
+  filterByColor(color,$element): void {
+    $element.scrollIntoView({behavior: "smooth", block:"end", inline: "nearest"});
+    this.filterStatus = true;
     this.paginationStatus = false;
     this.currentStone = 'всі';
     this.currentZodiac = 'всі';
@@ -266,7 +273,9 @@ export class ProductComponent implements OnInit {
   }
 
   // ------------------by zodiac--------------------------
-  filterByZodiac(zodiac): void {
+  filterByZodiac(zodiac,$element): void {
+    $element.scrollIntoView({behavior: "smooth", block:"end", inline: "nearest"});
+    this.filterStatus = true;
     this.paginationStatus = false;
     this.currentZodiac = zodiac;
     this.currentStone = 'всі';
@@ -293,7 +302,9 @@ export class ProductComponent implements OnInit {
     }
   }
 
-
+  showFilters(){
+   this.filterStatus=!this.filterStatus;
+  }
 
 
 

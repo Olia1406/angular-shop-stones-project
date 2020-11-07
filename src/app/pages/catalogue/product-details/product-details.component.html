@@ -7,41 +7,36 @@
   </div>
   <div class="prod-details">
     <div class="images-box">
-      <ng-magnizoom zoomMode="LENS" 
-      [imageSrc]= "product.image"
-      [imageStyle]="{ 'width': '380px', 'height': '380px', 'box-shadow': '0 0 3px 2px gray','border-radius': '10px' }"
-      ></ng-magnizoom>
-
-      <!-- <div> -->
-        <!-- <img class="big-image" [src]="product?.image" alt=""> -->
-      <!-- </div> -->
+      <!-- <ng-magnizoom zoomMode="LENS"  -->
+      <!-- [imageSrc]= "product.image" -->
+      <!-- [imageStyle]="{ 'width': '380px', 'height': '380px', 'box-shadow': '0 0 3px 2px gray','border-radius': '10px' }" -->
+      <!-- ></ng-magnizoom> -->
+      <div>
+        <img class="big-image" [src]="product?.image" alt="">
+      </div>
 
     </div>
     <div class="info-box">
+      <h2>{{ product?.nameUA }}</h2>
       <div class="info-details">
-        <h2>{{ product?.nameUA }}</h2>
         <p>Опис: {{ product?.description }}</p>
+        <p>Опис:Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero perferendis blanditiis nostrum omnis quidem
+          natus ullam soluta repellat sequi accusamus, facilis nulla recusandae qui cupiditate aliquid similique amet
+          delectus. Nihil?
+        </p>
         <p>Hазва каменя: {{ product?.stone }}</p>
         <p>Колір: {{ product?.color}}</p>
         <p>Довжина: {{ product?.length }} см</p>
         <p>Розмір каменя: {{ product?.width }} мм</p>
         <p class="more"><a [routerLink]="[ '/more' ]" routerLinkActive="active">Більше про властивості каменя <i>
               {{product?.stone}}</i></a></p>
-      </div>
-      <hr>
-      <div class="row-info">
+        <hr>
+        <div class="row-info">
         <p>Ціна: {{ product?.price }} грн</p>
-        <div class="count">
-          <p>Kількість:</p><span>
-            <app-counter [product]="product"></app-counter>
-          </span>
         </div>
+        <hr>
       </div>
-      <hr>
-      <div class="row-info">
-        <h4>Всього: {{ product?.price*product?.count }} грн</h4>
-        <button class="btn bt" (click)="addToBasket(product)">додати в кошик</button>
-      </div>
+      <button class="btn bt" (click)="addToBasket(product)">додати в кошик</button>
     </div>
   </div>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { IProduct } from '../../shared/interfaces/product.interface';
@@ -29,19 +30,20 @@ export class HeaderComponent implements OnInit {
   products: Array<IProduct>;
 
   menuStatus: boolean = false;
+  hdrTopStatus:boolean=true;
 
   constructor(private ordersService: OrdersService,
     private modalService: BsModalService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private actRoute: ActivatedRoute
+    ) { }
 
   ngOnInit(): void {
     this.checkBasket();
     this.getLocalProducts();
     this.updateCheckLogin();
     this.checkLogin();
-
   }
-
 
   private checkBasket(): void {
     this.ordersService.basket.subscribe(() => {
@@ -63,6 +65,7 @@ export class HeaderComponent implements OnInit {
 
   loginModal(template: TemplateRef<any>): void {
     this.modalRef = this.modalService.show(template, { class: 'modal-dialog-centered' });
+    this.menuStatus = false;
   }
 
   switchForm(): void {
@@ -120,10 +123,19 @@ export class HeaderComponent implements OnInit {
   
   hideMenu() {
     this.menuStatus = false;
+    this.hdrTopStatus= true; 
   }
   showMenu() {
     this.menuStatus = true;
   }
+  
+  hideTop(){
+    this.menuStatus = false;
+    this.hdrTopStatus= false; 
+  }
 
+  showTop(){
+    this.hdrTopStatus= true;
+  }
 
 }

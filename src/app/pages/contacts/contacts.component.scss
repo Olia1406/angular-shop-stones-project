@@ -34,3 +34,15 @@ h4{
 
 
 }
+
+@media screen and (max-width: 305px){
+  .write-on-messanger,.call,.write-on-email{
+    p{
+      line-height: 10px;
+      font-size: 14px;
+      img{
+        @include dimentions(16px, 16px)
+      }
+    }
+  }
+}

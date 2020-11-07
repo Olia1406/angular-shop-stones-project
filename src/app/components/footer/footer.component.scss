@@ -8,7 +8,8 @@ footer{
     padding: 5px;
     @include flexbox(row, wrap, space-between, center);
     .foot_left{
-        margin-left: 23px;
+            width: 30%;
+            margin-left: 23px;
         .logo{
             width: 120px;
             @include flexbox(row, wrap, space-between, center);
@@ -30,7 +31,7 @@ footer{
          p{
             @include fonts($secondFont, 15px);
             font-weight: 500;
-            color: $secondColor;   
+            color: $secondColor; 
          }
     }
     .foot_right{
@@ -49,7 +50,18 @@ footer{
 }
 }
 
-
+@media screen and (max-width: 465px){
+  footer{
+    .foot{
+        .foot_left{
+            width: 90%;
+        }
+        .foot_right{
+        width: 100%;
+        }
+    }
+  }
+}
 
 
 

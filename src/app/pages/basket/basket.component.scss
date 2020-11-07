@@ -1,19 +1,32 @@
 @import '../../common_scss/mixins';
 @import '../../common_scss/variables';
 
+.cont-centered{
+  @include flexbox(column, wrap, center, center);
+  padding: 20px;
+}
+.empty-basket{
+  @include flexbox(column, wrap, center, center);
+  height: 300px;
+}
+.smt-basket{
+  padding: 5px 60px 0;
+  background-color:white;
+}
 .table {
     display: table;
     width: 100%;
     background-color: white;
-    padding: 20px 10px;
   }
-.line{
-  width: 100%;
-  border: 1px solid $mainColor;
-}  
+.table .td {
+  display: table-cell;
+  padding: 0 4px ;
+}
 .table .tr {
   display: table-row;
   color:$secondColor;
+  border: 1px solid transparent;
+  border-bottom-color: rgb(202, 201, 201);
 }
 .thead{
   @include fonts($mainFont, 16px);
@@ -21,48 +34,51 @@
   height: 40px;
   margin: 15px 0;
   .td{
+  width: 130px;
+  overflow: hidden;
   color:$mainColor;
   }
 }
 .tbody{
   font-family: 'Roboto,400';
-  height: 40px;
-  margin: 5px 0;
   span{
     font-family: $mainFont;
     font-size: 22px;
+    margin: 0 15px;
     &:hover{
       color:$mainColor;
     }
+  }
+  .table-item{
+    display: none;
+    font-size: 14px;
   }
   img{
     @include dimentions(70px,70px);
     margin: 5px;
   }
-}  
+} 
+
+.second-cross{
+  display: none;
+  margin: 5px;
+font-size: 30px;
+
+}
 .tfoot{
-  margin-top: 25px;
   .td{
-    width: 200px;
     @include fonts($mainFont, 17px);
     color: $secondColor;
-      span{
-        color: $mainColor;
-        }
     }
 }
-.table .td {
-  display: table-cell;
-}
 
-  // ------order-------------------------------
+// ------order-------
 
   .order-data{
     @include flexbox(row, wrap, center, flex-start);
     color:$secondColor;
       background-color: white;
       margin: 15px 15px 0 15px;
-
     .delivery,.payment{
       width: 350px;
       margin: 10px 30px;
@@ -83,6 +99,9 @@
   padding-bottom: 20px;
   background-color:white;
   @include flexbox(column, wrap, center, center);
+  button{
+    width: 250px;
+  }
 }
   .inp{
     width: 100%;
@@ -163,7 +182,6 @@
   height: 12px;
   background:$mainColor;
   transform: scale(0.05);
-  // opacity: 1;
   transition: opacity .150s linear, transform .150s linear;
   content: '';
 }
@@ -177,10 +195,105 @@
   border-radius: 100%;
 }
 
+@media screen and (max-width: 1200px){
+  .smt-basket{
+    padding: 5px 0px 0;
+  } 
+  .tfoot{
+    .total{
+      padding: 0 50px 0 0;
+      margin: 0 50px;
+    }
+  }
+}
 
-@media screen and (max-width: 950px){
+@media screen and (max-width: 910px){
   .comment{
     width: 350px;
   }  
+}
 
+@media screen and (max-width: 750px){
+  .tfoot{
+    .total{
+      padding: 0 12px 0 0;
+    }
+  }
+}
+
+@media screen and (max-width: 520px){
+  .table{
+  @include flexbox(row, wrap, center, center);
+  }
+  .table .tr{
+  @include flexbox(column, nowrap, center, center);
+  margin: 5px; 
+  }
+  .table .thead{
+    display: none;
+  }
+  .tbody{
+    .del{
+      display: none;
+    }
+  }
+  .tbody{
+    span{
+      margin-left: 0px;
+      margin-right: 10px;
+    }
+    .table-item{
+      display: inline;
+    }
+  }
+  .tfoot{
+    .total{    
+      margin: 0 25px;
+    }
+  }
+.tbody{
+    word-break: break-all;
+  img{
+    @include dimentions(135px,135px);
+  }
+}
+.second-cross{
+  display: inline-block;
+}
+// ------order-------
+  .order-data{
+     .delivery,.payment{
+      width: 290px;
+      margin: 10px 5px;
+    }
+  }
+  .comment{
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: 370px){
+  .order-data{
+    .delivery,.payment{
+     width: 200px;
+     margin: 10px 0px;
+   }
+ }
+ .comment{
+   width: 200px; 
+ }
+ .buy{
+   button{
+     width: 200px;
+     margin-left: 7px;
+   }
+  }
+}
+
+@media screen and (max-width: 300px){
+  .buy{
+    button{
+      margin-left: 2px;
+    }
+  }
 }

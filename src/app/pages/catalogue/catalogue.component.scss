@@ -21,12 +21,20 @@
             .category-name{
             @include fonts($mainFont, 17px);
             color: $secondColor; 
+            margin: 0 5px;
             &:hover{
                 color: $mainColor;
-            }
+              }
             }
             .current-category{
                 color: $mainColor;
             }
+    }
+}
+@media screen and (max-width: 315px){
+    .catlogue-container{
+        .nav-prod{
+            padding-top: 5px;
+        }
     }
 }

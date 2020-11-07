@@ -1,4 +1,41 @@
+<div title="Сортування та фільтри" class="gear-cont" >
+  <img *ngIf="filterStatus" (click)="showFilters()" src="../../../../assets/icons/Gear-512.png" alt=""> 
+  <img *ngIf="!filterStatus"(click)="showFilters()" src="../../../../assets/icons/Close-icon.png" alt=""> сортування та фільтри
+</div>
+<div #top></div>
 <div class="main-container">
+<!-- --------------toggle filter container----------------------------------------------------------------- -->
+<div class="toggle-filters-container" [style.display]="filterStatus ? 'none' : 'flex'">
+  <div class="price-filter">
+    <h4 class="sel-title">Cортувати за ціною</h4>
+    <span class="sortDirection" (click)="sortProdUp()">за зростанням</span>
+    <span class="sortDirection" (click)="sortProdDown()">за спаданням</span>
+  </div>
+  <div class="stone-name-filter">
+    <h3 class="sel-title">Назва каменя</h3>
+    <p class="chosen" [textContent]='currentStone'></p>
+    <div class="stone-list">
+      <p class="stone-name" *ngFor="let stone of stoneNames" (click)="filterByStone(stone, top)">{{stone}}</p>
+    </div>
+  </div>
+  <div class="stone-color-filter">
+    <h3 class="sel-title">Колір</h3>
+    <p class="chosen" [textContent]='currentColor'></p>
+    <div class="color-list">
+      <p class="stone-color" *ngFor="let color of stoneColors" (click)="filterByColor(color, top)">{{color}}</p>
+    </div>
+  </div>
+  <div class="zodiak-filter">
+    <h3 class="sel-title">Зодіак</h3>
+    <p class="chosen" [textContent]='currentZodiac'></p>
+    <div class="zodiac-list">
+      <p class="zodiac" *ngFor="let zodiac of zodiacs" (click)="filterByZodiac(zodiac, top)">{{zodiac}}</p>
+    </div>
+  </div>
+</div>
+
+<!-- ------------------------------------------------------------------------------------------------------ -->
+
   <div class="filters-container">
     <div class="price-filter">
       <h4 class="sel-title">Cортувати за ціною</h4>
@@ -10,7 +47,7 @@
       <h3 class="sel-title">Назва каменя</h3>
       <p class="chosen" [textContent]='currentStone'></p>
       <div class="stone-list">
-        <p class="stone-name" *ngFor="let stone of stoneNames" (click)="filterByStone(stone)">{{stone}}</p>
+        <p class="stone-name" *ngFor="let stone of stoneNames" (click)="filterByStone(stone, top)">{{stone}}</p>
       </div>
     </div>
 
@@ -18,7 +55,7 @@
       <h3 class="sel-title">Колір</h3>
       <p class="chosen" [textContent]='currentColor'></p>
       <div class="color-list">
-        <p class="stone-color" *ngFor="let color of stoneColors" (click)="filterByColor(color)">{{color}}</p>
+        <p class="stone-color" *ngFor="let color of stoneColors" (click)="filterByColor(color, top)">{{color}}</p>
       </div>
     </div>
 
@@ -26,7 +63,7 @@
       <h3 class="sel-title">Зодіак</h3>
       <p class="chosen" [textContent]='currentZodiac'></p>
       <div class="zodiac-list">
-        <p class="zodiac" *ngFor="let zodiac of zodiacs" (click)="filterByZodiac(zodiac)">{{zodiac}}</p>
+        <p class="zodiac" *ngFor="let zodiac of zodiacs" (click)="filterByZodiac(zodiac, top)">{{zodiac}}</p>
       </div>
     </div>
   </div>
@@ -47,8 +84,8 @@
 </div>
 
 <div class="switch" *ngIf="paginationStatus">
-  <button class="btn bt  mr-3" style="width: 120px;" (click)="prevPage()"
+  <button class="btn bt bt-width" (click)="prevPage()"
     [disabled]="disable_prev || !(pagination_clicked_count>0)">Попередня</button> <b>сторінка:
     {{pagination_clicked_count+1}}</b>
-  <button class="btn bt ml-3" style="width: 120px;" (click)="nextPage()" [disabled]="disable_next">Наступна </button>
+  <button class="btn bt bt-width" (click)="nextPage()" [disabled]="disable_next">Наступна </button>
 </div>

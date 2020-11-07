@@ -1,7 +1,14 @@
 @import '../../common_scss/mixins';
 @import '../../common_scss/variables';
 
-
+.user-ord-container{
+    margin: 20px 30px;
+}
+button{
+    position: absolute;
+    top:135px;
+    right: 20px;
+}
 .first-line{
    @include flexbox(row, wrap, space-between,flex-start);
    color: $secondColor;
@@ -14,6 +21,11 @@ p{
     @include fonts('Roboto,400', 16px);
     line-height: 10px;
     margin-top: 7px;
+}
+.ord-type{
+    line-height: 16px;
+    margin-top: 5px;
+    margin-bottom: 2px;
 }
 .order-status{
     color:$mainColor;
@@ -74,6 +86,31 @@ p{
         .product-details{
             .details{
             width: 50vw;
+            }
+        }
+    }
+  }
+
+  @media screen and (max-width:650px){
+    .prev-order{
+        .product-details{
+            .details{
+            margin-left: 10px;
+            width: 70vw;
+            }
+        }
+    }
+  }
+
+  
+  @media screen and (max-width:400px){
+    .user-ord-container{
+        margin: 20px 20px;
+    }
+    .prev-order{
+        .product-details{
+            .details{
+            margin-left: 5px;
             }
         }
     }
